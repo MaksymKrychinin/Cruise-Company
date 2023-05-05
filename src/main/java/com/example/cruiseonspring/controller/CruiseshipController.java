@@ -3,6 +3,7 @@ package com.example.cruiseonspring.controller;
 import com.example.cruiseonspring.dto.CruiseshipDto;
 import com.example.cruiseonspring.service.CruiseshipService;
 import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,4 +25,12 @@ public class CruiseshipController {
         return cruiseshipService.getCruiseshipById(id);
     }
 
+    @PostMapping("/save")
+    public CruiseshipDto saveCruiseship(@Validated @RequestBody CruiseshipDto cruiseshipDto){
+        return cruiseshipService.saveCruiseship(cruiseshipDto);
+    }
+    @PostMapping("/update")
+    public CruiseshipDto updateCruiseship(@Validated @RequestBody CruiseshipDto cruiseshipDto){
+        return cruiseshipService.updateCruiseship(cruiseshipDto);
+    }
 }

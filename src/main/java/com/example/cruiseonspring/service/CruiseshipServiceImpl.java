@@ -19,7 +19,7 @@ public class CruiseshipServiceImpl implements CruiseshipService {
     @Override
     public List<CruiseshipDto> getAllCruiseships() {
         return cruiseshipRepository
-                .findAllByCapacityGreaterThanEqual(0)
+                .findAllWhereOrderedSeatsLessThanCapacity()
                 .stream()
                 .map(cruiseshipMapper::cruiseshipToDto)
                 .collect(Collectors.toList());

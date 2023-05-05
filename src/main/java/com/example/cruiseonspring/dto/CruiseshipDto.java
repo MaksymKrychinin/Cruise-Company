@@ -1,5 +1,6 @@
 package com.example.cruiseonspring.dto;
 
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 import java.sql.Date;
