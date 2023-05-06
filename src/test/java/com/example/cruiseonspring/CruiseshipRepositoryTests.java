@@ -4,25 +4,26 @@ import com.example.cruiseonspring.entity.Cruiseship;
 import com.example.cruiseonspring.mapper.CruiseshipMapper;
 import com.example.cruiseonspring.repository.CruiseshipRepository;
 import com.example.cruiseonspring.service.CruiseshipService;
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestPropertySource("classpath:application-test.properties")
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CruiseRepositoryTests {
+
     @Autowired
     CruiseshipRepository cruiseshipRepository;
     @Autowired
@@ -30,11 +31,9 @@ class CruiseRepositoryTests {
     @Autowired
     CruiseshipService cruiseshipService;
 
-    @Test
-    void contextLoads() {
-        //todo CLEAR DB If exist
-        //Todo Create data in db
-        System.out.println(cruiseshipRepository.findAll().size());
+    @BeforeEach
+    void deleteContext() {
+        cruiseshipRepository.deleteAll();
         cruiseshipRepository.findAll().forEach(System.out::println);
     }
 
@@ -43,7 +42,7 @@ class CruiseRepositoryTests {
         Cruiseship cruiseShipFullValues = new Cruiseship(
                 1,
                 10,
-                "Ukraine",
+                "Notherland",
                 "Europe",
                 5,
                 new Date(2015, 6, 12),
@@ -53,15 +52,25 @@ class CruiseRepositoryTests {
         Cruiseship savedCruiseShip = cruiseshipRepository.save(cruiseShipFullValues);
         assertEquals(cruiseShipFullValues.toString(), savedCruiseShip.toString());
 
-        Integer id = cruiseShipFullValues.getId();
-        System.out.println("id = " + id);
-        Integer id1 = savedCruiseShip.getId();
-        System.out.println("id1 = " + id1);
+        int countOfAddedValues = (int) cruiseshipRepository.count();
+        assertEquals(1, countOfAddedValues);
 
-        int size = cruiseshipRepository.findAll().size();
-        assertEquals(1, size);
+        cruiseShipFullValues = new Cruiseship(
+                1,
+                10,
+                "Europe",
+                "Northerland",
+                5,
+                new Date(12, 6, 12),
+                new Date(19, 6, 17),
+                0
+        );
 
-        System.out.println("size = " + size);
+        savedCruiseShip = cruiseshipRepository.save(cruiseShipFullValues);
+        assertEquals(1, savedCruiseShip.getId());
+
+        countOfAddedValues = (int) cruiseshipRepository.count();
+        assertEquals(1, countOfAddedValues);
     }
 
     @Test
@@ -78,20 +87,16 @@ class CruiseRepositoryTests {
         );
 
         Cruiseship savedCruiseShip = cruiseshipRepository.save(cruiseShipWithNullId);
-        Integer idCruiseShipWithNull = cruiseShipWithNullId.getId();
-        Integer idSavedCruiseShip = savedCruiseShip.getId();
-        assertEquals(idCruiseShipWithNull, idSavedCruiseShip);
-        System.out.println("idSavedCruiseShip = " + idSavedCruiseShip);
-        System.out.println("idCruiseShipWithNull = " + idCruiseShipWithNull);
-        int size = cruiseshipRepository.findAll().size();
-        System.out.println("size = " + size);
-        assertTrue(size > 1);
+        assertEquals(1, savedCruiseShip.getId());
+
+        int countOfAddedValues = (int) cruiseshipRepository.count();
+        assertEquals(1, countOfAddedValues);
 
         Cruiseship cruiseShipWithNullIdAnother = new Cruiseship(
                 null,
                 10,
-                "Ukraine",
                 "Europe",
+                "Ukraine",
                 5,
                 new Date(2015, 6, 12),
                 new Date(2015, 6, 17),
@@ -102,41 +107,53 @@ class CruiseRepositoryTests {
 
         assertEquals(cruiseShipWithNullIdAnother.toString(), savedCruiseShipAnother.toString());
 
-        int sizeAnother = cruiseshipRepository
-                .findAll()
-                .size();
+        int sizeAnother = (int) cruiseshipRepository.count();
 
-        assertEquals(sizeAnother, size + 1);
+        assertEquals(3, sizeAnother);
     }
 
+
     @Test
-    void testRepositorySaveEntityWithIdOneEqualsAddedEntity() {
+    void testRepositoryFindAllByCapacityGreaterThanEqual() {
         Cruiseship cruiseShipFullValues = new Cruiseship(
-                1,
+                null,
                 10,
-                "Ukraine",
-                "Europe",
+                "America",
+                "Canada",
+                5,
+                new Date(2015, 6, 12),
+                new Date(2015, 6, 17),
+                10
+        );
+
+        cruiseshipRepository.save(cruiseShipFullValues);
+        assertEquals(1, cruiseshipRepository.count());
+
+        Cruiseship cruiseShipFullValuesNext = new Cruiseship(
+                null,
+                10,
+                "Canada",
+                "America",
                 5,
                 new Date(2015, 6, 12),
                 new Date(2015, 6, 17),
                 0
         );
-        cruiseshipRepository.save(cruiseShipFullValues);
-        Optional<Cruiseship> entityById = cruiseshipRepository.findById(1);
-        assertEquals(entityById.get().toString(), cruiseShipFullValues.toString());
+        cruiseshipRepository.save(cruiseShipFullValuesNext);
+        assertEquals(2, cruiseshipRepository.count());
+
+        List<Cruiseship> allWhereOrderedSeatsLessThanCapacity = cruiseshipRepository.findAllWhereOrderedSeatsLessThanCapacity();
+
+        assertEquals(1, allWhereOrderedSeatsLessThanCapacity.size());
+        assertEquals(2, cruiseshipRepository.count());
     }
 
     @Test
-    void testRepositoryFindAllByCapacityGreaterThanEqual(){
-        List<Cruiseship> allByOrderedSeatsLessThanCapacity = cruiseshipRepository.findAllWhereOrderedSeatsLessThanCapacity();
-
-        assertEquals(1, allByOrderedSeatsLessThanCapacity.size());
-        assertEquals(1, cruiseshipRepository.count());
-
+    void testRepositoryDelete() {
         Cruiseship cruiseShipFullValues = new Cruiseship(
                 null,
                 10,
-                "Ukraine",
+                "Sweden",
                 "Europe",
                 5,
                 new Date(2015, 6, 12),
@@ -144,39 +161,31 @@ class CruiseRepositoryTests {
                 10
         );
         cruiseshipRepository.save(cruiseShipFullValues);
-
-        assertEquals(2, cruiseshipRepository.count());
-
-        allByOrderedSeatsLessThanCapacity = cruiseshipRepository.findAllWhereOrderedSeatsLessThanCapacity();
-
-        System.out.println(allByOrderedSeatsLessThanCapacity.size());
-        assertEquals(1, allByOrderedSeatsLessThanCapacity.size());
-        assertEquals(2, cruiseshipRepository.count());
-    }
-
-    @Test
-    void testRepositoryDelete(){
         assertEquals(1, cruiseshipRepository.count());
+
         cruiseshipRepository.deleteById(1);
         assertEquals(0, cruiseshipRepository.count());
     }
+
     @Test
-    void testRepositoryUpdate(){
+    void testRepositoryUpdate() {
         Cruiseship cruiseShipFullValues = new Cruiseship(
                 1,
                 10,
-                "Ukraine",
                 "Europe",
+                "Sweden",
                 5,
                 new Date(2015, 6, 12),
                 new Date(2015, 6, 17),
                 10
         );
         Cruiseship cruiseship = cruiseshipRepository.save(cruiseShipFullValues);
+        assertEquals(1, cruiseshipRepository.count());
         cruiseship.setCapacity(100);
         cruiseshipRepository.save(cruiseship);
-        Optional<Cruiseship> cruiseshipById = cruiseshipRepository.findById(1);
+        assertEquals(1, cruiseshipRepository.count());
 
+        Optional<Cruiseship> cruiseshipById = cruiseshipRepository.findById(1);
         assertEquals(100, cruiseshipById.get().getCapacity());
     }
 }
