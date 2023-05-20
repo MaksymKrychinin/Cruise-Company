@@ -18,12 +18,12 @@ public class Userorder {
     @MapsId("idUser")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idUser", nullable = false, referencedColumnName = "idusers")
-    private User idUser;
+    private User user;
 
     @MapsId("idCruiseShip")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idCruiseShip", nullable = false)
-    private Cruiseship idCruiseShip;
+    private Cruiseship cruiseShip;
 
     @Column(name = "frontPassport", nullable = false)
     private String frontPassport;
