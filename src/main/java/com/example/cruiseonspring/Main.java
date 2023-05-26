@@ -1,9 +1,8 @@
 package com.example.cruiseonspring;
 
 
-import com.example.cruiseonspring.repository.CruiseshipRepository;
+import com.example.cruiseonspring.repository.CruiseShipRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class Main implements CommandLineRunner {
-    CruiseshipRepository cruiseshipRepository;
+    CruiseShipRepository cruiseshipRepository;
     @Override
     public void run(String... args) {
         main(args);

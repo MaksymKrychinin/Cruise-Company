@@ -1,12 +1,11 @@
-package com.example.cruiseonspring.dto;
+package com.example.cruiseonspring.dto.cruiseship;
 
-import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 import java.sql.Date;
 
 @Data
-public class CruiseshipDto {
+public class CruiseShipDtoForUser {
     private Integer id;
     private Integer capacity;
     private String routeFrom;

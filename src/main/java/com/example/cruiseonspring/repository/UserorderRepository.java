@@ -1,7 +1,7 @@
 package com.example.cruiseonspring.repository;
 
 import com.example.cruiseonspring.entity.User;
-import com.example.cruiseonspring.entity.Userorder;
+import com.example.cruiseonspring.entity.UserOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,15 +9,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserorderRepository extends JpaRepository<Userorder, Integer> {
+public interface UserorderRepository extends JpaRepository<UserOrder, Integer> {
 
-    List<Userorder> findAllByIdUserEquals(User user);
+    List<UserOrder> findAllByUser(User user);
 
-    List<Userorder> findAllByIdUserEquals(Integer integer);
+    @Override
+    Optional<UserOrder> findById(Integer id);
 
-    Optional<Userorder> findById(Integer id);
+    @Override
+    UserOrder save(UserOrder entity);
 
-    Userorder save(Userorder entity);
-
-    void delete(Userorder entity);
+    @Override
+    void deleteById(Integer id);
 }

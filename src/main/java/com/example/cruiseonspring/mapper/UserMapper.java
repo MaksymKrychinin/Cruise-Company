@@ -2,13 +2,14 @@ package com.example.cruiseonspring.mapper;
 
 import com.example.cruiseonspring.dto.UserDto;
 import com.example.cruiseonspring.entity.User;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
-@AllArgsConstructor
-public class UserMapper {
-    public UserDto userToDto(User user) {
+import java.util.function.Function;
+
+@Service
+public class UserMapper implements Function<User, UserDto> {
+    @Override
+    public UserDto apply(User user) {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
         userDto.setName(user.getName());
@@ -19,18 +20,5 @@ public class UserMapper {
         userDto.setDateOfBirthday(user.getDateOfBirthday());
         userDto.setPhoneNumber(user.getPhoneNumber());
         return userDto;
-    }
-
-    public User dtoToUser(UserDto userDto) {
-        User user = new User();
-        user.setId(userDto.getId());
-        user.setName(userDto.getName());
-        user.setGender(userDto.getGender());
-        user.setEmail(userDto.getEmail());
-        user.setSurname(userDto.getSurname());
-        user.setPassword(userDto.getPassword());
-        user.setDateOfBirthday(userDto.getDateOfBirthday());
-        user.setPhoneNumber(userDto.getPhoneNumber());
-        return user;
     }
 }
