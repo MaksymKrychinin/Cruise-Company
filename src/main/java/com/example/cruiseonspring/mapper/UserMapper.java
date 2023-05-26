@@ -2,8 +2,6 @@ package com.example.cruiseonspring.mapper;
 
 import com.example.cruiseonspring.dto.UserDto;
 import com.example.cruiseonspring.entity.User;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;

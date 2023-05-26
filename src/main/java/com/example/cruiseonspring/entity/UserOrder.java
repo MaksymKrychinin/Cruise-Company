@@ -3,14 +3,12 @@ package com.example.cruiseonspring.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "user-orders")
-@ToString
-public class Userorder {
+public class UserOrder {
     @Id
     @Column(name = "id_user_orders", nullable = false)
     private Integer id;

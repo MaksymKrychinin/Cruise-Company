@@ -1,7 +1,7 @@
 package com.example.cruiseonspring.mapper;
 
 import com.example.cruiseonspring.dto.UserorderDto;
-import com.example.cruiseonspring.entity.Userorder;
+import com.example.cruiseonspring.entity.UserOrder;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
 import com.example.cruiseonspring.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ public class UserorderMapper {
     private final CruiseShipRepository cruiseshipRepository;
     private final UserRepository userRepository;
 
-    public UserorderDto userorderToDto(Userorder userorder) {
+    public UserorderDto userorderToDto(UserOrder userorder) {
         UserorderDto userorderDto = new UserorderDto();
         userorderDto.setId(userorder.getId());
         userorderDto.setStatus(userorder.getStatus());
@@ -25,8 +25,8 @@ public class UserorderMapper {
         return userorderDto;
     }
 
-    public Userorder dtoToUserorder(UserorderDto userorderDto) {
-        Userorder userorder = new Userorder();
+    public UserOrder dtoToUserorder(UserorderDto userorderDto) {
+        UserOrder userorder = new UserOrder();
         userorder.setId(userorderDto.getId());
         userorder.setStatus(userorderDto.getStatus());
         userorder.setCruiseShip(cruiseshipRepository.findById(userorderDto.getIdCruiseShip()).get());
