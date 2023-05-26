@@ -7,30 +7,29 @@ import lombok.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "cruiseships")
+@Table(name = "cruise-ships")
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cruiseship {
+public class CruiseShip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idcruiseShip")
+    @Column(name = "id_cruise_ship")
     private Integer id;
-
     @Column(name = "capacity", nullable = false)
     private Integer capacity;
-    @Column(name = "routeFrom", nullable = false)
+    @Column(name = "route_from", nullable = false)
     private String routeFrom;
-    @Column(name = "routeTo", nullable = false)
+    @Column(name = "route_to", nullable = false)
     private String routeTo;
-    @Column(name = "numberOfVisitedPorts", nullable = false)
+    @Column(name = "number_of_visited_ports", nullable = false)
     private Integer numberOfVisitedPorts;
-    @Column(name = "startDate", nullable = false)
+    @Column(name = "start_date", nullable = false)
     private Date startDate;
-    @Column(name = "endDate", nullable = false)
+    @Column(name = "end_date", nullable = false)
     private Date endDate;
-    @Column(name = "orderedSeats", nullable = false)
+    @Column(name = "ordered_seats", nullable = false)
     private Integer orderedSeats;
 }

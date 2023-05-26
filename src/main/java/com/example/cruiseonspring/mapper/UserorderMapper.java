@@ -2,9 +2,8 @@ package com.example.cruiseonspring.mapper;
 
 import com.example.cruiseonspring.dto.UserorderDto;
 import com.example.cruiseonspring.entity.Userorder;
-import com.example.cruiseonspring.repository.CruiseshipRepository;
+import com.example.cruiseonspring.repository.CruiseShipRepository;
 import com.example.cruiseonspring.repository.UserRepository;
-import com.example.cruiseonspring.repository.UserorderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class UserorderMapper {
 
-    private final CruiseshipRepository cruiseshipRepository;
+    private final CruiseShipRepository cruiseshipRepository;
     private final UserRepository userRepository;
 
     public UserorderDto userorderToDto(Userorder userorder) {
