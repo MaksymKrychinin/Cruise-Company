@@ -4,8 +4,8 @@ import com.example.cruiseonspring.dto.cruiseship.CruiseShipDtoForUser;
 import com.example.cruiseonspring.dto.cruiseship.CruiseShipDtoValid;
 import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.exception.CruiseshipNotFoundException;
-import com.example.cruiseonspring.mapper.cruiseship.CruiseShipDtoToEntityMapper;
-import com.example.cruiseonspring.mapper.cruiseship.CruiseShipToDtoMapper;
+import com.example.cruiseonspring.mapper.CruiseShipDtoToEntityMapper;
+import com.example.cruiseonspring.mapper.CruiseShipToDtoMapper;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,8 +22,11 @@ public class CruiseShipServiceImpl implements CruiseShipService {
 
     @Override
     public List<CruiseShipDtoForUser> getAllCruiseShips() {
-        return cruiseshipRepository
-                .findAllWhereOrderedSeatsLessThanCapacity()
+        List<CruiseShip> cruiseShipList = cruiseshipRepository
+                .findAllWhereOrderedSeatsLessThanCapacity();
+        if (cruiseShipList.size() == 0)
+            throw new CruiseshipNotFoundException("List of Cruise ships not found");
+        return cruiseShipList
                 .stream()
                 .map(cruiseShipToDtoMapper)
                 .collect(Collectors.toList());
@@ -40,7 +43,8 @@ public class CruiseShipServiceImpl implements CruiseShipService {
 
     @Override
     public CruiseShip saveCruiseShip(CruiseShipDtoValid cruiseShip) {
-        return cruiseshipRepository.save(cruiseShipDtoToEntityMapper.apply(cruiseShip));
+        return cruiseshipRepository
+                .save(cruiseShipDtoToEntityMapper.apply(cruiseShip));
     }
 
     @Override

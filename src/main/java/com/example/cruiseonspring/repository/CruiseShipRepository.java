@@ -1,9 +1,12 @@
 package com.example.cruiseonspring.repository;
 
 import com.example.cruiseonspring.entity.CruiseShip;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +20,8 @@ public interface CruiseShipRepository extends JpaRepository<CruiseShip, Integer>
     Optional<CruiseShip> findById(Integer id);
 
     @Override
-    CruiseShip save(CruiseShip cruiseShip);
+    @Transactional
+    <S extends CruiseShip> S save(S entity);
 
     @Override
     void deleteById(Integer id);

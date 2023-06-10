@@ -6,8 +6,11 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.sql.Date;
+
 @Data
 public class CruiseShipDtoValid {
+    @NotNull
+    private Integer id;
     @NotNull
     @Positive(message = "Capacity can't be less 0")
     private Integer capacity;
@@ -17,7 +20,7 @@ public class CruiseShipDtoValid {
     private String routeTo;
     @PositiveOrZero
     private Integer numberOfVisitedPorts;
-   //todo @DateLaterThanNow
+    //todo @DateLaterThanNow
     private Date startDate;
     //todo @DateLaterThanNow
     private Date endDate;

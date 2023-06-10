@@ -1,4 +1,4 @@
-package com.example.cruiseonspring.mapper.cruiseship;
+package com.example.cruiseonspring.mapper;
 
 import com.example.cruiseonspring.dto.cruiseship.CruiseShipDtoForUser;
 import com.example.cruiseonspring.entity.CruiseShip;
