@@ -48,7 +48,6 @@ class CruiseRepositoryTests {
         );
         CruiseShip savedCruiseShip = cruiseshipRepository.save(cruiseShipFullValues);
         assertEquals(cruiseShipFullValues.toString(), savedCruiseShip.toString());
-
         int countOfAddedValues = (int) cruiseshipRepository.count();
         assertEquals(1, countOfAddedValues);
 
