@@ -1,4 +1,4 @@
-package com.example.cruiseonspring.dto.cruiseship;
+package com.example.cruiseonspring.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -9,7 +9,7 @@ import lombok.Data;
 import java.sql.Date;
 
 @Data
-public class CruiseShipDtoValid {
+public class CruiseShipDto {
     @NotNull
     private Integer id;
     @NotNull

@@ -1,16 +1,16 @@
 package com.example.cruiseonspring.mapper;
 
-import com.example.cruiseonspring.dto.cruiseship.CruiseShipDtoForUser;
+import com.example.cruiseonspring.dto.CruiseShipDto;
 import com.example.cruiseonspring.entity.CruiseShip;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
 
 @Service
-public class CruiseShipToDtoMapper implements Function<CruiseShip, CruiseShipDtoForUser> {
+public class CruiseShipToDtoMapper implements Function<CruiseShip, CruiseShipDto> {
     @Override
-    public CruiseShipDtoForUser apply(CruiseShip cruiseship) {
-        CruiseShipDtoForUser cruiseShipDto = new CruiseShipDtoForUser();
+    public CruiseShipDto apply(CruiseShip cruiseship) {
+        CruiseShipDto cruiseShipDto = new CruiseShipDto();
         cruiseShipDto.setId(cruiseship.getId());
         cruiseShipDto.setCapacity(cruiseship.getCapacity());
         cruiseShipDto.setNumberOfVisitedPorts(cruiseship.getNumberOfVisitedPorts());

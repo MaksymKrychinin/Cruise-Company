@@ -1,13 +1,13 @@
 package com.example.cruiseonspring.service;
 
-import com.example.cruiseonspring.dto.cruiseship.CruiseShipDtoForUser;
-import com.example.cruiseonspring.dto.cruiseship.CruiseShipDtoValid;
+import com.example.cruiseonspring.dto.CruiseShipDto;
 import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.exception.CruiseshipNotFoundException;
 import com.example.cruiseonspring.mapper.CruiseShipDtoToEntityMapper;
 import com.example.cruiseonspring.mapper.CruiseShipToDtoMapper;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class CruiseShipServiceImpl implements CruiseShipService {
     private final CruiseShipDtoToEntityMapper cruiseShipDtoToEntityMapper;
 
     @Override
-    public List<CruiseShipDtoForUser> getAllCruiseShips() {
+    public List<CruiseShipDto> getAllCruiseShips() {
         List<CruiseShip> cruiseShipList = cruiseshipRepository
                 .findAllWhereOrderedSeatsLessThanCapacity();
         if (cruiseShipList.size() == 0)
@@ -33,7 +33,7 @@ public class CruiseShipServiceImpl implements CruiseShipService {
     }
 
     @Override
-    public CruiseShipDtoForUser getCruiseShipById(Integer id) {
+    public CruiseShipDto getCruiseShipById(Integer id) {
         return cruiseshipRepository
                 .findById(id)
                 .map(cruiseShipToDtoMapper)
@@ -42,13 +42,13 @@ public class CruiseShipServiceImpl implements CruiseShipService {
     }
 
     @Override
-    public CruiseShip saveCruiseShip(CruiseShipDtoValid cruiseShip) {
+    public CruiseShip saveCruiseShip(CruiseShipDto cruiseShip) {
         return cruiseshipRepository
                 .save(cruiseShipDtoToEntityMapper.apply(cruiseShip));
     }
 
     @Override
-    public CruiseShip updateCruiseShip(CruiseShipDtoValid cruiseShip) {
+    public CruiseShip updateCruiseShip(CruiseShipDto cruiseShip) {
         return cruiseshipRepository.save(cruiseShipDtoToEntityMapper.apply(cruiseShip));
     }
 
