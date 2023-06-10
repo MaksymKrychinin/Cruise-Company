@@ -2,7 +2,7 @@ package com.example.cruiseonspring.service;
 
 import com.example.cruiseonspring.dto.UserorderDto;
 import com.example.cruiseonspring.entity.User;
-import com.example.cruiseonspring.entity.Userorder;
+import com.example.cruiseonspring.entity.UserOrder;
 import com.example.cruiseonspring.mapper.UserorderMapper;
 import com.example.cruiseonspring.repository.UserorderRepository;
 import lombok.AllArgsConstructor;
@@ -13,26 +13,27 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class UserorderServiceImpl implements UserorderService {
+public class UserOrderServiceImpl implements UserOrderService {
     private final UserorderRepository userorderRepository;
     private final UserorderMapper userorderMapper;
 
 
     @Override
     public List<UserorderDto> getAllUserOrders(User user) {
-        return userorderRepository.findAllByIdUserEquals(user)
+        return userorderRepository.findAllByUser(user)
                 .stream()
                 .map(userorderMapper::userorderToDto)
                 .collect(Collectors.toList());
     }
 
+
     @Override
-    public UserorderDto saveUserOrder(Userorder userOrder) {
+    public UserorderDto saveUserOrder(UserOrder userOrder) {
         return userorderMapper.userorderToDto(userorderRepository.save(userOrder));
     }
 
     @Override
-    public UserorderDto updateUserOrder(Userorder userOrder) {
+    public UserorderDto updateUserOrder(UserOrder userOrder) {
         return userorderMapper.userorderToDto(userorderRepository.save(userOrder));
     }
 
