@@ -1,19 +1,18 @@
 package com.example.cruiseonspring.service;
 
-import com.example.cruiseonspring.dto.cruiseship.CruiseShipDtoForUser;
-import com.example.cruiseonspring.dto.cruiseship.CruiseShipDtoValid;
+import com.example.cruiseonspring.dto.CruiseShipDto;
 import com.example.cruiseonspring.entity.CruiseShip;
 
 import java.util.List;
 
 public interface CruiseShipService {
-    List<CruiseShipDtoForUser> getAllCruiseShips();
+    List<CruiseShipDto> getAllCruiseShips();
 
-    CruiseShipDtoForUser getCruiseShipById(Integer id);
+    CruiseShipDto getCruiseShipById(Integer id);
 
-    CruiseShip saveCruiseShip(CruiseShipDtoValid cruiseShip);
+    CruiseShip saveCruiseShip(CruiseShipDto cruiseShip);
 
-    CruiseShip updateCruiseShip(CruiseShipDtoValid cruiseShip);
+    CruiseShip updateCruiseShip(CruiseShipDto cruiseShip);
 
     void deleteCruiseShip(Integer id);
 }

@@ -1,7 +1,6 @@
 package com.example.cruiseonspring.controller;
 
-import com.example.cruiseonspring.dto.cruiseship.CruiseShipDtoForUser;
-import com.example.cruiseonspring.dto.cruiseship.CruiseShipDtoValid;
+import com.example.cruiseonspring.dto.CruiseShipDto;
 import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.service.CruiseShipService;
 import lombok.AllArgsConstructor;
@@ -18,22 +17,22 @@ public class CruiseShipController {
     private final CruiseShipService cruiseshipService;
 
     @GetMapping("")
-    public List<CruiseShipDtoForUser> getAllCruiseShips() {
+    public List<CruiseShipDto> getAllCruiseShips() {
         return cruiseshipService.getAllCruiseShips();
     }
 
     @GetMapping("/{id}")
-    public CruiseShipDtoForUser getDepartmentById(@PathVariable Integer id) {
+    public CruiseShipDto getDepartmentById(@PathVariable Integer id) {
         return cruiseshipService.getCruiseShipById(id);
     }
 
     @PostMapping("")
-    public CruiseShip saveCruiseship(@Validated @RequestBody CruiseShipDtoValid cruiseShip) {
+    public CruiseShip saveCruiseship(@Validated @RequestBody CruiseShipDto cruiseShip) {
         return cruiseshipService.saveCruiseShip(cruiseShip);
     }
 
     @PutMapping("")
-    public CruiseShip updateCruiseship(@Validated @RequestBody CruiseShipDtoValid cruiseShipDto) {
+    public CruiseShip updateCruiseship(@Validated @RequestBody CruiseShipDto cruiseShipDto) {
         return cruiseshipService.updateCruiseShip(cruiseShipDto);
     }
 

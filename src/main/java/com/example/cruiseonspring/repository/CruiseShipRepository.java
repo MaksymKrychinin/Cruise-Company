@@ -1,7 +1,6 @@
 package com.example.cruiseonspring.repository;
 
 import com.example.cruiseonspring.entity.CruiseShip;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.lang.NonNull;
@@ -17,12 +16,13 @@ public interface CruiseShipRepository extends JpaRepository<CruiseShip, Integer>
     List<CruiseShip> findAllWhereOrderedSeatsLessThanCapacity();
 
     @Override
-    Optional<CruiseShip> findById(Integer id);
+
+    Optional<CruiseShip> findById( Integer id);
 
     @Override
     @Transactional
-    <S extends CruiseShip> S save(S entity);
+    <S extends CruiseShip> S save( S entity);
 
     @Override
-    void deleteById(Integer id);
+    void deleteById( Integer id);
 }
