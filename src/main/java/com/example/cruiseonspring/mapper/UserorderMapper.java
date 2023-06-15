@@ -1,6 +1,6 @@
 package com.example.cruiseonspring.mapper;
 
-import com.example.cruiseonspring.dto.UserorderDto;
+import com.example.cruiseonspring.dto.UserOrderDto;
 import com.example.cruiseonspring.entity.UserOrder;
 import com.example.cruiseonspring.entity.Userorder;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
@@ -15,8 +15,8 @@ public class UserorderMapper {
     private final CruiseShipRepository cruiseshipRepository;
     private final UserRepository userRepository;
 
-    public UserorderDto userorderToDto(UserOrder userorder) {
-        UserorderDto userorderDto = new UserorderDto();
+    public UserOrderDto userorderToDto(UserOrder userorder) {
+        UserOrderDto userorderDto = new UserOrderDto();
         userorderDto.setId(userorder.getId());
         userorderDto.setStatus(userorder.getStatus());
         userorderDto.setIdCruiseShip(userorder.getCruiseShip().getId());
@@ -26,7 +26,7 @@ public class UserorderMapper {
         return userorderDto;
     }
 
-    public UserOrder dtoToUserorder(UserorderDto userorderDto) {
+    public UserOrder dtoToUserorder(UserOrderDto userorderDto) {
         UserOrder userorder = new UserOrder();
         userorder.setId(userorderDto.getId());
         userorder.setStatus(userorderDto.getStatus());

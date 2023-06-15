@@ -3,7 +3,7 @@ package com.example.cruiseonspring.dto;
 import lombok.Data;
 
 @Data
-public class UserorderDto {
+public class UserOrderDto {
     private Integer id;
     private Integer idUser;
     private Integer idCruiseShip;

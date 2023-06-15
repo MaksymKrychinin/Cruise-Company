@@ -5,10 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -24,7 +27,7 @@ public class User implements UserDetails {
     @MapsId("role")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "role", nullable = false)
-    private Role role;
+    private Role userRole;
 
     @Column(name = "password", nullable = false, length = 45)
     private String password;
@@ -49,7 +52,12 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(new SimpleGrantedAuthority(getUserRole().getName()));
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.example.cruiseonspring.service;
 
-import com.example.cruiseonspring.dto.UserorderDto;
+import com.example.cruiseonspring.dto.UserOrderDto;
 import com.example.cruiseonspring.entity.User;
 import com.example.cruiseonspring.entity.UserOrder;
 import com.example.cruiseonspring.mapper.UserorderMapper;
@@ -19,7 +19,7 @@ public class UserOrderServiceImpl implements UserOrderService {
 
 
     @Override
-    public List<UserorderDto> getAllUserOrders(User user) {
+    public List<UserOrderDto> getAllUserOrders(User user) {
         return userorderRepository.findAllByUser(user)
                 .stream()
                 .map(userorderMapper::userorderToDto)
@@ -28,12 +28,12 @@ public class UserOrderServiceImpl implements UserOrderService {
 
 
     @Override
-    public UserorderDto saveUserOrder(UserOrder userOrder) {
+    public UserOrderDto saveUserOrder(UserOrder userOrder) {
         return userorderMapper.userorderToDto(userorderRepository.save(userOrder));
     }
 
     @Override
-    public UserorderDto updateUserOrder(UserOrder userOrder) {
+    public UserOrderDto updateUserOrder(UserOrder userOrder) {
         return userorderMapper.userorderToDto(userorderRepository.save(userOrder));
     }
 
