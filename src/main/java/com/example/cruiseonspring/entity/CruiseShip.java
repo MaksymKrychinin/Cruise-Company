@@ -11,8 +11,9 @@ import java.sql.Date;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class CruiseShip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

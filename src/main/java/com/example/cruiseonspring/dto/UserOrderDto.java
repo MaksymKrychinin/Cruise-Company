@@ -1,9 +1,15 @@
 package com.example.cruiseonspring.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class UserorderDto {
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class UserOrderDto {
     private Integer id;
     private Integer idUser;
     private Integer idCruiseShip;

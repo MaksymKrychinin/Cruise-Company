@@ -1,24 +1,31 @@
 package com.example.cruiseonspring.mapper;
 
-import com.example.cruiseonspring.dto.UserDto;
+import com.example.cruiseonspring.dto.RegisterRequest;
 import com.example.cruiseonspring.entity.User;
+import com.example.cruiseonspring.repository.RoleRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
 
 @Service
-public class UserMapper implements Function<User, UserDto> {
+@RequiredArgsConstructor
+public class UserMapper implements Function<RegisterRequest, User> {
+    private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
+
     @Override
-    public UserDto apply(User user) {
-        UserDto userDto = new UserDto();
-        userDto.setId(user.getId());
-        userDto.setName(user.getName());
-        userDto.setGender(user.getGender());
-        userDto.setEmail(user.getEmail());
-        userDto.setSurname(user.getSurname());
-        userDto.setPassword("secrets_pass");
-        userDto.setDateOfBirthday(user.getDateOfBirthday());
-        userDto.setPhoneNumber(user.getPhoneNumber());
-        return userDto;
+    public User apply(RegisterRequest request) {
+        return User.builder()
+                .email(request.getEmail())
+                .dateOfBirthday(request.getDateOfBirthday())
+                .gender(request.getGender())
+                .name(request.getName())
+                .surname(request.getSurname())
+                .phoneNumber(request.getPhoneNumber())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .userRole(roleRepository.findByName("USER").get())
+                .build();
     }
 }
