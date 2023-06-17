@@ -9,11 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserOrderDto {
-    private Integer id;
-    private Integer idUser;
-    private Integer idCruiseShip;
-    private String frontPassport;
-    private String backPassport;
-    private String status;
+public class AuthenticationRequest {
+    private String email;
+    private String password;
 }

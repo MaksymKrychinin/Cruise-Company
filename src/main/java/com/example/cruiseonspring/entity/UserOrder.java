@@ -1,24 +1,26 @@
 package com.example.cruiseonspring.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "user-orders")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserOrder {
     @Id
     @Column(name = "id_user_orders", nullable = false)
     private Integer id;
 
-    @MapsId("idUser")
+    @MapsId("user")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_user", nullable = false, referencedColumnName = "idusers")
+    @JoinColumn(name = "id_user", nullable = false, referencedColumnName = "id_user")
     private User user;
 
-    @MapsId("idCruiseShip")
+    @MapsId("cruise-ships")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_cruise_ship", nullable = false)
     private CruiseShip cruiseShip;

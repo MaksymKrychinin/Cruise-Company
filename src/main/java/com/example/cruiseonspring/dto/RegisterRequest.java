@@ -1,12 +1,19 @@
 package com.example.cruiseonspring.dto;
 
+
+import com.example.cruiseonspring.entity.Role;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
-public class UserDto {
-    private Integer id;
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class RegisterRequest {
     private String password;
     private LocalDate dateOfBirthday;
     private String gender;
