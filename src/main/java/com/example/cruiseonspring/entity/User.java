@@ -28,7 +28,7 @@ public class User implements UserDetails {
     private Integer id;
 
     @MapsId("role")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_role", nullable = false)
     private Role userRole;
 
@@ -56,7 +56,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return userRole.getName().getAuthorities();
+        return List.of(new SimpleGrantedAuthority(userRole.getName()));
     }
 
     @Override
