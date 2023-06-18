@@ -28,7 +28,7 @@ public class User implements UserDetails {
     private Integer id;
 
     @MapsId("role")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_role", nullable = false)
     private Role userRole;
 
