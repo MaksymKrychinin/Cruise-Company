@@ -1,6 +1,7 @@
 package com.example.cruiseonspring.mapper;
 
 import com.example.cruiseonspring.dto.RegisterRequest;
+import com.example.cruiseonspring.entity.Role;
 import com.example.cruiseonspring.entity.User;
 import com.example.cruiseonspring.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,8 @@ public class UserMapper implements Function<RegisterRequest, User> {
                 .surname(request.getSurname())
                 .phoneNumber(request.getPhoneNumber())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .userRole(roleRepository.findByName("USER").get())
+                .userRole(roleRepository.findByName("USER")
+                        .orElse(Role.builder().name("USER").build()))
                 .build();
     }
 }
