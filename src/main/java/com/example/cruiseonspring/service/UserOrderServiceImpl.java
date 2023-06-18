@@ -1,11 +1,12 @@
 package com.example.cruiseonspring.service;
 
 import com.example.cruiseonspring.dto.UserOrderDto;
-import com.example.cruiseonspring.entity.User;
 import com.example.cruiseonspring.entity.UserOrder;
+import com.example.cruiseonspring.exception.UserOrderNotFountException;
 import com.example.cruiseonspring.mapper.UserOrderMapper;
 import com.example.cruiseonspring.repository.UserorderRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +20,15 @@ public class UserOrderServiceImpl implements UserOrderService {
 
 
     @Override
-    public List<UserOrderDto> getAllUserOrders(User user) {
-        return userorderRepository.findAllByUser(user)
+    public UserOrderDto getUserOrderById(Integer orderId) {
+        return userorderMapper.apply(
+                userorderRepository.findById(orderId)
+                        .orElseThrow(() -> new UserOrderNotFountException("User order" + orderId + "not found")));
+    }
+
+    @Override
+    public List<UserOrderDto> getAllUserOrders(UserDetails user) {
+        return userorderRepository.findAllByUserEmail(user.getUsername())
                 .stream()
                 .map(userorderMapper)
                 .collect(Collectors.toList());
@@ -28,7 +36,8 @@ public class UserOrderServiceImpl implements UserOrderService {
 
 
     @Override
-    public UserOrderDto saveUserOrder(UserOrder userOrder) {
+    public UserOrderDto saveUserOrder(UserOrder userOrder, UserDetails userDetails) {
+//todo set Into user order user id
         return userorderMapper.apply(userorderRepository.save(userOrder));
     }
 

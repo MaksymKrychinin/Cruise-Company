@@ -11,21 +11,17 @@ import java.util.function.Function;
 
 @Component
 @AllArgsConstructor
-public class UserOrderMapper implements Function<UserOrder,UserOrderDto> {
-
-    private final CruiseShipRepository cruiseshipRepository;
-    private final UserRepository userRepository;
-
+public class UserOrderMapper implements Function<UserOrder, UserOrderDto> {
 
     @Override
     public UserOrderDto apply(UserOrder userOrder) {
-        UserOrderDto userorderDto = new UserOrderDto();
-        userorderDto.setId(userOrder.getId());
-        userorderDto.setStatus(userOrder.getStatus());
-        userorderDto.setIdCruiseShip(userOrder.getCruiseShip().getId());
-        userorderDto.setFrontPassport(userOrder.getFrontPassport());
-        userorderDto.setBackPassport(userOrder.getBackPassport());
-        userorderDto.setIdUser(userOrder.getUser().getId());
-        return userorderDto;
+        return UserOrderDto.builder()
+                .id(userOrder.getId())
+                .idUser(userOrder.getUser().getId())
+                .backPassport(userOrder.getBackPassport())
+                .frontPassport(userOrder.getFrontPassport())
+                .status(userOrder.getStatus())
+                .idCruiseShip(userOrder.getCruiseShip().getId())
+                .build();
     }
 }

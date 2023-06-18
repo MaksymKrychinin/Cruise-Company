@@ -16,7 +16,6 @@ import java.sql.Date;
 @NoArgsConstructor
 @Builder
 public class CruiseShipDto {
-    @NotNull
     private Integer id;
     @NotNull
     @Positive(message = "Capacity can't be less 0")

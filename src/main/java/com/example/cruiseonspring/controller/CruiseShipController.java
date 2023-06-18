@@ -3,6 +3,7 @@ package com.example.cruiseonspring.controller;
 import com.example.cruiseonspring.dto.CruiseShipDto;
 import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.service.CruiseShipService;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
