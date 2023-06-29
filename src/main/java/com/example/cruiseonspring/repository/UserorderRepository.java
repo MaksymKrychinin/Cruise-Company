@@ -20,6 +20,7 @@ public interface UserorderRepository extends JpaRepository<UserOrder, Integer> {
     Optional<UserOrder> findById(Integer id);
 
     @Override
+    @Transactional
     void deleteById(Integer id);
 
     @Override
