@@ -4,6 +4,7 @@ import com.example.cruiseonspring.dto.AuthenticationRequest;
 import com.example.cruiseonspring.dto.AuthenticationResponse;
 import com.example.cruiseonspring.dto.RegisterRequest;
 import com.example.cruiseonspring.entity.User;
+import com.example.cruiseonspring.exception.UserNotFoundException;
 import com.example.cruiseonspring.mapper.UserMapper;
 import com.example.cruiseonspring.repository.UserRepository;
 import com.mysql.cj.log.Log;
@@ -38,7 +39,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                         request.getPassword())
         );
         User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(()-> new UsernameNotFoundException("User not found"));
+                .orElseThrow(()-> new UserNotFoundException("User not found by email"));
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
