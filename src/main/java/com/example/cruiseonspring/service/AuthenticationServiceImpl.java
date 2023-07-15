@@ -9,6 +9,7 @@ import com.example.cruiseonspring.mapper.UserMapper;
 import com.example.cruiseonspring.repository.UserRepository;
 import com.mysql.cj.log.Log;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,7 +25,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public AuthenticationResponse register(RegisterRequest request) {
         User user = userMapper.apply(request);
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
