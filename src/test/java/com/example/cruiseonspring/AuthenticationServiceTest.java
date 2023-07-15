@@ -55,7 +55,7 @@ public class AuthenticationServiceTest {
     void register_token_check() {
         RegisterRequest registerRequest = getRegisterRequest("Victor");
         User userAfterMapper = userMapper.apply(registerRequest);
-        User userFromRequest = getUserByRegisterrequest(registerRequest);
+        User userFromRequest = getUserByRegisterRequest(registerRequest);
         doReturn(userFromRequest).when(userRepository).save(userAfterMapper);
         AuthenticationResponse authenticationResponse = authenticationService.register(registerRequest);
         String token = authenticationResponse.getToken();
@@ -65,7 +65,7 @@ public class AuthenticationServiceTest {
         assertTrue(tokenValid);
     }
 
-    private User getUserByRegisterrequest(RegisterRequest registerRequest) {
+    private User getUserByRegisterRequest(RegisterRequest registerRequest) {
         return User.builder()
                 .gender(registerRequest.getGender())
                 .phoneNumber(registerRequest.getPhoneNumber())
