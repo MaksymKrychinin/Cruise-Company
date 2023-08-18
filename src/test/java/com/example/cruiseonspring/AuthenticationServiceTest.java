@@ -22,6 +22,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.authentication.AuthenticationManager;
 
 import java.sql.Date;
+import java.util.*;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,7 +43,6 @@ public class AuthenticationServiceTest {
     JwtService jwtService;
     @Autowired
     AuthenticationManager authenticationManager;
-
     @BeforeAll
     public void setUp() {
         openMocks(this);
@@ -50,10 +50,11 @@ public class AuthenticationServiceTest {
                 new AuthenticationServiceImpl(userMapper, userRepository, jwtService, authenticationManager);
     }
 
+
     @Test
     @DisplayName("JWT_Token_test")
     void register_token_check() {
-        RegisterRequest registerRequest = getRegisterRequest("Victor");
+        RegisterRequest registerRequest = getRegisterRequest("Ivan");
         User userAfterMapper = userMapper.apply(registerRequest);
         User userFromRequest = getUserByRegisterRequest(registerRequest);
         doReturn(userFromRequest).when(userRepository).save(userAfterMapper);
@@ -84,10 +85,10 @@ public class AuthenticationServiceTest {
                 .gender("Male")
                 .phoneNumber("+380" + randomNumeric(9))
                 .dateOfBirthday(new Date(System.currentTimeMillis()).toLocalDate())
-                .name(name)
+                .name("name")
                 .email(name + "@gmail.com")
-                .password(name)
-                .surname("Sur" + name)
+                .password(name + randomNumeric(5))
+                .surname("Sur_" + name)
                 .build();
     }
 }

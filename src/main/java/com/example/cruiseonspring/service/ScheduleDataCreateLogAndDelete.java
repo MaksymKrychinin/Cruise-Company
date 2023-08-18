@@ -16,17 +16,24 @@ import java.util.List;
 public class ScheduleDataCreateLogAndDelete {
     Logger LOG = LoggerFactory.getLogger(ScheduleDataCreateLogAndDelete.class);
     CruiseShipRepository cruiseShipRepository;
+    Date date;
+
+    void renewDate() {
+        new Date(System.currentTimeMillis()
+                - 1000L * 3600 * 24 * 365);
+    }
+
     @Scheduled(cron = "0 0 12 * * ?")
-    public void dumpData(){
+    public void dumpAndLogData() {
+        renewDate();
         List<CruiseShip> allByEndDateGreaterThan =
                 cruiseShipRepository
-                        .findAllByEndDateGreaterThan(
-                                new Date(System.currentTimeMillis()
-                                        + 1000L * 3600 * 24 * 365));
-
+                        .findAllByEndDateLessThan(
+                                date);
         allByEndDateGreaterThan
                 .stream()
                 .map(CruiseShip::toString)
                 .forEach(LOG::info);
+        cruiseShipRepository.deleteAllByEndDateLessThan(date);
     }
 }

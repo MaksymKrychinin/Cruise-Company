@@ -27,8 +27,7 @@ public interface CruiseShipRepository extends JpaRepository<CruiseShip, Integer>
     @Override
     @Transactional
     void deleteById( Integer id);
-
-    List<CruiseShip> findAllByEndDateGreaterThan(Date date);
     @Transactional
-    int deleteAllByEndDateGreaterThan(Date date);
+    int deleteAllByEndDateLessThan(Date date);
+    List<CruiseShip> findAllByEndDateLessThan(Date date);
 }
