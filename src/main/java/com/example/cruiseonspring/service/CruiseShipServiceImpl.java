@@ -5,6 +5,7 @@ import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.exception.CruiseshipNotFoundException;
 import com.example.cruiseonspring.mapper.CruiseShipDtoToEntityMapper;
 import com.example.cruiseonspring.mapper.CruiseShipToDtoMapper;
+import com.example.cruiseonspring.mapper.MapperUser;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,6 @@ public class CruiseShipServiceImpl implements CruiseShipService {
     private final CruiseShipRepository cruiseshipRepository;
     private final CruiseShipToDtoMapper cruiseShipToDtoMapper;
     private final CruiseShipDtoToEntityMapper cruiseShipDtoToEntityMapper;
-
     @Override
     public List<CruiseShipDto> getAllCruiseShips() {
         List<CruiseShip> cruiseShipList = cruiseshipRepository

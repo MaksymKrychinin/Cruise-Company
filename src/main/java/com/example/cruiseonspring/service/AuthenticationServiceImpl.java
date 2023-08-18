@@ -5,6 +5,7 @@ import com.example.cruiseonspring.dto.AuthenticationResponse;
 import com.example.cruiseonspring.dto.RegisterRequest;
 import com.example.cruiseonspring.entity.User;
 import com.example.cruiseonspring.exception.UserNotFoundException;
+import com.example.cruiseonspring.mapper.MapperUser;
 import com.example.cruiseonspring.mapper.UserMapper;
 import com.example.cruiseonspring.repository.UserRepository;
 import com.mysql.cj.log.Log;
