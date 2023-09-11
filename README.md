@@ -70,4 +70,4 @@ This project uses the following third-party libraries:
 <li>Maven</li>
 <li>JSON Web Tokens (JWT)
 </li><li>BCrypt
-</li><li>Maven</li></ul>
+</li></ul>
