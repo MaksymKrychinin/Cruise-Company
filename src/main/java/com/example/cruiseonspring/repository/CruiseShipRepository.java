@@ -18,16 +18,22 @@ public interface CruiseShipRepository extends JpaRepository<CruiseShip, Integer>
     List<CruiseShip> findAllWhereOrderedSeatsLessThanCapacity();
 
     @Override
-    Optional<CruiseShip> findById( Integer id);
+    Optional<CruiseShip> findById(Integer id);
 
     @Override
     @Transactional
-    <S extends CruiseShip> S save( S entity);
+    <S extends CruiseShip> S save(S entity);
+
+    @Modifying
+    @Query(value = "update CruiseShip cs set cs.orderedSeats = cs.orderedSeats + 1 where cs.id = :id")
+    CruiseShip updateCruiseShipOrderedSeatsPlusOne(Integer id);
 
     @Override
     @Transactional
-    void deleteById( Integer id);
+    void deleteById(Integer id);
+
     @Transactional
     int deleteAllByEndDateLessThan(Date date);
+
     List<CruiseShip> findAllByEndDateLessThan(Date date);
 }

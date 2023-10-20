@@ -1,6 +1,5 @@
 package com.example.cruiseonspring;
 
-import com.example.cruiseonspring.config.ApplicationConfig;
 import com.example.cruiseonspring.dto.AuthenticationResponse;
 import com.example.cruiseonspring.dto.RegisterRequest;
 import com.example.cruiseonspring.entity.Role;
@@ -10,22 +9,15 @@ import com.example.cruiseonspring.repository.UserRepository;
 import com.example.cruiseonspring.service.AuthenticationService;
 import com.example.cruiseonspring.service.AuthenticationServiceImpl;
 import com.example.cruiseonspring.service.JwtService;
-import com.mysql.cj.log.Log;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.authentication.AuthenticationManager;
 
 import java.sql.Date;
-import java.util.*;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.MockitoAnnotations.openMocks;
@@ -43,13 +35,17 @@ public class AuthenticationServiceTest {
     JwtService jwtService;
     @Autowired
     AuthenticationManager authenticationManager;
+    AutoCloseable mockClose;
+
     @BeforeAll
     public void setUp() {
         openMocks(this);
-        authenticationService =
-                new AuthenticationServiceImpl(userMapper, userRepository, jwtService, authenticationManager);
     }
 
+    @AfterAll
+    public void releaseMocks() throws Exception {
+        mockClose.close();
+    }
 
     @Test
     @DisplayName("JWT_Token_test")

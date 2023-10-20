@@ -1,5 +1,7 @@
 package com.example.cruiseonspring.dto;
 
+import com.example.cruiseonspring.entity.CruiseShip;
+import com.example.cruiseonspring.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,9 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserOrderDto {
     private Integer id;
-    private Integer idUser;
-    private Integer idCruiseShip;
-    private String frontPassport;
-    private String backPassport;
+    private User user;
+    private CruiseShip cruiseShip;
     private String status;
 }

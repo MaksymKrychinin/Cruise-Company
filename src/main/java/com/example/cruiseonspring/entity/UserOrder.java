@@ -13,6 +13,7 @@ import lombok.*;
 public class UserOrder {
     @Id
     @Column(name = "id_user_orders", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @MapsId("user")

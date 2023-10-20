@@ -27,7 +27,7 @@ public class User implements UserDetails {
     @GeneratedValue
     private Integer id;
 
-    @MapsId("role")
+    @MapsId("id_role")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_role", nullable = false)
     private Role userRole;

@@ -1,55 +1,67 @@
 package com.example.cruiseonspring.service;
 
+import com.example.cruiseonspring.Utils.ValidationUtils;
 import com.example.cruiseonspring.dto.CruiseShipDto;
 import com.example.cruiseonspring.entity.CruiseShip;
-import com.example.cruiseonspring.exception.CruiseshipNotFoundException;
-import com.example.cruiseonspring.mapper.CruiseShipDtoToEntityMapper;
-import com.example.cruiseonspring.mapper.CruiseShipToDtoMapper;
-import com.example.cruiseonspring.mapper.MapperUser;
+import com.example.cruiseonspring.exception.NotFoundException;
+import com.example.cruiseonspring.mapper.CruiseShipMapper;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CruiseShipServiceImpl implements CruiseShipService {
     private final CruiseShipRepository cruiseshipRepository;
-    private final CruiseShipToDtoMapper cruiseShipToDtoMapper;
-    private final CruiseShipDtoToEntityMapper cruiseShipDtoToEntityMapper;
+    private final ValidationUtils validationUtils;
+    private final CruiseShipMapper cruiseShipMapper;
+
     @Override
-    public List<CruiseShipDto> getAllCruiseShips() {
+    public List<CruiseShip> getAllCruiseShips() {
         List<CruiseShip> cruiseShipList = cruiseshipRepository
                 .findAllWhereOrderedSeatsLessThanCapacity();
         if (cruiseShipList.size() == 0)
-            throw new CruiseshipNotFoundException("List of Cruise ships not found");
-        return cruiseShipList
-                .stream()
-                .map(cruiseShipToDtoMapper)
-                .collect(Collectors.toList());
+            throw NotFoundException.builder()
+                    .message("List of Cruise ships not found")
+                    .httpStatus(HttpStatus.NOT_FOUND).build();
+        return cruiseShipList;
     }
 
     @Override
-    public CruiseShipDto getCruiseShipById(Integer id) {
+    public CruiseShip getCruiseShipById(Integer id) {
         return cruiseshipRepository
                 .findById(id)
-                .map(cruiseShipToDtoMapper)
-                .orElseThrow(() ->
-                        new CruiseshipNotFoundException("CruiseShip " + id + "not found"));
+                .orElseThrow(() -> NotFoundException.builder()
+                        .message("CruiseShip " + id + "not found")
+                        .httpStatus(HttpStatus.NOT_FOUND).build());
     }
 
     @Override
-    public CruiseShip saveCruiseShip(CruiseShipDto cruiseShip) {
+    public CruiseShip saveCruiseShip(CruiseShipDto cruiseShipDto) {
+        validationUtils.validate(cruiseShipDto);
+        Date startDate = cruiseShipDto.getStartDate();
+        Date endDate = cruiseShipDto.getEndDate();
+        if (startDate.compareTo(endDate) > 0) {
+            throw NotFoundException.builder()
+                    .message("Start date cannot be greater than end date")
+                    .httpStatus(HttpStatus.BAD_REQUEST).build();
+        }
+        CruiseShip cruiseShip = cruiseShipMapper.cruiseShipToDto(cruiseShipDto);
         return cruiseshipRepository
-                .save(cruiseShipDtoToEntityMapper.apply(cruiseShip));
+                .save(cruiseShip);
     }
 
-    @Override
-    public CruiseShip updateCruiseShip(CruiseShipDto cruiseShip) {
-        return cruiseshipRepository.save(cruiseShipDtoToEntityMapper.apply(cruiseShip));
+    public CruiseShip updateCruiseShipOrderedSeatsPlusOne(Integer id) {
+        CruiseShip cruiseShip = cruiseshipRepository
+                .findById(id)
+                .orElseThrow(() -> NotFoundException.builder()
+                        .message("CruiseShip " + id + "not found")
+                        .httpStatus(HttpStatus.NOT_FOUND).build());
+        return cruiseshipRepository.updateCruiseShipOrderedSeatsPlusOne(id);
     }
 
     @Override
