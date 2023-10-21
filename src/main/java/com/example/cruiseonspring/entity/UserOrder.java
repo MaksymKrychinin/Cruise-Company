@@ -10,19 +10,17 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class UserOrder {
     @Id
     @Column(name = "id_user_orders", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @MapsId("user")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_user", nullable = false, referencedColumnName = "id_user")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     private User user;
 
-    @MapsId("cruise-ships")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_cruise_ship", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     private CruiseShip cruiseShip;
 
     @Column(name = "front_passport", nullable = false)

@@ -1,9 +1,6 @@
 package com.example.cruiseonspring.dto;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +13,6 @@ import java.sql.Date;
 @NoArgsConstructor
 @Builder
 public class CruiseShipDto {
-    private Integer id;
     @NotNull
     @Positive(message = "Capacity can't be less 0")
     private Integer capacity;
@@ -26,9 +22,8 @@ public class CruiseShipDto {
     private String routeTo;
     @PositiveOrZero
     private Integer numberOfVisitedPorts;
-    //todo @DateLaterThanNow
+    @Past
     private Date startDate;
-    //todo @DateLaterThanNow
     private Date endDate;
     @PositiveOrZero
     private Integer orderedSeats;

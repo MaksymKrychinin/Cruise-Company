@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
 import java.util.function.Function;
 
 @Service
@@ -26,8 +27,8 @@ public class UserMapper implements Function<RegisterRequest, User> {
                 .surname(request.getSurname())
                 .phoneNumber(request.getPhoneNumber())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .userRole(roleRepository.findByName("USER")
-                        .orElse(Role.builder().name("USER").build()))
+                .userRoles(Set.of(roleRepository.findByName("USER")
+                        .orElse(Role.builder().name("USER").build())))
                 .build();
     }
 }

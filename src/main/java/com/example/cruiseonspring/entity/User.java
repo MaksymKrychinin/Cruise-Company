@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 
 @Getter
@@ -24,13 +25,11 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     @Column(name = "id_user", nullable = false)
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @MapsId("role")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_role", nullable = false)
-    private Role userRole;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> userRoles;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -56,7 +55,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(userRole.getName()));
+        return userRoles;
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.service.CruiseShipService;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,29 +19,33 @@ public class CruiseShipController {
     private final CruiseShipService cruiseshipService;
 
     @GetMapping("")
-    public List<CruiseShipDto> getAllCruiseShips() {
-        return cruiseshipService.getAllCruiseShips();
+    public ResponseEntity<List<CruiseShip>> getAllCruiseShips() {
+        return ResponseEntity.ok().body(cruiseshipService.getAllCruiseShips());
     }
 
     @GetMapping("/{id}")
-    public CruiseShipDto getDepartmentById(
-            @PathVariable Integer id
-    ) {
-        return cruiseshipService.getCruiseShipById(id);
+    public ResponseEntity<CruiseShip> getDepartmentById(
+            @PathVariable Integer id) {
+        return ResponseEntity.ok().body(cruiseshipService.getCruiseShipById(id));
     }
 
     @PostMapping("")
-    public CruiseShip saveCruiseship(
-            @Validated @RequestBody CruiseShipDto cruiseShip
-    ) {
-        return cruiseshipService.saveCruiseShip(cruiseShip);
+    public ResponseEntity<CruiseShip> saveCruiseShip(
+            @Validated @RequestBody CruiseShipDto cruiseShip) {
+        return ResponseEntity.ok().body(cruiseshipService.saveCruiseShip(cruiseShip));
     }
 
-    @PutMapping("")
-    public CruiseShip updateCruiseship(
-            @Validated @RequestBody CruiseShipDto cruiseShipDto
-    ) {
-        return cruiseshipService.updateCruiseShip(cruiseShipDto);
+/*    @PutMapping("")
+    public ResponseEntity<CruiseShip> updateCruiseShip(
+            @Validated @RequestBody CruiseShipDto cruiseShipDto) {
+        return ResponseEntity.ok().body(cruiseshipService.update(cruiseShipDto));
+    }*/
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteCruiseShip(
+            @PathVariable Integer id) {
+        cruiseshipService.deleteCruiseShip(id);
+        return ResponseEntity.ok().body("Deleted");
     }
 
 }

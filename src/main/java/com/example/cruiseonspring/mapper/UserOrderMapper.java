@@ -12,16 +12,15 @@ import java.util.function.Function;
 @Component
 @AllArgsConstructor
 public class UserOrderMapper implements Function<UserOrder, UserOrderDto> {
-
+    private final CruiseShipRepository cruiseShipRepository;
+    private final UserRepository userRepository;
     @Override
     public UserOrderDto apply(UserOrder userOrder) {
         return UserOrderDto.builder()
                 .id(userOrder.getId())
-                .idUser(userOrder.getUser().getId())
-                .backPassport(userOrder.getBackPassport())
-                .frontPassport(userOrder.getFrontPassport())
+                .user(userRepository.getReferenceById(userOrder.getUser().getId()))
                 .status(userOrder.getStatus())
-                .idCruiseShip(userOrder.getCruiseShip().getId())
+                .cruiseShip(cruiseShipRepository.getReferenceById(userOrder.getCruiseShip().getId()))
                 .build();
     }
 }
