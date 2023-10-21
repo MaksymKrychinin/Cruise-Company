@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+//@Component
 @RequiredArgsConstructor
 public class CruiseShipDataGenerator {
     private final CruiseShipRepository cruiseShipRepository;
@@ -41,7 +42,7 @@ public class CruiseShipDataGenerator {
         List<CruiseShip> generatedCruises = generateSampleCruiseShips(30);
         for (CruiseShip cruise : generatedCruises) {
             CruiseShip save = cruiseShipRepository.save(cruise);
-            System.out.println(save.toString());
+            System.out.println("Saved to db: "+save.toString());
         }
     }
 }

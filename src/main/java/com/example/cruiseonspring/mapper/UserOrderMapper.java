@@ -18,9 +18,9 @@ public class UserOrderMapper implements Function<UserOrder, UserOrderDto> {
     public UserOrderDto apply(UserOrder userOrder) {
         return UserOrderDto.builder()
                 .id(userOrder.getId())
-                .user(userRepository.findById(userOrder.getUser().getId()).get())
+                .user(userRepository.getReferenceById(userOrder.getUser().getId()))
                 .status(userOrder.getStatus())
-                .cruiseShip(cruiseShipRepository.findById(userOrder.getCruiseShip().getId()).get())
+                .cruiseShip(cruiseShipRepository.getReferenceById(userOrder.getCruiseShip().getId()))
                 .build();
     }
 }

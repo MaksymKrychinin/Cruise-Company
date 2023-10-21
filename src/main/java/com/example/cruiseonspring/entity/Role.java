@@ -2,6 +2,8 @@ package com.example.cruiseonspring.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Entity
 @Table(name = "role")
@@ -9,9 +11,14 @@ import lombok.*;
 @Setter
 @ToString
 @Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Role {
+public class Role implements GrantedAuthority {
+    public Role(String name) {
+        this.name = name;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_role")
@@ -20,4 +27,8 @@ public class Role {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @Override
+    public String getAuthority() {
+        return name;
+    }
 }

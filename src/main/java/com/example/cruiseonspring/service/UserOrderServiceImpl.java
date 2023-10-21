@@ -33,7 +33,7 @@ public class UserOrderServiceImpl implements UserOrderService {
                         .builder()
                         .message("User order" + orderId + "not found")
                         .httpStatus(HttpStatus.NOT_FOUND).build());
-        if (!userOrder.getUser().getName().equals(userDetails.getUsername())) {
+        if (!userOrder.getUser().getEmail().equals(userDetails.getUsername())) {
             throw NotFoundException.builder()
                     .message("User can't access another peoples orders")
                     .httpStatus(HttpStatus.BAD_REQUEST).build();
@@ -43,10 +43,13 @@ public class UserOrderServiceImpl implements UserOrderService {
 
     @Override
     public List<UserOrderDto> getAllUserOrders(UserDetails user) {
-        return userorderRepository.findAllByUserEmail(user.getUsername())
+        List<UserOrder> allByUserEmail = userorderRepository.findAllByUserEmail(user.getUsername());
+        List<UserOrderDto> collect = allByUserEmail
                 .stream()
                 .map(userorderMapper)
                 .collect(Collectors.toList());
+        System.out.println(collect);
+        return collect;
     }
 
 
@@ -64,8 +67,8 @@ public class UserOrderServiceImpl implements UserOrderService {
                 .orElseThrow(() -> NotFoundException.builder()
                         .message("User not found")
                         .httpStatus(HttpStatus.NOT_FOUND).build()));
+        userOrder.setCruiseShip(cruiseShip);
         UserOrder save = userorderRepository.save(userOrder);
-        System.out.println(save.toString());
         return userorderMapper.apply(save);
     }
 
@@ -76,7 +79,7 @@ public class UserOrderServiceImpl implements UserOrderService {
                 .orElseThrow(() -> NotFoundException.builder()
                         .message("User order not found")
                         .httpStatus(HttpStatus.NOT_FOUND).build());
-        if (!userOrderToUpdate.getUser().getName().equals(userDetails.getUsername())) {
+        if (!userOrderToUpdate.getUser().getEmail().equals(userDetails.getUsername())) {
             throw FailedToAccessException.builder()
                     .message("User can't access this order")
                     .httpStatus(HttpStatus.BAD_REQUEST).build();

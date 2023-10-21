@@ -25,24 +25,24 @@ public class UserOrderController {
     }
 
     @GetMapping("/{id}")
-    UserOrderDto getUserOrderById(@AuthenticationPrincipal UserDetails userDetails,
-                                  @PathVariable Integer id) {
-        return userOrderService.getUserOrderById(id, userDetails);
+    ResponseEntity<UserOrderDto> getUserOrderById(@AuthenticationPrincipal UserDetails userDetails,
+                                                  @PathVariable Integer id) {
+        return ResponseEntity.ok(userOrderService.getUserOrderById(id, userDetails));
     }
 
     @PostMapping("")
-    UserOrderDto saveUserOrder(
+    ResponseEntity<UserOrderDto> saveUserOrder(
             @AuthenticationPrincipal UserDetails userDetails,
             @RequestBody UserOrder userOrder
     ) {
-        return userOrderService.saveUserOrder(userOrder, userDetails);
+        return ResponseEntity.ok(userOrderService.saveUserOrder(userOrder, userDetails));
     }
 
     @PutMapping("")
-    UserOrderDto updateUserOrder(
+    ResponseEntity<UserOrderDto> updateUserOrder(
             @AuthenticationPrincipal UserDetails userDetails,
             @RequestBody UserOrder userOrder
     ) {
-        return userOrderService.updateUserOrder(userOrder, userDetails);
+        return ResponseEntity.ok(userOrderService.updateUserOrder(userOrder, userDetails));
     }
 }
