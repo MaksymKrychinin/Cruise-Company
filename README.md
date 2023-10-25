@@ -67,8 +67,4 @@ This project uses the following third-party libraries:
 <li>Spring Data</li>
 <li>Hibernate</li>
 <li>Docker</li>
-<li>Maven</li>
-<li>JSON Web Tokens (JWT)</li>
-<li>BCrypt</li>
-<li>MySQL</li>
-</ul>
+<li>Maven</li><ul>
