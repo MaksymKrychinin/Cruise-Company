@@ -1,7 +1,6 @@
 package com.example.cruiseonspring.exception;
 
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,7 +16,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
             FailedToAccessException ex, WebRequest request) {
         System.out.println("FailedToAccessException: " + ex.getMessage());
         return handleExceptionInternal(ex, ex.getMessage(),
-                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+                new HttpHeaders(), ex.getStatus(), request);
     }
 
 }

@@ -4,7 +4,6 @@ import com.example.cruiseonspring.exception.ValidationException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -22,9 +21,7 @@ public class ValidationUtils {
                         .map(ConstraintViolation::getMessage)
                         .reduce((m1, m2) -> m1 + ", " + m2)
                         .get();
-                throw ValidationException.builder()
-                        .message(allValidateTroubles)
-                        .httpStatus(HttpStatus.BAD_REQUEST).build();
+                throw  new ValidationException(allValidateTroubles);
             }
         }
     }
