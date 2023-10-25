@@ -1,5 +1,6 @@
 package com.example.cruiseonspring.service;
 
+import com.example.cruiseonspring.Utils.ValidationUtils;
 import com.example.cruiseonspring.dto.AuthenticationRequest;
 import com.example.cruiseonspring.dto.AuthenticationResponse;
 import com.example.cruiseonspring.dto.RegisterRequest;
@@ -8,24 +9,26 @@ import com.example.cruiseonspring.exception.FailedToAccessException;
 import com.example.cruiseonspring.mapper.UserMapper;
 import com.example.cruiseonspring.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
-    UserMapper userMapper;
-    UserRepository userRepository;
-    JwtService jwtService;
-    AuthenticationManager authenticationManager;
-    PasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
+    private final UserRepository userRepository;
+    private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
+    private final ValidationUtils validationUtils;
 
     @Override
+
     public AuthenticationResponse register(RegisterRequest request) {
         User user = userMapper.apply(request);
-        System.out.println("User: " + user.toString());
+        validationUtils.validate(user);
         userRepository.save(user);
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()

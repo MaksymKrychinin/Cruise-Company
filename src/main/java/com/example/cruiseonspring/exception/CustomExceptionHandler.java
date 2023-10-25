@@ -12,11 +12,26 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value
             = {FailedToAccessException.class})
-    protected ResponseEntity<Object> handleConflict(
+    protected ResponseEntity<Object> handleConflictFaileToAccessException(
             FailedToAccessException ex, WebRequest request) {
-        System.out.println("FailedToAccessException: " + ex.getMessage());
         return handleExceptionInternal(ex, ex.getMessage(),
                 new HttpHeaders(), ex.getStatus(), request);
+    }
+
+    @ExceptionHandler(value
+            = {NotFoundException.class})
+    protected ResponseEntity<Object> handleConflictNotFoundException(
+            NotFoundException ex, WebRequest request) {
+        return handleExceptionInternal(ex, ex.getMessage(),
+                new HttpHeaders(), ex.getStatus(), request);
+    }
+
+    @ExceptionHandler(value
+            = {ValidationException.class})
+    protected ResponseEntity<Object> handleConflictValidationException(
+            ValidationException ex, WebRequest request) {
+        return handleExceptionInternal(ex, ex.getMessage(),
+                new HttpHeaders(), ex.getHttpStatus(), request);
     }
 
 }

@@ -21,7 +21,7 @@ public class ValidationUtils {
                         .map(ConstraintViolation::getMessage)
                         .reduce((m1, m2) -> m1 + ", " + m2)
                         .get();
-                throw  new ValidationException(allValidateTroubles);
+                throw new ValidationException(allValidateTroubles);
             }
         }
     }

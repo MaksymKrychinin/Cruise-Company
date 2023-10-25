@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 
 @Data
 public class FailedToAccessException extends RuntimeException {
-    private final HttpStatus status = HttpStatus.BAD_REQUEST;
+    private HttpStatus status = HttpStatus.NOT_ACCEPTABLE;
 
     public FailedToAccessException(String message, Throwable cause) {
         super(message, cause);
