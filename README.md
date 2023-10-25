@@ -31,7 +31,7 @@ java -jar target/cruise-company-1.0.0-SNAPSHOT.jar
 
 ## Usage
 
-Once the application is running, you can access it in your web browser at http://localhost:8080. From there, you can
+Once the application is running, you can access it in your web browser at http://localhost:8081. From there, you can
 search for available cruises, view detailed information about each cruise, and book reservations.
 
 <hr>
@@ -70,4 +70,4 @@ This project uses the following third-party libraries:
 <li>Maven</li>
 <li>JSON Web Tokens (JWT)
 </li><li>BCrypt
-</li><li>Maven</li></ul>
+</li><li>MySQL</li></ul>
