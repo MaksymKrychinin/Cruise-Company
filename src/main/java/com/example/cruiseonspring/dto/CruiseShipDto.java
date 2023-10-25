@@ -22,8 +22,9 @@ public class CruiseShipDto {
     private String routeTo;
     @PositiveOrZero
     private Integer numberOfVisitedPorts;
-    @Past
+    @Future
     private Date startDate;
+    @Future
     private Date endDate;
     @PositiveOrZero
     private Integer orderedSeats;
