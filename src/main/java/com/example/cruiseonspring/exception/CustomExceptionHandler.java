@@ -12,7 +12,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value
             = {FailedToAccessException.class})
-    protected ResponseEntity<Object> handleConflictFaileToAccessException(
+    protected ResponseEntity<Object> handleConflictFailedToAccessException(
             FailedToAccessException ex, WebRequest request) {
         return handleExceptionInternal(ex, ex.getMessage(),
                 new HttpHeaders(), ex.getStatus(), request);
