@@ -1,13 +1,17 @@
 package com.example.cruiseonspring.exception;
 
-import lombok.Builder;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Data
-@Builder
 public class NotFoundException extends RuntimeException {
-    private final String message;
-    private final HttpStatus httpStatus;
+    private final HttpStatus status = HttpStatus.NOT_FOUND;
+
+    public NotFoundException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public NotFoundException(String message) {
+        super(message);
+    }
 }

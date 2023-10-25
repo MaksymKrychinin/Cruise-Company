@@ -9,7 +9,6 @@ import com.example.cruiseonspring.mapper.UserOrderMapper;
 import com.example.cruiseonspring.repository.UserRepository;
 import com.example.cruiseonspring.repository.UserorderRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,14 +28,9 @@ public class UserOrderServiceImpl implements UserOrderService {
     @Override
     public UserOrderDto getUserOrderById(Integer orderId, UserDetails userDetails) {
         UserOrder userOrder = userorderRepository.findById(orderId)
-                .orElseThrow(() -> NotFoundException
-                        .builder()
-                        .message("User order" + orderId + "not found")
-                        .httpStatus(HttpStatus.NOT_FOUND).build());
+                .orElseThrow(() -> new NotFoundException("User order" + orderId + "not found"));
         if (!userOrder.getUser().getEmail().equals(userDetails.getUsername())) {
-            throw NotFoundException.builder()
-                    .message("User can't access another peoples orders")
-                    .httpStatus(HttpStatus.BAD_REQUEST).build();
+            throw new NotFoundException("User can't access another peoples orders");
         }
         return userorderMapper.apply(userOrder);
     }
@@ -59,14 +53,10 @@ public class UserOrderServiceImpl implements UserOrderService {
         CruiseShip cruiseShip = cruiseShipService.getCruiseShipById(userOrder.getCruiseShip().getId());
         int capacity = cruiseShip.getCapacity();
         if (capacity <= cruiseShip.getOrderedSeats()) {
-            throw FailedToAccessException.builder()
-                    .message("Not enough seats")
-                    .httpStatus(HttpStatus.BAD_REQUEST).build();
+            throw new FailedToAccessException("Not enough seats");
         }
         userOrder.setUser(userRepository.findByEmail(userDetails.getUsername())
-                .orElseThrow(() -> NotFoundException.builder()
-                        .message("User not found")
-                        .httpStatus(HttpStatus.NOT_FOUND).build()));
+                .orElseThrow(() -> new NotFoundException("User not found")));
         userOrder.setCruiseShip(cruiseShip);
         UserOrder save = userorderRepository.save(userOrder);
         return userorderMapper.apply(save);
@@ -76,13 +66,9 @@ public class UserOrderServiceImpl implements UserOrderService {
     public UserOrderDto updateUserOrder(UserOrder userOrder, UserDetails userDetails) {
         UserOrder userOrderToUpdate = userorderRepository.findById(
                         userOrder.getId())
-                .orElseThrow(() -> NotFoundException.builder()
-                        .message("User order not found")
-                        .httpStatus(HttpStatus.NOT_FOUND).build());
+                .orElseThrow(() -> new NotFoundException("User order not found"));
         if (!userOrderToUpdate.getUser().getEmail().equals(userDetails.getUsername())) {
-            throw FailedToAccessException.builder()
-                    .message("User can't access this order")
-                    .httpStatus(HttpStatus.BAD_REQUEST).build();
+            throw new FailedToAccessException("User can't access this order");
         }
         return userorderMapper.apply(userorderRepository.save(userOrder));
     }
@@ -90,9 +76,7 @@ public class UserOrderServiceImpl implements UserOrderService {
     @Override
     public void deleteUserOrder(Integer id) {
         userorderRepository.findById(id)
-                .orElseThrow(() -> NotFoundException.builder()
-                        .message("User order not found")
-                        .httpStatus(HttpStatus.NOT_FOUND).build());
+                .orElseThrow(() -> new NotFoundException("User order not found"));
         userorderRepository.deleteById(id);
     }
 }

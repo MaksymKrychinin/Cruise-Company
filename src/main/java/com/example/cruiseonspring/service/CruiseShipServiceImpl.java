@@ -7,7 +7,6 @@ import com.example.cruiseonspring.exception.NotFoundException;
 import com.example.cruiseonspring.mapper.CruiseShipMapper;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -25,9 +24,7 @@ public class CruiseShipServiceImpl implements CruiseShipService {
         List<CruiseShip> cruiseShipList = cruiseshipRepository
                 .findAllWhereOrderedSeatsLessThanCapacity();
         if (cruiseShipList.size() == 0)
-            throw NotFoundException.builder()
-                    .message("List of Cruise ships not found")
-                    .httpStatus(HttpStatus.NOT_FOUND).build();
+            throw new NotFoundException("List of Cruise ships not found");
         return cruiseShipList;
     }
 
@@ -35,9 +32,7 @@ public class CruiseShipServiceImpl implements CruiseShipService {
     public CruiseShip getCruiseShipById(Integer id) {
         return cruiseshipRepository
                 .findById(id)
-                .orElseThrow(() -> NotFoundException.builder()
-                        .message("CruiseShip " + id + "not found")
-                        .httpStatus(HttpStatus.NOT_FOUND).build());
+                .orElseThrow(() -> new NotFoundException("CruiseShip " + id + "not found"));
     }
 
     @Override
@@ -46,9 +41,7 @@ public class CruiseShipServiceImpl implements CruiseShipService {
         Date startDate = cruiseShipDto.getStartDate();
         Date endDate = cruiseShipDto.getEndDate();
         if (startDate.compareTo(endDate) > 0) {
-            throw NotFoundException.builder()
-                    .message("Start date cannot be greater than end date")
-                    .httpStatus(HttpStatus.BAD_REQUEST).build();
+            throw new NotFoundException("Start date cannot be greater than end date");
         }
         CruiseShip cruiseShip = cruiseShipMapper.cruiseShipToDto(cruiseShipDto);
         return cruiseshipRepository
@@ -58,14 +51,14 @@ public class CruiseShipServiceImpl implements CruiseShipService {
     public CruiseShip updateCruiseShipOrderedSeatsPlusOne(Integer id) {
         CruiseShip cruiseShip = cruiseshipRepository
                 .findById(id)
-                .orElseThrow(() -> NotFoundException.builder()
-                        .message("CruiseShip " + id + "not found")
-                        .httpStatus(HttpStatus.NOT_FOUND).build());
+                .orElseThrow(() -> new NotFoundException("CruiseShip " + id + "not found"));
         return cruiseshipRepository.updateCruiseShipOrderedSeatsPlusOne(id);
     }
 
     @Override
     public void deleteCruiseShip(Integer id) {
+        cruiseshipRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("CruiseShip " + id + "not found"));
         cruiseshipRepository.deleteById(id);
     }
 }

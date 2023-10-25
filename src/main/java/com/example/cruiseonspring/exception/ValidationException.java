@@ -1,12 +1,17 @@
 package com.example.cruiseonspring.exception;
 
-import lombok.Builder;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 @Data
-@Builder
 public class ValidationException extends RuntimeException {
-    private final String message;
-    private final HttpStatus httpStatus;
+    private final HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
+
+    public ValidationException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public ValidationException(String message) {
+        super(message);
+    }
 }
