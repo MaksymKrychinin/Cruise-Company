@@ -2,9 +2,11 @@ package com.example.cruiseonspring.mapper;
 
 import com.example.cruiseonspring.dto.CruiseShipDto;
 import com.example.cruiseonspring.entity.CruiseShip;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
+@Qualifier
 public class CruiseShipMapperImpl implements CruiseShipMapper {
 
     @Override

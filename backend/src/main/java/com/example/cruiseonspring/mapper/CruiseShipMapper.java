@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.function.Function;
 
 
+//@Mapper
 public interface CruiseShipMapper {
+
     CruiseShip cruiseShipToDto(CruiseShipDto source);
+
     CruiseShipDto dtoToCruiseShip(CruiseShip source);
 }
 

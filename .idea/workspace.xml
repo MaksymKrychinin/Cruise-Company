@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="26034ae4-7715-4997-a998-249a9740b550" name="Changes" comment="docker-compose.yml change">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.jpb/jpb-settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt-security.drawio" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/CruiseOnSpringApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/Utils/ValidationUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/config/ApplicationConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/config/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/config/OpenApiConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/config/SecurityConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/controller/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/controller/CruiseShipController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/controller/UserOrderController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/dto/AuthenticationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/dto/AuthenticationResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/dto/CruiseShipDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/dto/RegisterRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/dto/UserOrderDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/entity/CruiseShip.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/entity/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/entity/UserOrder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/exception/CustomExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/exception/FailedToAccessException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/exception/NotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/exception/ValidationException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/generationdata/CruiseShipDataGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/generationdata/RoleDataGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/mapper/CruiseShipMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/mapper/CruiseShipMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/mapper/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/mapper/UserOrderMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/repository/CruiseShipRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/repository/RoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/repository/UserorderRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/service/AuthenticationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/service/AuthenticationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/service/CruiseShipService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/service/CruiseShipServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/service/JwtService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/service/ScheduleDataCreateLogAndDelete.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/service/UserOrderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/cruiseonspring/service/UserOrderServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-test.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="Dockerfile" />
+        <option value="package-info" />
+        <option value="Interface" />
+        <option value="com.haulmont.jpb.JpaEntity" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HttpClientSelectedEnvironments">
+    <file url="jar://$APPLICATION_HOME_DIR$/plugins/restClient/lib/restClient.jar!/com/intellij/ws/rest/client/requests/collection/requests-with-authorization.http" environment="test" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2PCTjWGIMw8tOcFhPQZgQGQrucB" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last.edited.regexp": "",
+    "last_opened_file_path": "D:/SpringProjects/Cruise-Company/backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "spring.configuration.checksum": "404788675eb69904a6d2c3f8b7482405",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.cruiseonspring.mapper" />
+      <recent name="com.example.cruiseonspring.exception" />
+      <recent name="com.example.cruiseonspring.dto" />
+      <recent name="com.example.cruiseonspring.config" />
+      <recent name="com.example.cruiseonspring.annotation" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\SpringProjects\Cruise-Company\src\main\java\com\example\cruiseonspring" />
+      <recent name="D:\SpringProjects\Cruise-Company" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\SpringProjects\Cruise-Company" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.cruiseonspring.exception" />
+      <recent name="com.example.cruiseonspring.entity" />
+      <recent name="com.example.cruiseonspring.config" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.CruiseOnSpringApplication">
+    <configuration name="AuthenticationServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Cruise-Company" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.cruiseonspring.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.cruiseonspring" />
+      <option name="MAIN_CLASS_NAME" value="com.example.cruiseonspring.AuthenticationServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthenticationServiceTest.register_token_check" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Cruise-Company" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.cruiseonspring.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.cruiseonspring" />
+      <option name="MAIN_CLASS_NAME" value="com.example.cruiseonspring.AuthenticationServiceTest" />
+      <option name="METHOD_NAME" value="register_token_check" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CruiseOnSpringApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="Cruise-Company" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.cruiseonspring.CruiseOnSpringApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="app" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.mysqldb: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="mysqldb" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yml.app: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.mysqldb: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="JUnit.AuthenticationServiceTest" />
+        <item itemvalue="JUnit.AuthenticationServiceTest.register_token_check" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="26034ae4-7715-4997-a998-249a9740b550" name="Changes" comment="" />
+      <created>1682960199118</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1682960199118</updated>
+      <workItem from="1682960200750" duration="3264000" />
+      <workItem from="1683018245144" duration="1685000" />
+      <workItem from="1683052311906" duration="360000" />
+      <workItem from="1683052782227" duration="1099000" />
+      <workItem from="1683299979666" duration="1986000" />
+      <workItem from="1683302462726" duration="984000" />
+      <workItem from="1683312090335" duration="6234000" />
+      <workItem from="1683366359665" duration="4886000" />
+      <workItem from="1683451846000" duration="2220000" />
+      <workItem from="1683467302566" duration="2682000" />
+      <workItem from="1683487228865" duration="1822000" />
+      <workItem from="1683525371123" duration="438000" />
+      <workItem from="1683525832523" duration="2341000" />
+      <workItem from="1684600181205" duration="201000" />
+      <workItem from="1684698719496" duration="1628000" />
+      <workItem from="1684832695006" duration="299000" />
+      <workItem from="1684833017046" duration="20000" />
+      <workItem from="1684844693335" duration="845000" />
+      <workItem from="1685084499315" duration="6686000" />
+      <workItem from="1685101077240" duration="4818000" />
+      <workItem from="1685360299345" duration="71000" />
+      <workItem from="1685707840098" duration="67000" />
+      <workItem from="1685959340438" duration="639000" />
+      <workItem from="1685961104063" duration="462000" />
+      <workItem from="1686257471742" duration="66000" />
+      <workItem from="1686313681388" duration="1672000" />
+      <workItem from="1686405593523" duration="201000" />
+      <workItem from="1686410035908" duration="4624000" />
+      <workItem from="1686414809954" duration="477000" />
+      <workItem from="1686416730432" duration="4827000" />
+      <workItem from="1686428645183" duration="298000" />
+      <workItem from="1686432817478" duration="264000" />
+      <workItem from="1686586244406" duration="273000" />
+      <workItem from="1686777460462" duration="3648000" />
+      <workItem from="1686831274150" duration="7248000" />
+      <workItem from="1687006374759" duration="6245000" />
+      <workItem from="1687018623916" duration="10514000" />
+      <workItem from="1687029164535" duration="2926000" />
+      <workItem from="1687076692968" duration="2783000" />
+      <workItem from="1687080690762" duration="6049000" />
+      <workItem from="1687114891573" duration="2817000" />
+      <workItem from="1687118613552" duration="1552000" />
+      <workItem from="1687591433231" duration="1746000" />
+      <workItem from="1688039223315" duration="520000" />
+      <workItem from="1688039918818" duration="27000" />
+      <workItem from="1689183698332" duration="871000" />
+      <workItem from="1689418154664" duration="2100000" />
+      <workItem from="1689420365289" duration="610000" />
+      <workItem from="1689421591010" duration="5953000" />
+      <workItem from="1690829492854" duration="1996000" />
+      <workItem from="1692031486043" duration="4132000" />
+      <workItem from="1692373497597" duration="929000" />
+      <workItem from="1692820187505" duration="217000" />
+      <workItem from="1692821786386" duration="61000" />
+      <workItem from="1692822140368" duration="546000" />
+      <workItem from="1692901757890" duration="1125000" />
+      <workItem from="1694103447516" duration="87000" />
+      <workItem from="1694150296922" duration="180000" />
+      <workItem from="1694155633349" duration="412000" />
+      <workItem from="1694171520054" duration="132000" />
+      <workItem from="1694345429177" duration="51000" />
+      <workItem from="1694345862376" duration="667000" />
+      <workItem from="1695482683637" duration="146000" />
+      <workItem from="1695494363936" duration="267000" />
+      <workItem from="1695996093843" duration="3462000" />
+      <workItem from="1696102145581" duration="411000" />
+      <workItem from="1696103468465" duration="24000" />
+      <workItem from="1696104388499" duration="132000" />
+      <workItem from="1696354369705" duration="653000" />
+      <workItem from="1696356673342" duration="812000" />
+      <workItem from="1696364607803" duration="609000" />
+      <workItem from="1696409847225" duration="1222000" />
+      <workItem from="1696411693549" duration="59000" />
+      <workItem from="1696411878036" duration="15000" />
+      <workItem from="1696414329208" duration="59000" />
+      <workItem from="1696425572793" duration="1125000" />
+      <workItem from="1696429808845" duration="268000" />
+      <workItem from="1696618163337" duration="3355000" />
+      <workItem from="1696679074979" duration="862000" />
+      <workItem from="1696696345167" duration="352000" />
+      <workItem from="1696769685178" duration="29000" />
+      <workItem from="1696781873075" duration="5850000" />
+      <workItem from="1696839068160" duration="1153000" />
+      <workItem from="1696874329872" duration="1094000" />
+      <workItem from="1696941641235" duration="516000" />
+      <workItem from="1697055481567" duration="744000" />
+      <workItem from="1697221568859" duration="99000" />
+      <workItem from="1697278205141" duration="501000" />
+      <workItem from="1697743159665" duration="32000" />
+      <workItem from="1697746146470" duration="16000" />
+      <workItem from="1697790176453" duration="1320000" />
+      <workItem from="1697824818187" duration="7815000" />
+      <workItem from="1697833999302" duration="653000" />
+      <workItem from="1697886511788" duration="6125000" />
+      <workItem from="1697907867264" duration="1368000" />
+      <workItem from="1697982539497" duration="183000" />
+      <workItem from="1697984755650" duration="75000" />
+      <workItem from="1698006145949" duration="749000" />
+      <workItem from="1698088613194" duration="1408000" />
+      <workItem from="1698153985017" duration="1639000" />
+      <workItem from="1698167157248" duration="1210000" />
+      <workItem from="1698174688450" duration="7781000" />
+      <workItem from="1698225738229" duration="95000" />
+      <workItem from="1698225840231" duration="10842000" />
+      <workItem from="1698240591872" duration="522000" />
+      <workItem from="1698254480548" duration="2815000" />
+      <workItem from="1698258325832" duration="599000" />
+      <workItem from="1698269256296" duration="588000" />
+      <workItem from="1698273792991" duration="675000" />
+      <workItem from="1698344455922" duration="1834000" />
+      <workItem from="1698599272946" duration="8836000" />
+      <workItem from="1698613072591" duration="1072000" />
+      <workItem from="1698661844657" duration="1836000" />
+      <workItem from="1698695935493" duration="356000" />
+      <workItem from="1698702337846" duration="1508000" />
+      <workItem from="1698746803002" duration="1860000" />
+      <workItem from="1698755033356" duration="679000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added swagger ui(Spring boot 3)&#10;Need to setting swagger!!!">
+      <created>1683052538339</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1683052538339</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Swagger setup, pom.xml settings, Cruiseship Repository/test for it full completed, CruiseMapper/Cruise Dto completed(Need junit tested)&#10;CruiseController completed">
+      <created>1683317721522</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1683317721522</updated>
+    </task>
+    <task id="LOCAL-00003" summary="junit migrate to v5, added before each test to delete all data in db while testing">
+      <created>1683371169602</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1683371169602</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added: &#10;-Hibernate validator, &#10;-logging file property.">
+      <created>1683454337155</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1683454337155</updated>
+    </task>
+    <task id="LOCAL-00005" summary="README updated">
+      <created>1683469973237</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1683469973237</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Changes:">
+      <created>1684600322262</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684600322262</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added Userorder mapper/serviceImpl">
+      <created>1684600356911</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1684600356911</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Updated Repository/Mapper classes">
+      <created>1685106473906</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1685106473906</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Updated Repository/Mapper classes">
+      <created>1685106489470</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1685106489470</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Updated Repository/Mapper classes">
+      <created>1685107293171</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1685107293171</updated>
+    </task>
+    <task id="LOCAL-00011" summary="CC-6 Task _ CruiseShipController changed">
+      <created>1686315253096</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1686315253096</updated>
+    </task>
+    <task id="LOCAL-00012" summary="small changes, throws exception">
+      <created>1686414940156</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1686414940156</updated>
+    </task>
+    <task id="LOCAL-00013" summary="small changes, throws exception">
+      <created>1686415197201</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1686415197201</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Security Added, CruiseShip changed">
+      <created>1686425585163</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1686425585163</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Security updates">
+      <created>1686847318814</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1686847318814</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Security updates">
+      <created>1686847329501</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1686847329501</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Security updates(JWT added)">
+      <created>1687029699897</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1687029699897</updated>
+    </task>
+    <task id="LOCAL-00018" summary="docker">
+      <created>1687029718059</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1687029718059</updated>
+    </task>
+    <task id="LOCAL-00019" summary="docker">
+      <created>1687032910716</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1687032910716</updated>
+    </task>
+    <task id="LOCAL-00020" summary="docker">
+      <created>1687085213776</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1687085213776</updated>
+    </task>
+    <task id="LOCAL-00021" summary="docker">
+      <created>1687085546767</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1687085546767</updated>
+    </task>
+    <task id="LOCAL-00022" summary="docker">
+      <created>1687085645125</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1687085645125</updated>
+    </task>
+    <task id="LOCAL-00023" summary="DB_change">
+      <created>1687086818627</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1687086818627</updated>
+    </task>
+    <task id="LOCAL-00024" summary="UserOrder Added">
+      <created>1687117704698</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1687117704698</updated>
+    </task>
+    <task id="LOCAL-00025" summary="ScheduleDataCreateLogAndDelete and small changes">
+      <created>1688039368057</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1688039368057</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Custom UserNotFoundException">
+      <created>1689420221668</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1689420221668</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Custom UserNotFoundException">
+      <created>1689436516531</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1689436516531</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Custom UserNotFoundException">
+      <created>1689436548925</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1689436548925</updated>
+    </task>
+    <task id="LOCAL-00029" summary="UserOrderUpdate/Test update">
+      <created>1692374066566</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1692374066566</updated>
+    </task>
+    <task id="LOCAL-00030" summary="UPDATED">
+      <option name="closed" value="true" />
+      <created>1697833684274</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1697833684274</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Service/Generation/Entity changed">
+      <option name="closed" value="true" />
+      <created>1697892589413</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1697892589413</updated>
+    </task>
+    <task id="LOCAL-00032" summary="add CustomExceptionHandler[FailToAccess].">
+      <option name="closed" value="true" />
+      <created>1698226073927</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1698226073927</updated>
+    </task>
+    <task id="LOCAL-00033" summary="server.port 8081, jackson.serialization.fail-on-empty-beans: false">
+      <option name="closed" value="true" />
+      <created>1698226923932</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1698226923932</updated>
+    </task>
+    <task id="LOCAL-00034" summary="add CrossOrigin">
+      <option name="closed" value="true" />
+      <created>1698226957401</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1698226957401</updated>
+    </task>
+    <task id="LOCAL-00035" summary="add auth password check">
+      <option name="closed" value="true" />
+      <created>1698226991552</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1698226991552</updated>
+    </task>
+    <task id="LOCAL-00036" summary="change request mapping to cruise-ships">
+      <option name="closed" value="true" />
+      <created>1698227020923</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1698227020923</updated>
+    </task>
+    <task id="LOCAL-00037" summary="fix @past to @future">
+      <option name="closed" value="true" />
+      <created>1698227046975</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1698227046975</updated>
+    </task>
+    <task id="LOCAL-00038" summary="throw signature change">
+      <option name="closed" value="true" />
+      <created>1698227147216</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1698227147216</updated>
+    </task>
+    <task id="LOCAL-00039" summary="readme change">
+      <option name="closed" value="true" />
+      <created>1698227339907</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1698227339907</updated>
+    </task>
+    <task id="LOCAL-00040" summary="change gitignore">
+      <option name="closed" value="true" />
+      <created>1698228388582</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1698228388582</updated>
+    </task>
+    <task id="LOCAL-00041" summary="TestChange">
+      <option name="closed" value="true" />
+      <created>1698229425137</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1698229425137</updated>
+    </task>
+    <task id="LOCAL-00042" summary="change exception status handling">
+      <option name="closed" value="true" />
+      <created>1698237728836</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1698237728836</updated>
+    </task>
+    <task id="LOCAL-00043" summary="docker-compose.yml change">
+      <option name="closed" value="true" />
+      <created>1698239102547</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1698239102547</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="small changes, throws exception" />
+    <MESSAGE value="Security Added, CruiseShip changed" />
+    <MESSAGE value="Security updates" />
+    <MESSAGE value="Security updates(JWT added)" />
+    <MESSAGE value="docker" />
+    <MESSAGE value="DB_change" />
+    <MESSAGE value="UserOrder Added" />
+    <MESSAGE value="ScheduleDataCreateLogAndDelete and small changes" />
+    <MESSAGE value="Custom UserNotFoundException" />
+    <MESSAGE value="UserOrderUpdate/Test update" />
+    <MESSAGE value="UPDATED" />
+    <MESSAGE value="Service/Generation/Entity changed" />
+    <MESSAGE value="add ExceptionHandler[FailToAccess]" />
+    <MESSAGE value="add CustomExceptionHandler[FailToAccess]." />
+    <MESSAGE value="server.port 8081, jackson.serialization.fail-on-empty-beans: false" />
+    <MESSAGE value="add CrossOrigin" />
+    <MESSAGE value="add auth password check" />
+    <MESSAGE value="change request mapping to cruise-ships" />
+    <MESSAGE value="fix @past to @future" />
+    <MESSAGE value="throw signature change" />
+    <MESSAGE value="readme change" />
+    <MESSAGE value="change gitignore" />
+    <MESSAGE value="TestChange" />
+    <MESSAGE value="change exception status handling" />
+    <MESSAGE value="docker-compose.yml change" />
+    <option name="LAST_COMMIT_MESSAGE" value="docker-compose.yml change" />
+  </component>
+</project>

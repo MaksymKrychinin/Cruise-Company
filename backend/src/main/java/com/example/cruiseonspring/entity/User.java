@@ -34,7 +34,7 @@ public class User implements UserDetails {
 
     @NotNull(message = "Password should not be null")
     @NotEmpty(message = "Password should not be empty")
-    @Min(value = 8, message = "Password should be at least 8 characters")
+    @Size(min = 8, message = "Password should be at least 8 characters")
     @Column(name = "password", nullable = false)
     private String password;
     @NotNull(message = "Date of birthday should not be null")
@@ -47,7 +47,7 @@ public class User implements UserDetails {
 
     @NotNull(message = "Phone number should not be null")
     @NotEmpty(message = "Phone number should not be empty")
-    @Pattern(regexp = "^[0-9]{11}$", message = "Phone number should be valid")
+    //todo @Pattern(regexp = "^+380[0-9]{11}$", message = "Phone number should be valid")
     @Column(name = "phone_number", nullable = false, length = 45, unique = true)
     private String phoneNumber;
 

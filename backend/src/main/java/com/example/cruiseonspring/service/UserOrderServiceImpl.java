@@ -6,6 +6,7 @@ import com.example.cruiseonspring.entity.UserOrder;
 import com.example.cruiseonspring.exception.FailedToAccessException;
 import com.example.cruiseonspring.exception.NotFoundException;
 import com.example.cruiseonspring.mapper.UserOrderMapper;
+import com.example.cruiseonspring.repository.CruiseShipRepository;
 import com.example.cruiseonspring.repository.UserRepository;
 import com.example.cruiseonspring.repository.UserorderRepository;
 import lombok.AllArgsConstructor;
@@ -22,8 +23,7 @@ public class UserOrderServiceImpl implements UserOrderService {
     private final UserorderRepository userorderRepository;
     private final UserOrderMapper userorderMapper;
     private final UserRepository userRepository;
-    private final CruiseShipServiceImpl cruiseShipService;
-
+    private final CruiseShipRepository cruiseShipRepository;
 
     @Override
     public UserOrderDto getUserOrderById(Integer orderId, UserDetails userDetails) {
@@ -50,7 +50,10 @@ public class UserOrderServiceImpl implements UserOrderService {
     @Override
     @Transactional
     public UserOrderDto saveUserOrder(UserOrder userOrder, UserDetails userDetails) {
-        CruiseShip cruiseShip = cruiseShipService.getCruiseShipById(userOrder.getCruiseShip().getId());
+        int id = userOrder.getCruiseShip().getId();
+        CruiseShip cruiseShip = cruiseShipRepository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException("CruiseShip " + id + "not found"));
         int capacity = cruiseShip.getCapacity();
         if (capacity <= cruiseShip.getOrderedSeats()) {
             throw new FailedToAccessException("Not enough seats");
@@ -58,8 +61,16 @@ public class UserOrderServiceImpl implements UserOrderService {
         userOrder.setUser(userRepository.findByEmail(userDetails.getUsername())
                 .orElseThrow(() -> new NotFoundException("User not found")));
         userOrder.setCruiseShip(cruiseShip);
+        updateCruiseShipOrderedSeatsPlusOne(id);
         UserOrder save = userorderRepository.save(userOrder);
         return userorderMapper.apply(save);
+    }
+
+    public void updateCruiseShipOrderedSeatsPlusOne(Integer id) {
+        CruiseShip cruiseShip = cruiseShipRepository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException("CruiseShip " + id + "not found"));
+        cruiseShipRepository.updateCruiseShipOrderedSeatsPlusOne(id);
     }
 
     @Override

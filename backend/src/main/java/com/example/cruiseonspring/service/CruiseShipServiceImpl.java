@@ -10,7 +10,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +26,8 @@ public class CruiseShipServiceImpl implements CruiseShipService {
     @Override
     public List<CruiseShip> getAllCruiseShips() {
         List<CruiseShip> cruiseShipList = cruiseshipRepository
-                .findAllWhereOrderedSeatsLessThanCapacity();
+                .findAllWhereOrderedSeatsLessThanCapacity()
+                .stream().limit(12).collect(Collectors.toList());
         if (cruiseShipList.size() == 0)
             throw new NotFoundException("List of Cruise ships not found");
         return cruiseShipList;
@@ -48,12 +53,6 @@ public class CruiseShipServiceImpl implements CruiseShipService {
                 .save(cruiseShip);
     }
 
-    public CruiseShip updateCruiseShipOrderedSeatsPlusOne(Integer id) {
-        CruiseShip cruiseShip = cruiseshipRepository
-                .findById(id)
-                .orElseThrow(() -> new NotFoundException("CruiseShip " + id + "not found"));
-        return cruiseshipRepository.updateCruiseShipOrderedSeatsPlusOne(id);
-    }
 
     @Override
     public void deleteCruiseShip(Integer id) {
