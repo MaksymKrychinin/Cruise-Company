@@ -73,7 +73,8 @@ export default {
 }
 
 .cruise-ship img.logo {
-  width: 300px;
-  height: 300px;
+  width: 230px;
+  height: 230px;
+  box-shadow: #080710 1px 1px 5px 5px;
 }
 </style>

@@ -2,14 +2,15 @@
   <form @submit.prevent="submitLogin()"
         class="login">
     <label for="username">Email</label>
-    <input @focusout="validateLoginField()" type="text" v-model="authData.email" required>
+    <input type="text"
+           v-model="authData.email"
+           required>
     <small id="emailErrors"
            class="error"
            v-if="errors.email.length>0">
       {{ errors.email.reduce((prev, curr) => prev + ", " + curr) }}</small>
     <label for="username">Password</label>
-    <input @focusout="validatePasswordField()"
-           type="text"
+    <input type="text"
            v-model="authData.password"
            min="8"
            max="255"
@@ -44,6 +45,21 @@ export default {
       }
     }
   },
+  watch: {
+    'authData.email': function () {
+      this.validateLoginField();
+    },
+    'authData.password': function () {
+      this.validatePasswordField();
+    }
+  },
+  created() {
+    const error = localStorage.getItem('error');
+    if (error) {
+      this.errors.api.push(error);
+      localStorage.removeItem('error');
+    }
+  },
   methods: {
     validateLoginField() {
       let emailRegex = '^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$';
@@ -58,8 +74,8 @@ export default {
       for (let i = 0; i < this.errors.password.length; i++) {
         this.errors.password.pop();
       }
-      if (this.authData.password.length < 4 || this.authData.password.length > 255) {
-        this.errors.password.push('Put a password between 8 and 255 characters');
+      if (this.authData.password.length < 8 || this.authData.password.length > 255) {
+        this.errors.password.push('Put a password between 8 and 255 characters, Now:' + this.authData.password.length);
       }
     },
     async submitLogin() {
@@ -73,9 +89,7 @@ export default {
       try {
         const apiResponse = await axios.post('/api/v1/auth/authenticate', data, {
           headers: {
-            'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE"
+            'Content-Type': 'application/json'
           }
         });
 

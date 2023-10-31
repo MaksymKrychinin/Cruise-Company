@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router/dist/vue-router.esm-bun
 import Home from '@/pages/HomePage.vue'
 import LoginComponent from "@/components/auth/LoginComponent";
 import RegisterComponent from "@/components/auth/RegisterComponent";
+import LogoutComponent from "@/components/auth/LogoutComponent";
 
 const routes = [
     {
@@ -15,8 +16,13 @@ const routes = [
     {
         path: '/register',
         component: RegisterComponent
+    },
+    {
+        path: '/logout',
+        component: LogoutComponent
     }
 ]
+
 export default () => createRouter({
     history: createWebHistory(),
     routes: routes

@@ -3,31 +3,32 @@
   <div class="filter-left">
   </div>
   <div class="cruise-ships">
-    <CruiseShipList/>
+    <CruiseShipList v-if="token"/>
   </div>
   <div class="pagination">1...3...5</div>
 </template>
 
 <script>
 import CruiseShipList from "@/components/CruiseShipComponents/CruiseShipList";
-import { useJwt } from '@vueuse/integrations/useJwt'
-import {ref} from "vue";
+import {jwtDecode} from "jwt-decode";
 
 export default {
   name: "HomePage",
   components: {CruiseShipList},
-  beforeMount() {
-    const item = localStorage.getItem('token');
-    const encodedJwt = ref(item);
-    const {header, payload} = useJwt(encodedJwt)
-    console.log(payload)
-    console.log(header)
-    if (!item) {
+  token: String,
+  beforeCreate() {
+    this.token = localStorage.getItem('token');
+    if (!this.token) {
       this.$router.push('/login');
+      localStorage.setItem('error', 'You need to log in first');
+    } else {
+      const jwtPayload = jwtDecode(this.token);
+      new Date().getTime() / 1000 < jwtPayload.exp
+          ? console.log("Token is valid")
+          : this.$router.push('/login') && localStorage.setItem('error', 'You need to log in first');
     }
-  },
-  methods: {}
-}
+  }
+};
 </script>
 
 <style scoped>
