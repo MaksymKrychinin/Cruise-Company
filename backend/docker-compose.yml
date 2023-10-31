@@ -13,7 +13,7 @@ services:
   app:
     depends_on:
       - mysqldb
-    build: ../Cruise-Company
+    build: ..
     restart: on-failure
     env_file: .env
     ports:
