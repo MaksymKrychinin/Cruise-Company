@@ -3,14 +3,13 @@ package com.example.cruiseonspring.controller;
 import com.example.cruiseonspring.dto.CruiseShipDto;
 import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.service.CruiseShipService;
-import io.swagger.v3.oas.annotations.security.SecurityRequirements;
-import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/cruise-ships")
@@ -20,8 +19,9 @@ public class CruiseShipController {
     private final CruiseShipService cruiseshipService;
 
     @GetMapping("")
-    public ResponseEntity<List<CruiseShip>> getAllCruiseShips() {
-        return ResponseEntity.ok().body(cruiseshipService.getAllCruiseShips());
+    public ResponseEntity<Page<CruiseShip>> getAllCruiseShips(
+            @PageableDefault Pageable pageable) {
+        return ResponseEntity.ok().body(cruiseshipService.getAllCruiseShips(pageable));
     }
 
     @GetMapping("/{id}")
@@ -36,11 +36,11 @@ public class CruiseShipController {
         return ResponseEntity.ok().body(cruiseshipService.saveCruiseShip(cruiseShip));
     }
 
-/*    @PutMapping("")
+    @PutMapping("")
     public ResponseEntity<CruiseShip> updateCruiseShip(
             @Validated @RequestBody CruiseShipDto cruiseShipDto) {
-        return ResponseEntity.ok().body(cruiseshipService.update(cruiseShipDto));
-    }*/
+        return ResponseEntity.ok().body(cruiseshipService.saveCruiseShip(cruiseShipDto));
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCruiseShip(
