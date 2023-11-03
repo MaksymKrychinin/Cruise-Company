@@ -6,12 +6,13 @@ import com.example.cruiseonspring.entity.User;
 import com.example.cruiseonspring.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 import java.util.function.Function;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class UserMapper implements Function<RegisterRequest, User> {
     private final PasswordEncoder passwordEncoder;

@@ -8,6 +8,7 @@ import com.example.cruiseonspring.mapper.CruiseShipMapper;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class CruiseShipService {
 
     public Page<CruiseShip> getAllCruiseShips(Pageable pageable) {
         Page<CruiseShip> cruiseShipPage = cruiseshipRepository
-                .findAllWhereOrderedSeatsLessThanCapacity(pageable);
+                .findAllWhereOrderedSeatsLessThanCapacity(PageRequest.of(1, 20));
         if (cruiseShipPage.isEmpty())
             throw new NotFoundException("List of Cruise ships not found");
         return cruiseShipPage;

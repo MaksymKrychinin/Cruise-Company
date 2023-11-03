@@ -20,7 +20,7 @@ public class CruiseShipController {
 
     @GetMapping("")
     public ResponseEntity<Page<CruiseShip>> getAllCruiseShips(
-            @PageableDefault Pageable pageable) {
+            @PageableDefault @RequestParam(required = false) Pageable pageable) {
         return ResponseEntity.ok().body(cruiseshipService.getAllCruiseShips(pageable));
     }
 
