@@ -1,5 +1,5 @@
 version: '3.9'
-name: cruise-company
+name: cruise-company-all
 services:
   postgres-db:
     env_file: .env
