@@ -17,12 +17,12 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
-      - ${MYSQLDB_LOCAL_PORT}:{MYSQLDB_DOCKER_PORT}
+      - ${MYSQLDB_LOCAL_PORT}:${MYSQLDB_DOCKER_PORT}
   activemq:
     env_file: .env
     image: symptoma/activemq:latest
     ports:
-      - ${ACTIVEMQ_LOCAL_PORT}:{ACTIVEMQ_DOCKER_PORT}
+      - ${ACTIVEMQ_LOCAL_PORT}:${ACTIVEMQ_DOCKER_PORT}
     environment:
       ACTIVEMQ_ADMIN_LOGIN: ${ACTIVEMQ_ADMIN_LOGIN}
       ACTIVEMQ_ADMIN_PASSWORD: ${ACTIVEMQ_ADMIN_PASSWORD}
