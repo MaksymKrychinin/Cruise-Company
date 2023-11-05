@@ -1,0 +1,12 @@
+version: '3.9'
+name: cruise-company-all
+services:
+  my-sql:
+    env_file: .env
+    image: mysql:latest
+    environment:
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - ${MYSQLDB_LOCAL_PORT}:{MYSQLDB_DOCKER_PORT}
