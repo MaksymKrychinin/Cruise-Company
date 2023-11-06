@@ -54,7 +54,7 @@ contribute to this project, please follow these guidelines:
 
 ## Contact Information
 
-If you have any questions or comments about this project, please email us at maks1997clan@gmail.com.
+If you have any questions or comments about this project, please email us at maksymkrychinin@gmail.com.
 
 <hr>
 
