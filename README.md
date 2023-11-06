@@ -67,4 +67,5 @@ This project uses the following third-party libraries:
 <li>Spring Data</li>
 <li>Hibernate</li>
 <li>Docker</li>
-<li>Maven</li><ul>
+<li>Maven</li>
+<li>VueJS</li><ul>
