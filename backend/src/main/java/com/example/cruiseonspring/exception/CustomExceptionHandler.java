@@ -18,7 +18,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
             = {FailedToAccessException.class})
     protected ResponseEntity<Object> handleConflictFailedToAccessException(
             FailedToAccessException ex, WebRequest request) {
-        log.log(Level.INFO, ex.getMessage());
+        log.warn(ex.getMessage());
         return handleExceptionInternal(ex, ex.getMessage(),
                 new HttpHeaders(), ex.getStatus(), request);
     }
@@ -27,7 +27,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
             = {NotFoundException.class})
     protected ResponseEntity<Object> handleConflictNotFoundException(
             NotFoundException ex, WebRequest request) {
-        log.log(Level.INFO, ex.getMessage());
+        log.warn(ex.getMessage());
         return handleExceptionInternal(ex, ex.getMessage(),
                 new HttpHeaders(), ex.getStatus(), request);
     }
@@ -36,7 +36,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
             = {ValidationException.class})
     protected ResponseEntity<Object> handleConflictValidationException(
             ValidationException ex, WebRequest request) {
-        log.log(Level.INFO, ex.getMessage());
+        log.warn(ex.getMessage());
         return handleExceptionInternal(ex, ex.getMessage(),
                 new HttpHeaders(), ex.getHttpStatus(), request);
     }
@@ -45,7 +45,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
             = {Exception.class})
     protected ResponseEntity<Object> handleConflictException(
             Exception ex, WebRequest request) {
-        log.log(Level.WARN, ex.getMessage());
+        log.error(ex.getMessage());
         return handleExceptionInternal(ex, ex.getMessage(),
                 new HttpHeaders(), HttpStatusCode.valueOf(404), request);
     }
