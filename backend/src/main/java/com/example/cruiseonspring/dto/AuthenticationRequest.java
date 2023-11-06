@@ -1,5 +1,7 @@
 package com.example.cruiseonspring.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class AuthenticationRequest {
+    @Email
     private String email;
+    @Size(min = 8, max = 64)
     private String password;
 }
