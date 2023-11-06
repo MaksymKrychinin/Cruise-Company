@@ -27,8 +27,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
 
     public AuthenticationResponse register(RegisterRequest request) {
+        validationUtils.validate(request);
         User user = userMapper.registerRequestToUser(request);
-        validationUtils.validate(user);
         userRepository.save(user);
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
@@ -38,6 +38,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public AuthenticationResponse auth(AuthenticationRequest request) {
+        validationUtils.validate(request);
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new FailedToAccessException("User not found by email"));
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
