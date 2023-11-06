@@ -8,7 +8,7 @@ import com.example.cruiseonspring.exception.NotFoundException;
 import com.example.cruiseonspring.mapper.UserOrderMapper;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
 import com.example.cruiseonspring.repository.UserRepository;
-import com.example.cruiseonspring.repository.UserorderRepository;
+import com.example.cruiseonspring.repository.UserOrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class UserOrderService {
-    private final UserorderRepository userorderRepository;
+    private final UserOrderRepository userorderRepository;
     private final UserOrderMapper userorderMapper;
     private final UserRepository userRepository;
     private final CruiseShipRepository cruiseShipRepository;

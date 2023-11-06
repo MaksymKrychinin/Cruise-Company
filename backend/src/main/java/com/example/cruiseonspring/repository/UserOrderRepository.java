@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserorderRepository extends JpaRepository<UserOrder, Integer>, CrudRepository<UserOrder, Integer> {
+public interface UserOrderRepository extends JpaRepository<UserOrder, Integer>, CrudRepository<UserOrder, Integer> {
 
     List<UserOrder> findAllByUserEmail(String email, Pageable pageRequest);
 
