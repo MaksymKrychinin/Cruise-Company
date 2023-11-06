@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fb8ff62-be9b-4a2e-b8db-9d6b4c93640c" name="Changes" comment="add docker to current package&#10;edit all package docker">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/exception/CustomExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/exception/CustomExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/service/AuthenticationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/service/AuthenticationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/generationdata/CruiseShipDataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/datasetup/CruiseShipDataGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/generationdata/RoleDataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/datasetup/SetupDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/repository/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/repository/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/repository/UserorderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/repository/UserOrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/service/UserOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/service/UserOrderService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,28 +26,35 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2XWyNGhyU4dzwFYQocGWQilV1cO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\SpringProjects\Cruise-Company\docker" />
@@ -76,6 +83,9 @@
       <workItem from="1698956957461" duration="515000" />
       <workItem from="1698996401955" duration="38000" />
       <workItem from="1699004793075" duration="1568000" />
+      <workItem from="1699279605670" duration="470000" />
+      <workItem from="1699281523859" duration="376000" />
+      <workItem from="1699282634394" duration="1762000" />
     </task>
     <task id="LOCAL-00001" summary="add docker to current package&#10;edit all package docker">
       <option name="closed" value="true" />

@@ -1,10 +1,11 @@
-package com.example.cruiseonspring.generationdata;
+package com.example.cruiseonspring.datasetup;
 
 import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +13,17 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Component
+@Component
 @RequiredArgsConstructor
-public class CruiseShipDataGenerator {
+public class CruiseShipDataGenerator implements ApplicationListener<ApplicationReadyEvent> {
     private final CruiseShipRepository cruiseShipRepository;
+
+    @Override
+    public void onApplicationEvent(ApplicationReadyEvent event) {
+        if (cruiseShipRepository.count() == 0) {
+            generate();
+        }
+    }
 
     public static List<CruiseShip> generateSampleCruiseShips(int numberOfCruises) {
         List<CruiseShip> cruiseShips = new ArrayList<>();
@@ -40,9 +48,7 @@ public class CruiseShipDataGenerator {
     @EventListener(ApplicationReadyEvent.class)
     public void generate() {
         List<CruiseShip> generatedCruises = generateSampleCruiseShips(30);
-        for (CruiseShip cruise : generatedCruises) {
-            CruiseShip save = cruiseShipRepository.save(cruise);
-            System.out.println("Saved to db: "+save.toString());
-        }
+        cruiseShipRepository.saveAll(generatedCruises);
     }
+
 }
