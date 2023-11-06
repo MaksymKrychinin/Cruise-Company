@@ -27,7 +27,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
 
     public AuthenticationResponse register(RegisterRequest request) {
-        User user = userMapper.apply(request);
+        User user = userMapper.registerRequestToUser(request);
         validationUtils.validate(user);
         userRepository.save(user);
         String jwtToken = jwtService.generateToken(user);
