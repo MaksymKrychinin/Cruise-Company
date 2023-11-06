@@ -10,6 +10,8 @@ import com.example.cruiseonspring.repository.CruiseShipRepository;
 import com.example.cruiseonspring.repository.UserRepository;
 import com.example.cruiseonspring.repository.UserorderRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,7 @@ public class UserOrderService {
     private final UserOrderMapper userorderMapper;
     private final UserRepository userRepository;
     private final CruiseShipRepository cruiseShipRepository;
+    private final UserOrderMapper userOrderMapper;
 
 
     public UserOrderDto getUserOrderById(Integer orderId, UserDetails userDetails) {
@@ -32,20 +35,18 @@ public class UserOrderService {
         if (!userOrder.getUser().getEmail().equals(userDetails.getUsername())) {
             throw new NotFoundException("User can't access another peoples orders");
         }
-        return userorderMapper.apply(userOrder);
+        return userorderMapper.userOrderToDto(userOrder);
     }
 
 
-    public List<UserOrderDto> getAllUserOrders(UserDetails user) {
-        List<UserOrder> allByUserEmail = userorderRepository.findAllByUserEmail(user.getUsername());
+    public List<UserOrderDto> getAllUserOrders(UserDetails user, Pageable pageable) {
+        List<UserOrder> allByUserEmail = userorderRepository
+                        .findAllByUserEmail(user.getUsername(), PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
         List<UserOrderDto> collect = allByUserEmail
-                .stream()
-                .map(userorderMapper)
+                .stream().map(userOrderMapper::userOrderToDto)
                 .collect(Collectors.toList());
-        System.out.println(collect);
         return collect;
     }
-
 
 
     @Transactional
@@ -63,7 +64,7 @@ public class UserOrderService {
         userOrder.setCruiseShip(cruiseShip);
         updateCruiseShipOrderedSeatsPlusOne(id);
         UserOrder save = userorderRepository.save(userOrder);
-        return userorderMapper.apply(save);
+        return userorderMapper.userOrderToDto(save);
     }
 
     public void updateCruiseShipOrderedSeatsPlusOne(Integer id) {
@@ -81,7 +82,7 @@ public class UserOrderService {
         if (!userOrderToUpdate.getUser().getEmail().equals(userDetails.getUsername())) {
             throw new FailedToAccessException("User can't access this order");
         }
-        return userorderMapper.apply(userorderRepository.save(userOrder));
+        return userorderMapper.userOrderToDto(userorderRepository.save(userOrder));
     }
 
 

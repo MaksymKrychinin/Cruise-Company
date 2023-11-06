@@ -4,6 +4,8 @@ import com.example.cruiseonspring.dto.UserOrderDto;
 import com.example.cruiseonspring.entity.UserOrder;
 import com.example.cruiseonspring.service.UserOrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,8 +21,10 @@ public class UserOrderController {
     private final UserOrderService userOrderService;
 
     @GetMapping("")
-    ResponseEntity<List<UserOrderDto>> getAllUserOrder(@AuthenticationPrincipal UserDetails userDetails) {
-        List<UserOrderDto> allUserOrders = userOrderService.getAllUserOrders(userDetails);
+    ResponseEntity<List<UserOrderDto>> getAllUserOrder(
+            @AuthenticationPrincipal UserDetails userDetails,
+            @PageableDefault @RequestParam(required = false) Pageable pageable) {
+        List<UserOrderDto> allUserOrders = userOrderService.getAllUserOrders(userDetails, pageable);
         return ResponseEntity.ok().body(allUserOrders);
     }
 

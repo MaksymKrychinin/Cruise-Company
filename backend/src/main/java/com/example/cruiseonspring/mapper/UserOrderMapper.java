@@ -4,23 +4,37 @@ import com.example.cruiseonspring.dto.UserOrderDto;
 import com.example.cruiseonspring.entity.UserOrder;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
 import com.example.cruiseonspring.repository.UserRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.mapstruct.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.function.Function;
+@Mapper(componentModel = "spring")
+public abstract class UserOrderMapper {
+    @Autowired
+    protected CruiseShipRepository cruiseShipRepository;
+    @Autowired
+    protected UserRepository userRepository;
 
-@Component
-@AllArgsConstructor
-public class UserOrderMapper implements Function<UserOrder, UserOrderDto> {
-    private final CruiseShipRepository cruiseShipRepository;
-    private final UserRepository userRepository;
-    @Override
-    public UserOrderDto apply(UserOrder userOrder) {
-        return UserOrderDto.builder()
-                .id(userOrder.getId())
-                .user(userRepository.getReferenceById(userOrder.getUser().getId()))
-                .status(userOrder.getStatus())
-                .cruiseShip(cruiseShipRepository.getReferenceById(userOrder.getCruiseShip().getId()))
-                .build();
+    @Mappings({
+            @Mapping(target = "user", ignore = true),
+            @Mapping(target = "cruiseShip", ignore = true)
+    })
+    public abstract UserOrderDto userOrderToDto(UserOrder userOrder);
+
+    @AfterMapping
+    protected void userByReferenceId(
+            UserOrder userOrder,
+            @MappingTarget UserOrderDto.UserOrderDtoBuilder userOrderDto) {
+        userOrderDto.user(
+                userRepository
+                        .findById(userOrder.getUser().getId()).orElseThrow());//TODO: add exception
+    }
+
+    @AfterMapping
+    protected void cruiseShipByReferenceId(
+            UserOrder userOrder,
+            @MappingTarget UserOrderDto.UserOrderDtoBuilder userOrderDto) {
+        userOrderDto.cruiseShip(
+                cruiseShipRepository
+                        .findById(userOrder.getCruiseShip().getId()).orElseThrow());//TODO: add exception
     }
 }
