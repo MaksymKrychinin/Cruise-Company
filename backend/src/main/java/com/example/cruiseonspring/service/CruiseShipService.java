@@ -46,8 +46,9 @@ public class CruiseShipService {
             throw new NotFoundException("Start date cannot be greater than end date");
         }
         CruiseShip cruiseShip = cruiseShipMapper.cruiseShipToDto(cruiseShipDto);
-        return cruiseshipRepository
-                .save(cruiseShip);
+        CruiseShip savedCruiseShip = cruiseshipRepository.save(cruiseShip);
+        //TODO Send to Kafka to notify that new cruise ship is available
+        return savedCruiseShip;
     }
 
 
