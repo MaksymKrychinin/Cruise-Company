@@ -29,7 +29,7 @@ public abstract class UserMapper {
 
     @AfterMapping
     protected void setDefaultRole(@MappingTarget User.UserBuilder user) {
-        user.userRoles(Set.of(roleRepository.findByName("USER")
-                .orElse(Role.builder().name("USER").build())));
+        user.userRoles(Set.of(roleRepository.findByName("ROLE_USER")
+                .orElse(Role.builder().name("ROLE_USER").build())));
     }
 }

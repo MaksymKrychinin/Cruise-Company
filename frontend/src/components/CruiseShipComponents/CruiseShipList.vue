@@ -24,12 +24,16 @@ export default {
       const item = localStorage.getItem("token");
       const axiosResponse = await axios.get("api/v1/cruise-ships", {
             headers: {
-              'Authorization': `Bearer ${item}`,
-              "x-access-token": item
+              'Authorization': `Bearer ${item}`
+            },
+            params: {
+              page: 0,
+              size: 5
             }
           }
       );
-      this.shipsList = axiosResponse.data;
+      console.log(axiosResponse.data)
+      this.shipsList = axiosResponse.data.content;
     }
   }
 

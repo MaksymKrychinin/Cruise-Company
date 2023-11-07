@@ -22,7 +22,7 @@
       {{ errors.email.reduce((prev, curr) => prev + ", " + curr) }}</small>
 
     <label for="phoneNumber">Phone number</label>
-    <input type="text" v-model="authData.phoneNumber" v-mask="'+38#(##)### ####'" required>
+    <input type="text" v-model="authData.phoneNumber" v-mask="'+380(##)### ####'" required>
     <small id="phoneNumberErrors"
            class="error"
            v-if="errors.phoneNumber.length>0">
@@ -88,7 +88,7 @@ export default {
         password: '',
         dateOfBirthday: '',
         gender: '',
-        phoneNumber: '',
+        phoneNumber: '+380',
         name: '',
         surname: ''
       }

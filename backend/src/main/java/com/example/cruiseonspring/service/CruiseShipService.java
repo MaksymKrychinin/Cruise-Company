@@ -24,7 +24,7 @@ public class CruiseShipService {
 
     public Page<CruiseShip> getAllCruiseShips(Pageable pageable) {
         Page<CruiseShip> cruiseShipPage = cruiseshipRepository
-                .findAllWhereOrderedSeatsLessThanCapacity(PageRequest.of(1, 20));
+                .findAllWhereOrderedSeatsLessThanCapacity(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
         if (cruiseShipPage.isEmpty())
             throw new NotFoundException("List of Cruise ships not found");
         return cruiseShipPage;

@@ -4,6 +4,7 @@ import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.EventListener;
@@ -15,12 +16,14 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+@Log4j2
 public class CruiseShipDataGenerator implements ApplicationListener<ApplicationReadyEvent> {
     private final CruiseShipRepository cruiseShipRepository;
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         if (cruiseShipRepository.count() == 0) {
+            log.warn("Generating cruise ships...");
             generate();
         }
     }

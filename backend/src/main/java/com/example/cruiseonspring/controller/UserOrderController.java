@@ -23,7 +23,7 @@ public class UserOrderController {
     @GetMapping("")
     ResponseEntity<List<UserOrderDto>> getAllUserOrder(
             @AuthenticationPrincipal UserDetails userDetails,
-            @PageableDefault @RequestParam(required = false) Pageable pageable) {
+            @PageableDefault Pageable pageable) {
         List<UserOrderDto> allUserOrders = userOrderService.getAllUserOrders(userDetails, pageable);
         return ResponseEntity.ok().body(allUserOrders);
     }
