@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class KafkaProducerService {
     private final KafkaTemplate<String, CruiseShip> kafkaTemplateCruiseShip;
+    private final AppConstants appConstants;
 
     public void saveCruiseShip(CruiseShip user) {
         log.info(String.format("Cruise ship created -> %s", user));
-        kafkaTemplateCruiseShip.send(AppConstants.TOPIC_NAME_NEW_CRUISE_SHIP, user);
-
+        kafkaTemplateCruiseShip.send(appConstants.TOPIC_NAME_NEW_CRUISE_SHIP, user);
     }
 
 }

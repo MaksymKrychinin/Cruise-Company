@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "kafka.topic.name.new-cruise-ship",
+      "type": "java.lang.String",
+      "description": "Kafka topic name for new cruise ship saved events",
+      "defaultValue": "new-cruise-ship"
+    }
+  ]
+}

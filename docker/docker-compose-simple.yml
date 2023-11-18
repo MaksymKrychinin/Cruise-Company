@@ -1,15 +1,30 @@
 version: '3.9'
 name: cruise-company-backend
+
+x-healthcheck: &healthcheck
+  interval: 10s
+  timeout: 5s
+  retries: 5
+  start_period: 10s
+  x-mysql: &healthcheck-mysql
+    test: [ "CMD-SHELL", "mysqladmin ping -h localhost" ]
+  x-kafka: &healthcheck-kafka
+    test: [ "CMD-SHELL", "kafka-topics --bootstrap-server localhost:9092 --list" ]
+  x-mongo: &healthcheck-mongo
+    test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
 services:
   my-sql:
-    env_file: .env
+    env_file:
+        - .env
     image: mysql:latest
     environment:
-      MYSQL_ROOT_USER: ${MYSQL_USER}
+      MYSQL_ROOT_USER: ${MYSQL_ROOT_USER}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
       - ${MYSQLDB_LOCAL_PORT}:${MYSQLDB_DOCKER_PORT}
+    healthcheck:
+      <<: [ *healthcheck, *healthcheck-mysql ]
 
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
@@ -36,3 +51,19 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    healthcheck:
+      <<: [ *healthcheck, *healthcheck-kafka ]
+
+  mongo-db:
+    env_file:
+      - .env
+    image: mongo:latest
+    container_name: mongo-db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    healthcheck:
+      <<: [ *healthcheck, *healthcheck-mongo ]
+

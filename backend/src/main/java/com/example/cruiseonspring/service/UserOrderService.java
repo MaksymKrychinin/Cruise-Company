@@ -14,9 +14,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.concurrent.locks.Lock;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,7 +43,7 @@ public class UserOrderService {
 
     public List<UserOrderDto> getAllUserOrders(UserDetails user, Pageable pageable) {
         List<UserOrder> allByUserEmail = userorderRepository
-                        .findAllByUserEmail(user.getUsername(), PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
+                .findAllByUserEmail(user.getUsername(), PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
         List<UserOrderDto> collect = allByUserEmail
                 .stream().map(userOrderMapper::userOrderToDto)
                 .collect(Collectors.toList());
@@ -49,21 +51,21 @@ public class UserOrderService {
     }
 
 
-    @Transactional
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public UserOrderDto saveUserOrder(UserOrder userOrder, UserDetails userDetails) {
         int id = userOrder.getCruiseShip().getId();
         CruiseShip cruiseShip = cruiseShipRepository
                 .findById(id)
                 .orElseThrow(() -> new NotFoundException("CruiseShip " + id + "not found"));
-        int capacity = cruiseShip.getCapacity();
-        if (capacity <= cruiseShip.getOrderedSeats()) {
+        if (cruiseShip.getCapacity() <= cruiseShip.getOrderedSeats()) {
             throw new FailedToAccessException("Not enough seats");
         }
+
         userOrder.setUser(userRepository.findByEmail(userDetails.getUsername())
                 .orElseThrow(() -> new NotFoundException("User not found")));
         userOrder.setCruiseShip(cruiseShip);
-        updateCruiseShipOrderedSeatsPlusOne(id);
         UserOrder save = userorderRepository.save(userOrder);
+        updateCruiseShipOrderedSeatsPlusOne(id);
         return userorderMapper.userOrderToDto(save);
     }
 
