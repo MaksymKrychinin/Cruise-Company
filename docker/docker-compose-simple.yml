@@ -8,10 +8,7 @@ x-healthcheck: &healthcheck
   start_period: 10s
   x-mysql: &healthcheck-mysql
     test: [ "CMD-SHELL", "mysqladmin ping -h localhost" ]
-  x-kafka: &healthcheck-kafka
-    test: [ "CMD-SHELL", "kafka-topics --bootstrap-server localhost:9092 --list" ]
-  x-mongo: &healthcheck-mongo
-    test:  ["CMD","mongo","--quiet","127.0.0.1/test","--eval", "'quit(db.runCommand({ ping: 1 }).ok ? 0 : 2)'",]
+
 services:
   my-sql:
     image: mysql:latest
@@ -23,42 +20,16 @@ services:
       - "3307:3306"
     healthcheck:
       <<: [ *healthcheck, *healthcheck-mysql ]
-
-  zookeeper:
-    image: confluentinc/cp-zookeeper:latest
-    container_name: zookeeper
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
+  activemq:
+    image: symptoma/activemq:latest
     ports:
-      - "22181:2181"
-  broker:
-    image: confluentinc/cp-kafka:latest
-    container_name: broker
-    ports:
-      - "9092:9092"
-    depends_on:
-      - zookeeper
+      - "61616:61616"
     environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
-      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-    healthcheck:
-      <<: [ *healthcheck, *healthcheck-kafka ]
-
+      ACTIVEMQ_ADMIN_LOGIN: admin
+      ACTIVEMQ_ADMIN_PASSWORD: admin
   mongo-db:
     image: mongo:latest
-    container_name: mongo-db
-    ports:
-      - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
-      MONGO_INITDB_DATABASE: cruise_company
-    healthcheck:
-      <<: [ *healthcheck, *healthcheck-mongo ]
-
+      MONGO_INITDB_DATABASE: statistics
+    ports:
+      - '27017:27017'

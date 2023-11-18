@@ -20,7 +20,7 @@ public class CruiseShipService {
     private final CruiseShipRepository cruiseshipRepository;
     private final ValidationUtils validationUtils;
     private final CruiseShipMapper cruiseShipMapper;
-    private final KafkaProducerService kafkaProducerService;
+    private final JmsProducerService jmsProducerService;
 
     public Page<CruiseShip> getAllCruiseShips(Pageable pageable) {
         Page<CruiseShip> cruiseShipPage = cruiseshipRepository
@@ -47,7 +47,7 @@ public class CruiseShipService {
         }
         CruiseShip cruiseShip = cruiseShipMapper.cruiseShipToDto(cruiseShipDto);
         CruiseShip savedCruiseShip = cruiseshipRepository.save(cruiseShip);
-        kafkaProducerService.saveCruiseShip(savedCruiseShip);
+        jmsProducerService.sendToQueue(savedCruiseShip);
         return savedCruiseShip;
     }
 
