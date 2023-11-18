@@ -29,7 +29,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
                 .filter(role -> !roleRepository.existsByName(role.getName()))
                 .forEach(role -> {
                     roleRepository.save(role);
-                    log.info("Role {} created", role.getName());
+                    log.warn("Role {} created", role.getName());
                 });
     }
 

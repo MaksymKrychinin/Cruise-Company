@@ -25,6 +25,7 @@ public class CruiseShipDataGenerator implements ApplicationListener<ApplicationR
         if (cruiseShipRepository.count() == 0) {
             log.warn("Generating cruise ships...");
             generate();
+            log.info("Cruise ships generated!");
         }
     }
 

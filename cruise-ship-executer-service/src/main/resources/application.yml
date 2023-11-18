@@ -3,19 +3,18 @@ kafka:
   consumer:
     key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-    group-id: cruise-company
+    group-id: statistic-group
     auto-offset-reset: earliest
     properties:
       spring.json.trusted.packages: '*'
-
-spring:
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: cruise_company
-      username: root
-      password: root
+#spring:
+#  data:
+#    mongodb:
+#      host: localhost
+#      port: 27017
+#      database: local
+#      username: root
+#      password: root
 topic:
   name:
     new-cruise-ship: new-cruise-ship
