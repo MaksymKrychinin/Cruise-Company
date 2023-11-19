@@ -48,9 +48,9 @@ public class JmsConfig {
         MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
         converter.setTargetType(MessageType.BYTES);
         converter.setObjectMapper(objectMapper());
-        converter.setTypeIdPropertyName("invitationStatisticRequest");
+        converter.setTypeIdPropertyName("CruiseShip");
         Map<String, Class<?>> typeIdMappings = new HashMap<>();
-        typeIdMappings.put("invitationStatisticRequest",
+        typeIdMappings.put("CruiseShip",
               CruiseShip.class);
         converter.setTypeIdMappings(typeIdMappings);
         return converter;

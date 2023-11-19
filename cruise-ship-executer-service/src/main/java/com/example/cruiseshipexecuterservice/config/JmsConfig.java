@@ -1,6 +1,8 @@
 package com.example.cruiseshipexecuterservice.config;
 
-import com.example.cruiseshipexecuterservice.entity.CruiseShip;
+import com.example.cruiseshipexecuterservice.entity.jms.CruiseShip;
+import com.example.cruiseshipexecuterservice.entity.jms.User;
+import com.example.cruiseshipexecuterservice.entity.jms.UserOrder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -43,10 +45,14 @@ public class JmsConfig {
         MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
         converter.setTargetType(MessageType.BYTES);
         converter.setObjectMapper(objectMapper());
-        converter.setTypeIdPropertyName("invitationStatisticRequest");
+        converter.setTypeIdPropertyName("CruiseShip");//TODO: change to UserOrder/User
         Map<String, Class<?>> typeIdMappings = new HashMap<>();
-        typeIdMappings.put("invitationStatisticRequest",
+        typeIdMappings.put("CruiseShip",
               CruiseShip.class);
+        typeIdMappings.put("UserOrder",
+                UserOrder.class);
+        typeIdMappings.put("User",
+                User.class);
         converter.setTypeIdMappings(typeIdMappings);
         return converter;
     }

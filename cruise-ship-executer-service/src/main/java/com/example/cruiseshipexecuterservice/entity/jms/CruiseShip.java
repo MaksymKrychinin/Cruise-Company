@@ -1,4 +1,4 @@
-package com.example.cruiseshipexecuterservice.entity;
+package com.example.cruiseshipexecuterservice.entity.jms;
 
 
 import lombok.*;

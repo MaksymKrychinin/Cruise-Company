@@ -2,6 +2,8 @@ package com.example.cruiseshipexecuterservice.entity.mongo;
 
 import java.time.Month;
 import java.util.Map;
+
+import com.example.cruiseshipexecuterservice.entity.mongo.StatisticTypeBaseEntity;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -15,7 +17,6 @@ public class Statistic {
     @Id
     private String id;
     @Indexed(unique = true)
-    private String username;
+    private StatisticTypeBaseEntity entityType;
     private Map<Integer, Map<Month, Integer>> yearMonthStatistic;
-
 }
