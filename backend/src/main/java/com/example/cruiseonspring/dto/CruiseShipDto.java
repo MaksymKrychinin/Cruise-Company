@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -23,9 +24,9 @@ public class CruiseShipDto {
     @PositiveOrZero
     private Integer numberOfVisitedPorts;
     @Future
-    private Date startDate;
+    private LocalDate startDate;
     @Future
-    private Date endDate;
+    private LocalDate endDate;
     @PositiveOrZero
     private Integer orderedSeats;
 }

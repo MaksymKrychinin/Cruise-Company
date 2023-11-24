@@ -4,6 +4,7 @@ import com.example.cruiseonspring.Utils.ValidationUtils;
 import com.example.cruiseonspring.dto.CruiseShipDto;
 import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.exception.NotFoundException;
+import com.example.cruiseonspring.exception.ValidationException;
 import com.example.cruiseonspring.mapper.CruiseShipMapper;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
@@ -40,10 +41,10 @@ public class CruiseShipService {
 
     public CruiseShip saveCruiseShip(CruiseShipDto cruiseShipDto) {
         validationUtils.validate(cruiseShipDto);
-        Date startDate = cruiseShipDto.getStartDate();
-        Date endDate = cruiseShipDto.getEndDate();
-        if (startDate.compareTo(endDate) > 0) {
-            throw new NotFoundException("Start date cannot be greater than end date");
+        LocalDate startDate = cruiseShipDto.getStartDate();
+        LocalDate endDate = cruiseShipDto.getEndDate();
+        if (startDate.isAfter(endDate)) {
+            throw new ValidationException("Start date cannot be greater than end date");
         }
         CruiseShip cruiseShip = cruiseShipMapper.cruiseShipToDto(cruiseShipDto);
         CruiseShip savedCruiseShip = cruiseshipRepository.save(cruiseShip);

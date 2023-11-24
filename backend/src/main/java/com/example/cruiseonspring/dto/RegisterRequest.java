@@ -1,7 +1,6 @@
 package com.example.cruiseonspring.dto;
 
 
-import com.example.cruiseonspring.entity.Role;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

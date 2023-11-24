@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.concurrent.locks.Lock;
 import java.util.stream.Collectors;
 
 @Service
@@ -65,7 +64,7 @@ public class UserOrderService {
                 .orElseThrow(() -> new NotFoundException("User not found")));
         userOrder.setCruiseShip(cruiseShip);
         UserOrder save = userorderRepository.save(userOrder);
-        updateCruiseShipOrderedSeatsPlusOne(id);
+        this.updateCruiseShipOrderedSeatsPlusOne(id);
         return userorderMapper.userOrderToDto(save);
     }
 

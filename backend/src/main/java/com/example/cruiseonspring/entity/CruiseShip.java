@@ -4,7 +4,7 @@ package com.example.cruiseonspring.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "cruise-ships")
@@ -28,9 +28,9 @@ public class CruiseShip {
     @Column(name = "number_of_visited_ports", nullable = false)
     private Integer numberOfVisitedPorts;
     @Column(name = "start_date", nullable = false)
-    private Date startDate;
+    private LocalDate startDate;
     @Column(name = "end_date", nullable = false)
-    private Date endDate;
+    private LocalDate endDate;
     @Column(name = "ordered_seats", nullable = false)
     private Integer orderedSeats;
 }
