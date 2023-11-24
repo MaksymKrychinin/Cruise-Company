@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="cs-main-frontend:start" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/cs-main-frontend/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="start" />
+    </scripts>
+    <node-interpreter value="$USER_HOME$/.nvm/versions/node/v18.18.0/bin/node" />
+    <envs />
+    <method v="2" />
+  </configuration>
+</component>

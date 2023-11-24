@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>cruise-ship-executer-service</artifactId>
+	<artifactId>cs-qes-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cruise-ship-executer-service</name>
 	<description>cruise-ship-executer-service</description>
