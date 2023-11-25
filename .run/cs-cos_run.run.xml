@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="cs-cos:run" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="start-services">
+    <module name="cs-cos-backend" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.cruiseonspring.CruiseOnSpringApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

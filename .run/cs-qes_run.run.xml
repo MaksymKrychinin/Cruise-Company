@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="cs-qes:run" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="start-services">
+    <module name="cs-qes-backend" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.cruiseshipexecuterservice.CruiseShipExecuterServiceApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

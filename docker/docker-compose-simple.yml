@@ -1,0 +1,35 @@
+version: '3.9'
+name: cruise-company-backend
+
+x-healthcheck: &healthcheck
+  interval: 10s
+  timeout: 5s
+  retries: 5
+  start_period: 10s
+  x-mysql: &healthcheck-mysql
+    test: [ "CMD-SHELL", "mysqladmin ping -h localhost" ]
+
+services:
+  my-sql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cruise_company
+    ports:
+      - "3307:3306"
+    healthcheck:
+      <<: [ *healthcheck, *healthcheck-mysql ]
+  activemq:
+    image: symptoma/activemq:latest
+    ports:
+      - "61616:61616"
+    environment:
+      ACTIVEMQ_ADMIN_LOGIN: admin
+      ACTIVEMQ_ADMIN_PASSWORD: admin
+  mongo-db:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_DATABASE: statistics
+    ports:
+      - '27017:27017'

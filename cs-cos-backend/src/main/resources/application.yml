@@ -1,0 +1,32 @@
+spring:
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+    queue: cruise-ships
+  datasource:
+    url: jdbc:mysql://localhost:3307/cruise_company
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    generate-ddl: false
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  swagger-ui:
+    path: /swagger-ui.html
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+server:
+  port: 8081
