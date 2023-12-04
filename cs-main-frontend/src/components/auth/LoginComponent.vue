@@ -137,7 +137,6 @@ form {
 
 form * {
   font-family: 'Poppins', sans-serif;
-  color: #ffffff;
   letter-spacing: 0.5px;
   outline: none;
   border: none;
@@ -188,8 +187,5 @@ form.login {
   width: 50%;
 }
 
-small.error {
-  color: #b700ff;
-  font-size: 20px;
-}
+
 </style>

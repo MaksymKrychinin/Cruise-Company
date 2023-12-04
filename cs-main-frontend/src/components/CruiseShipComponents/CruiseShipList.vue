@@ -16,7 +16,5 @@ export default {
 </script>
 
 <style scoped>
-.cruise-ship-list{
-  min-height: 680px;
-}
+
 </style>

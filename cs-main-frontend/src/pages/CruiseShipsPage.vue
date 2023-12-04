@@ -5,7 +5,7 @@
   <div class="cruise-ships">
     <CruiseShipList :cruise-ship-list="shipsList"/>
     <PaginationComponent
-        @pagination_cruise_ship_page_changed="(page, resultPerPage)=>getAllCruiseShips(page, resultPerPage)"
+        @pagination_page_changed="(page, resultPerPage)=>getAllCruiseShips(page, resultPerPage)"
         :current-page="currentPage"
         :total-pages="totalPages"
         :max-visible-buttons="3"/>
@@ -20,7 +20,7 @@ import axios from "axios";
 import CruiseShipFilter from "@/components/CruiseShipComponents/CruiseShipFilter";
 
 export default {
-  name: "HomePage",
+  name: "CruiseShipsPage",
   components: {CruiseShipFilter, PaginationComponent, CruiseShipList},
   data() {
     return {
@@ -68,8 +68,8 @@ export default {
       this.currentPage = axiosResponse.data.pageable.pageNumber + 1;
       this.totalPages = axiosResponse.data.totalPages;
       this.shipsList = axiosResponse.data.content;
-    }
-  }
+    },
+  },
 };
 </script>
 

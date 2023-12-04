@@ -6,21 +6,21 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "user-orders")
+@Table(name = "users-orders")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class UserOrder {
     @Id
-    @Column(name = "id_user_orders", nullable = false)
+    @Column(name = "id_users_orders", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
     private CruiseShip cruiseShip;
 
     @Column(name = "front_passport", nullable = false)

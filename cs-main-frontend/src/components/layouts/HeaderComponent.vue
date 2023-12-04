@@ -1,8 +1,8 @@
 <template>
   <header v-if="token!=null">
     <img src="@/assets/images/logo.png" width="50" height="50">
-    <router-link to="/">Home</router-link>
-    <router-link to="/my-orders">My Orders</router-link>
+    <router-link to="/cruise-ships">Cruise Ships</router-link>
+    <router-link to="/user-orders">My Orders</router-link>
     <router-link to="/logout">Logout</router-link>
   </header>
   <header v-else>

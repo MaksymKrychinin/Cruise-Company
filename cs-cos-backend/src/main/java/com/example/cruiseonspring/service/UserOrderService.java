@@ -43,10 +43,9 @@ public class UserOrderService {
     public List<UserOrderDto> getAllUserOrders(UserDetails user, Pageable pageable) {
         List<UserOrder> allByUserEmail = userorderRepository
                 .findAllByUserEmail(user.getUsername(), PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
-        List<UserOrderDto> collect = allByUserEmail
+        return allByUserEmail
                 .stream().map(userOrderMapper::userOrderToDto)
                 .collect(Collectors.toList());
-        return collect;
     }
 
 

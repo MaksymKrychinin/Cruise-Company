@@ -94,10 +94,10 @@ export default {
 
   methods: {
     onClickPage(page) {
-      this.$emit('pagination_cruise_ship_page_changed', page);
+      this.$emit('pagination_page_changed', page);
     },
     changeResultsPerPage() {
-      this.$emit('pagination_cruise_ship_page_changed', this.currentPage, this.resultsPerPage);
+      this.$emit('pagination_page_changed', this.currentPage, this.resultsPerPage);
     },
     isPageActive(page) {
       return this.currentPage === page;
