@@ -18,9 +18,11 @@ public class UserOrder {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_user", nullable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_cruise_ship", nullable = false)
     private CruiseShip cruiseShip;
 
     @Column(name = "front_passport", nullable = false)
