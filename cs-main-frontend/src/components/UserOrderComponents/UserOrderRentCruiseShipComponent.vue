@@ -25,27 +25,27 @@ export default {
   data() {
     return {
       errors: {
-        api: null,
+        api: [],
       },
       frontPassportUrl: "",
       backPassportUrl: "",
     };
   },
-  beforeMount() {
-    this.errors.api = [];
-  },
   methods: {
     async rentCruiseShipById() {
+      this.errors.api = [];
       const item = localStorage.getItem("token");
+      const userOrder = {
+        cruiseShip:{id: this.cruiseShipId},
+        frontPassport: this.frontPassportUrl,
+        backPassport: this.backPassportUrl,
+      };
+      let data = JSON.stringify(userOrder);
       try {
-        const data = JSON.stringify({
-          cruiseShip: {id: this.cruiseShipId},
-          frontPassport: this.frontPassportUrl,
-          backPassport: this.backPassportUrl,
-        });
-        const axiosResponse = await axios.post(`api/v1/user-orders/`, data, {
+        const axiosResponse = await axios.post(`/api/v1/user-orders/`,data,{
               headers: {
                 'Authorization': `Bearer ${item}`,
+                'Content-Type': 'application/json'
               },
             },
         );
@@ -53,7 +53,8 @@ export default {
           this.$router.push({name: 'user-order-list'});
         }
       } catch (e) {
-        this.errors.api = e.response.data;
+        console.log(e);
+        this.errors.api.push(e.response);
       }
     },
   },

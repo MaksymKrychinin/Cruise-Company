@@ -2,6 +2,7 @@ package com.example.cruiseonspring.mapper;
 
 import com.example.cruiseonspring.dto.UserOrderDto;
 import com.example.cruiseonspring.entity.UserOrder;
+import com.example.cruiseonspring.exception.NotFoundException;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
 import com.example.cruiseonspring.repository.UserRepository;
 import org.mapstruct.*;
@@ -15,26 +16,26 @@ public abstract class UserOrderMapper {
     protected UserRepository userRepository;
 
     @Mappings({
-            @Mapping(target = "user", ignore = true),
-            @Mapping(target = "cruiseShip", ignore = true)
+            @Mapping(target = "frontPassport", ignore = true),
+            @Mapping(target = "backPassport", ignore = true)
     })
     public abstract UserOrderDto userOrderToDto(UserOrder userOrder);
 
-    @AfterMapping
+/*    @AfterMapping
     protected void userByReferenceId(
             UserOrder userOrder,
             @MappingTarget UserOrderDto.UserOrderDtoBuilder userOrderDto) {
         userOrderDto.user(
                 userRepository
-                        .findById(userOrder.getUser().getId()).orElseThrow());//TODO: add exception
+                        .findById(userOrder.getUser().getId()).orElseThrow(()->new NotFoundException("User not found")));//TODO: order->dto
     }
 
     @AfterMapping
     protected void cruiseShipByReferenceId(
-            UserOrder userOrder,
-            @MappingTarget UserOrderDto.UserOrderDtoBuilder userOrderDto) {
+            @MappingTarget UserOrder userOrder,
+             UserOrderDto.UserOrderDtoBuilder userOrderDto) {
         userOrderDto.cruiseShip(
                 cruiseShipRepository
-                        .findById(userOrder.getCruiseShip().getId()).orElseThrow());//TODO: add exception
-    }
+                        .findById(userOrder.getCruiseShip().getId()).orElseThrow(()->new NotFoundException("CruiseShip not found")));//TODO: add exception
+    }*/
 }

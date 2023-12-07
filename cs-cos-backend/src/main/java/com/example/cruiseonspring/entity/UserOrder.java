@@ -20,7 +20,7 @@ public class UserOrder {
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     private CruiseShip cruiseShip;
 
     @Column(name = "front_passport", nullable = false)

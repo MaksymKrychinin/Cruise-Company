@@ -26,8 +26,8 @@
     </li>
     <li class="pagination-item">
       <select v-model="resultsPerPage" @change="changeResultsPerPage()">
-        <option>4</option>
-        <option>8</option>
+        <option>6</option>
+        <option>9</option>
         <option>12</option>
       </select>
     </li>
@@ -39,7 +39,7 @@ export default {
   name: "PaginationComponent",
   data() {
     return {
-      resultsPerPage: 8
+      resultsPerPage: 9
     };
   },
   props: {

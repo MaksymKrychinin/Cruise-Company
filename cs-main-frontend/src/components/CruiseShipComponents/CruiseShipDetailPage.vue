@@ -1,5 +1,5 @@
 <template>
-  <div class="cruise-ship">
+  <div class="cruise-ship" v-if="cruiseShip.capacity">
     <h3>{{ cruiseShip.routeFrom }} → {{ cruiseShip.routeTo }}</h3>
     <p>Available seats: {{ availableSeats }}</p>
     <p>Start date: {{ formattedStartDate }}</p>

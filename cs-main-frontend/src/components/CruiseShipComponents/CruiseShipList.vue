@@ -16,5 +16,9 @@ export default {
 </script>
 
 <style scoped>
-
+.cruise-ship-list{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  min-height: 680px;
+}
 </style>

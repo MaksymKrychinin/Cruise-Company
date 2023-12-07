@@ -41,12 +41,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
                 new HttpHeaders(), ex.getHttpStatus(), request);
     }
 
-    @ExceptionHandler(value
+/*    @ExceptionHandler(value
             = {Exception.class})
     protected ResponseEntity<Object> handleConflictException(
             Exception ex, WebRequest request) {
         log.error(ex.getMessage());
         return handleExceptionInternal(ex, ex.getMessage(),
                 new HttpHeaders(), HttpStatusCode.valueOf(404), request);
-    }
+    }*/
 }

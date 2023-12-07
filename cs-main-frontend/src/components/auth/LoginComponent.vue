@@ -79,9 +79,7 @@ export default {
       }
     },
     async submitLogin() {
-      for (let i = 0; i < this.errors.api.length; i++) {
-        this.errors.api.pop();
-      }
+      this.errors.api = [];
       if (this.errors.email.length > 0 || this.errors.password.length > 0) {
         return;
       }
