@@ -1,8 +1,10 @@
 <template>
   <header v-if="token!=null">
-    <img src="@/assets/images/logo.png" width="50" height="50">
+    <img src="@/assets/images/logo.png" width="60" height="70">
     <router-link to="/cruise-ships"><p>Cruise Ships</p></router-link>
     <router-link to="/user-orders"><p>My Orders</p></router-link>
+    <router-link to="/admin-panel"
+    v-if="role('admin')"><p>Admin Panel</p></router-link>
     <router-link to="/logout"><p>Logout</p></router-link>
   </header>
   <header v-else>
@@ -19,8 +21,24 @@ export default {
     token: {
       type: String,
       required: true
+    },
+  },
+  methods: {
+    decodeToken(token) {
+      if (token != null) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(window.atob(base64));
+      }
+    },
+    rolesFromToken(token) {
+      return this.decodeToken(token).roles;
+    },
+    role(roleName) {
+        const roles = this.rolesFromToken(this.token);
+        return !!roles.some(role => role.name === `ROLE_${roleName.toUpperCase()}`);
     }
-  }
+  },
 }
 </script>
 
@@ -28,7 +46,7 @@ export default {
 header {
   display: flex;
   width: 100%;
-  height: 50px;
+  height: 80px;
   color: black;
   flex-direction: row;
   justify-content: space-evenly;

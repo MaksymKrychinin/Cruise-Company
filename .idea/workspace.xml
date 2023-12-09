@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fb8ff62-be9b-4a2e-b8db-9d6b4c93640c" name="Changes" comment="package-rename">
-      <change afterPath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/dto/RoleDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/dto/UserDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/mapper/RoleMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/urls.colors" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/controller/UserOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/controller/UserOrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/dto/CruiseShipDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/dto/CruiseShipDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/dto/UserOrderDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/dto/UserOrderDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/mapper/UserOrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/mapper/UserOrderMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/service/UserOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/service/UserOrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs-main-frontend/src/components/UserOrderComponents/UserOrder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cs-main-frontend/src/components/UserOrderComponents/UserOrder.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs-main-frontend/src/components/UserOrderComponents/UserOrderList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cs-main-frontend/src/components/UserOrderComponents/UserOrderList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs-main-frontend/src/components/layouts/HeaderComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cs-main-frontend/src/components/layouts/HeaderComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs-main-frontend/src/components/layouts/Pagination.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cs-main-frontend/src/components/layouts/Pagination.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs-main-frontend/src/pages/MyOrdersPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cs-main-frontend/src/pages/MyOrdersPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/service/JwtService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,6 +197,7 @@
       <workItem from="1701718362938" duration="200000" />
       <workItem from="1701982540629" duration="711000" />
       <workItem from="1702070945712" duration="783000" />
+      <workItem from="1702125372760" duration="18000" />
     </task>
     <task id="LOCAL-00001" summary="add docker to current package&#10;edit all package docker">
       <option name="closed" value="true" />
