@@ -41,10 +41,11 @@ public class UserOrderService {
     }
 
 
-    public Page<UserOrder> getAllUserOrders(UserDetails user, Pageable pageable) {
+    public Page<UserOrderDto> getAllUserOrders(UserDetails user, Pageable pageable) {
         Page<UserOrder> allByUserEmail = userorderRepository
                 .findAllByUserEmail(user.getUsername(), PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
-        return allByUserEmail;
+        Page<UserOrderDto> mappedToDtoPage = allByUserEmail.map(userOrderMapper::userOrderToDto);
+        return mappedToDtoPage;
     }
 
 

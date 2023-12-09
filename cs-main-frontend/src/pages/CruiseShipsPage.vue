@@ -27,7 +27,7 @@ export default {
       shipsList: [],
       currentPage: 1,
       totalPages: 1,
-      resultsPerPage: 8,
+      resultsPerPage: 9,
       token: ''
     };
   },

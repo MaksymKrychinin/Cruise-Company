@@ -1,5 +1,5 @@
 <template>
-  <div class="cruise-ship-list">
+  <div class="user-order-list">
     <UserOrder v-for="order in userOrderList" v-bind:key="order.id" :user-order="order"/>
   </div>
 </template>
@@ -16,7 +16,9 @@ export default {
 </script>
 
 <style scoped>
-.cruise-ship-list{
+.user-order-list{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   min-height: 680px;
 }
 </style>

@@ -1,6 +1,7 @@
 package com.example.cruiseonspring.mapper;
 
 import com.example.cruiseonspring.dto.RegisterRequest;
+import com.example.cruiseonspring.dto.UserDto;
 import com.example.cruiseonspring.entity.Role;
 import com.example.cruiseonspring.entity.User;
 import com.example.cruiseonspring.repository.RoleRepository;
@@ -22,6 +23,7 @@ public abstract class UserMapper {
 
 
     public abstract User registerRequestToUser(RegisterRequest registerRequest);
+    public abstract UserDto userToUserDto(User user);
     @AfterMapping
     protected void encodePassword(RegisterRequest registerRequest,@MappingTarget User.UserBuilder user) {
         user.password(passwordEncoder.encode(registerRequest.getPassword()));

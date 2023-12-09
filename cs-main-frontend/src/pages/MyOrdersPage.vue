@@ -2,7 +2,7 @@
   <UserOrderFilter/>
 
   <div class="user-orders">
-    <UserOrderList :cruise-ship-list="shipsList"/>
+    <UserOrderList :user-order-list="userOrderList"/>
     <PaginationComponent
         @pagination_page_changed="(page, resultPerPage)=>getAllUserOrders(page, resultPerPage)"
         :current-page="currentPage"
@@ -23,10 +23,10 @@ export default {
   components: {UserOrderFilter, UserOrderList, PaginationComponent},
   data() {
     return {
-      shipsList: [],
+      userOrderList: [],
       currentPage: 1,
       totalPages: 1,
-      resultsPerPage: 8,
+      resultsPerPage: 9,
       token: ''
     };
   },
@@ -66,7 +66,7 @@ export default {
       );
       this.currentPage = axiosResponse.data.pageable.pageNumber + 1;
       this.totalPages = axiosResponse.data.totalPages;
-      this.shipsList = axiosResponse.data.content;
+      this.userOrderList = axiosResponse.data.content;
     }
   }
 };

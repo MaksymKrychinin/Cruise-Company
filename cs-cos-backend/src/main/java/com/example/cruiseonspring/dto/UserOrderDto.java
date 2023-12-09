@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserOrderDto {
     private Integer id;
-    private User user;
-    private CruiseShip cruiseShip;
+    private UserDto user;
+    private CruiseShipDto cruiseShip;
     private String frontPassport;
     private String backPassport;
     private String status;

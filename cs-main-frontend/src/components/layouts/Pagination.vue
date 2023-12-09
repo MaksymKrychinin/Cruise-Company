@@ -116,7 +116,7 @@ export default {
   align-items: center;
   list-style-type: none;
   color: #ffffff;
-  background-color: rgba(136, 77, 77, 0.9);
+  background-color: rgba(149, 160, 70, 0.9);
 }
 
 .pagination-item {
@@ -134,14 +134,14 @@ export default {
   color: #ffffff;
   font-size: 14px;
   font-weight: 400;
-  background-color: rgba(197, 27, 62, 0.9);
+  background-color: rgba(149, 191, 116, 0.9);
 }
 
 .active.pagination-btn {
   font-size: 18px;
   font-weight: 700;
   color: #ffffff;
-  background-color: rgba(197, 63, 91, 0.9);
+  background-color: rgba(99, 138, 60, 0.9);
   pointer-events: none;
 }
 </style>

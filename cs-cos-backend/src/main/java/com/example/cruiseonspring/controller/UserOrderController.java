@@ -22,10 +22,10 @@ public class UserOrderController {
     private final UserOrderService userOrderService;
 
     @GetMapping("")
-    ResponseEntity<Page<UserOrder>> getAllUserOrder(
+    ResponseEntity<Page<UserOrderDto>> getAllUserOrder(
             @AuthenticationPrincipal UserDetails userDetails,
             @PageableDefault Pageable pageable) {
-        Page<UserOrder> allUserOrders = userOrderService.getAllUserOrders(userDetails, pageable);
+        Page<UserOrderDto> allUserOrders = userOrderService.getAllUserOrders(userDetails, pageable);
         return ResponseEntity.ok().body(allUserOrders);
     }
 

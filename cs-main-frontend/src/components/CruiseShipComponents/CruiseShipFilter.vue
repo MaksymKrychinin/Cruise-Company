@@ -97,7 +97,7 @@ export default {
   margin: 10px;
   width: 90%;
   height: 40px;
-  background-color: #9b8751;
+  background-color: #ab965b;
   border: 1px solid #e0c280;
   border-radius: 5px;
   font-size: 20px;

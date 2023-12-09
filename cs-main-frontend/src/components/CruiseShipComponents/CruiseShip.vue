@@ -72,11 +72,13 @@ export default {
 
 <style scoped>
 .cruise-ship {
+  border-radius: 25px;
+  border: 2px solid #db8645;
   width: 90%;
   height: 300px;
   background-color: #e0c280;
   float: left;
-  margin: 10px;
+  margin: 15px;
   font-size: 20px;
   display: flex;
   flex-direction: column;
@@ -84,20 +86,28 @@ export default {
   align-content: center;
 }
 
-.cruse-ship p {
+.cruise-ship > h3 {
+  text-align: -webkit-center;
   margin: 0;
 }
+
+.cruise-ship > p {
+  margin: 10px;
+  align-self: center;
+}
+
 .buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-content: center;
 }
+
 .buttons button {
-  width: 100px;
-  height: 30px;
-  background-color: #e0c280;
-  border: 1px solid #000000;
+  width: 150px;
+  height: 40px;
+  background-color: #e0dc80;
+  border: 2px solid #9b9963;
   border-radius: 5px;
   font-size: 15px;
   cursor: pointer;
