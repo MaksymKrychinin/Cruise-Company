@@ -15,6 +15,9 @@
   </header>
 </template>
 <script>
+
+import {role} from "@/main";
+
 export default {
   name: "HeaderComponent",
   props: {
@@ -24,22 +27,10 @@ export default {
     },
   },
   methods: {
-    decodeToken(token) {
-      if (token != null) {
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace('-', '+').replace('_', '/');
-        return JSON.parse(window.atob(base64));
-      }
-    },
-    rolesFromToken(token) {
-      return this.decodeToken(token).roles;
-    },
-    role(roleName) {
-        const roles = this.rolesFromToken(this.token);
-        return !!roles.some(role => role.name === `ROLE_${roleName.toUpperCase()}`);
-    }
+    role,
   },
 }
+
 </script>
 
 <style scoped>
