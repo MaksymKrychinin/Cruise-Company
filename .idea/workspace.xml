@@ -4,20 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fb8ff62-be9b-4a2e-b8db-9d6b4c93640c" name="Changes" comment="add auth validation">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/config/AppConstants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/config/KafkaConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/service/KafkaProducerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/docker-current/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker-current/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/cruiseonspring/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
+    <list default="true" id="5fb8ff62-be9b-4a2e-b8db-9d6b4c93640c" name="Changes" comment="package-rename">
+      <change beforePath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cs-cos-backend/src/main/java/com/example/cruiseonspring/service/JwtService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -29,10 +27,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="updates" />
+        <entry key="$PROJECT_DIR$" value="feat/cruise-ship-executer-service" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
@@ -43,65 +42,114 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2XWyNGhyU4dzwFYQocGWQilV1cO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Docker.docker/docker-compose-simple.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/cruise-ship-executer-service&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/user/IdeaProjects/Cruise-Company&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/snap/intellij-idea-ultimate/462/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mongo&quot;,
+      &quot;postgresql&quot;,
+      &quot;mysql&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.example.cruiseonspring.config" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cruise-ship-executer-service" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\SpringProjects\Cruise-Company\docker" />
       <recent name="D:\SpringProjects\Cruise-Company" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-current: Compose Deployment">
-    <configuration name="CruiseOnSpringApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="Cruise-Company" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.cruiseonspring.CruiseOnSpringApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Docker.docker/docker-compose-simple.yml: Compose Deployment">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-current: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker/docker-compose-simple.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
-          <option name="sourceFilePath" value="backend/docker-current/docker-compose.yml" />
+          <option name="sourceFilePath" value="docker/docker-compose-simple.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Docker.docker/docker-compose-simple.yml: Compose Deployment" />
+      <item itemvalue="npm.cs-main-frontend:start" />
+      <item itemvalue="Spring Boot.cs-cos:run" />
+      <item itemvalue="Spring Boot.cs-qes:run" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-current: Compose Deployment" />
+        <item itemvalue="Docker.docker/docker-compose-simple.yml: Compose Deployment" />
+        <item itemvalue="Docker.docker/docker-compose-simple.yml: Compose Deployment" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-corretto-17.0.9-3183f394aec4-86fc8109" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -121,6 +169,35 @@
       <workItem from="1699282634394" duration="3263000" />
       <workItem from="1699296830398" duration="140000" />
       <workItem from="1699390100467" duration="4317000" />
+      <workItem from="1700321838673" duration="988000" />
+      <workItem from="1700322842949" duration="733000" />
+      <workItem from="1700323588740" duration="25000" />
+      <workItem from="1700323614862" duration="342000" />
+      <workItem from="1700326084614" duration="1587000" />
+      <workItem from="1700331998464" duration="7983000" />
+      <workItem from="1700348172717" duration="619000" />
+      <workItem from="1700348904200" duration="43000" />
+      <workItem from="1700348957021" duration="95000" />
+      <workItem from="1700391100148" duration="15000" />
+      <workItem from="1700405637658" duration="751000" />
+      <workItem from="1700586858228" duration="31000" />
+      <workItem from="1700594525583" duration="9000" />
+      <workItem from="1700866542177" duration="1195000" />
+      <workItem from="1700946711618" duration="216000" />
+      <workItem from="1700946937101" duration="567000" />
+      <workItem from="1701338951042" duration="27000" />
+      <workItem from="1701350233984" duration="9000" />
+      <workItem from="1701465474807" duration="2826000" />
+      <workItem from="1701546836444" duration="1272000" />
+      <workItem from="1701548410814" duration="163000" />
+      <workItem from="1701548814319" duration="297000" />
+      <workItem from="1701549449298" duration="165000" />
+      <workItem from="1701614365804" duration="733000" />
+      <workItem from="1701617564610" duration="2135000" />
+      <workItem from="1701718362938" duration="200000" />
+      <workItem from="1701982540629" duration="711000" />
+      <workItem from="1702070945712" duration="783000" />
+      <workItem from="1702125372760" duration="18000" />
     </task>
     <task id="LOCAL-00001" summary="add docker to current package&#10;edit all package docker">
       <option name="closed" value="true" />
@@ -146,7 +223,31 @@
       <option name="project" value="LOCAL" />
       <updated>1699285287088</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="kafka-changes">
+      <option name="closed" value="true" />
+      <created>1700337668369</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700337668369</updated>
+    </task>
+    <task id="LOCAL-00005" summary="kafka-changes">
+      <option name="closed" value="true" />
+      <created>1700348699230</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1700348699230</updated>
+    </task>
+    <task id="LOCAL-00006" summary="package-rename">
+      <option name="closed" value="true" />
+      <created>1700867620640</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700867620640</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +268,8 @@
     <MESSAGE value="add docker to current package&#10;edit all package docker" />
     <MESSAGE value="add SetupDataLoader" />
     <MESSAGE value="add auth validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="add auth validation" />
+    <MESSAGE value="kafka-changes" />
+    <MESSAGE value="package-rename" />
+    <option name="LAST_COMMIT_MESSAGE" value="package-rename" />
   </component>
 </project>

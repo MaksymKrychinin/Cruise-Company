@@ -1,6 +1,7 @@
 package com.example.cruiseonspring.repository;
 
 import com.example.cruiseonspring.entity.UserOrder;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
@@ -13,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface UserOrderRepository extends JpaRepository<UserOrder, Integer>, CrudRepository<UserOrder, Integer> {
 
-    List<UserOrder> findAllByUserEmail(String email, Pageable pageRequest);
+    Page<UserOrder> findAllByUserEmail(String email, Pageable pageRequest);
 
     @Override
     Optional<UserOrder> findById(Integer id);

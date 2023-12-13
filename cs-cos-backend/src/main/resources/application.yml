@@ -19,9 +19,6 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     generate-ddl: false
-  jackson:
-    serialization:
-      fail-on-empty-beans: false
   swagger-ui:
     path: /swagger-ui.html
 application:

@@ -229,8 +229,4 @@ form.login {
   width: 50%;
 }
 
-small.error {
-  color: #b700ff;
-  font-size: 20px;
-}
 </style>

@@ -30,13 +30,13 @@ public class CruiseShipController {
         return ResponseEntity.ok().body(cruiseshipService.getCruiseShipById(id));
     }
 
-    @PostMapping("")
+    @PostMapping("/")
     public ResponseEntity<CruiseShip> saveCruiseShip(
             @Validated @RequestBody CruiseShipDto cruiseShip) {
         return ResponseEntity.ok().body(cruiseshipService.saveCruiseShip(cruiseShip));
     }
 
-    @PutMapping("")
+    @PutMapping("/")
     public ResponseEntity<CruiseShip> updateCruiseShip(
             @Validated @RequestBody CruiseShipDto cruiseShipDto) {
         return ResponseEntity.ok().body(cruiseshipService.saveCruiseShip(cruiseShipDto));

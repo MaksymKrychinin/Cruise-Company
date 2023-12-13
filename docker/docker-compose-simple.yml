@@ -10,7 +10,7 @@ x-healthcheck: &healthcheck
     test: [ "CMD-SHELL", "mysqladmin ping -h localhost" ]
 
 services:
-  my-sql:
+  cs-cos-backend-my-sql:
     image: mysql:latest
     environment:
       MYSQL_ROOT_USER: root
@@ -20,6 +20,14 @@ services:
       - "3307:3306"
     healthcheck:
       <<: [ *healthcheck, *healthcheck-mysql ]
+  cs-qes-backend-postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: cruise_company_subscribers
+    ports:
+      - "3308:5432"
   activemq:
     image: symptoma/activemq:latest
     ports:
@@ -27,7 +35,7 @@ services:
     environment:
       ACTIVEMQ_ADMIN_LOGIN: admin
       ACTIVEMQ_ADMIN_PASSWORD: admin
-  mongo-db:
+  cs-qes-backend-mongo-db:
     image: mongo:latest
     environment:
       MONGO_INITDB_DATABASE: statistics

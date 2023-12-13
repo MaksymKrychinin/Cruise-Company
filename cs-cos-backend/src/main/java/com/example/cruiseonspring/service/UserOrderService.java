@@ -10,6 +10,7 @@ import com.example.cruiseonspring.repository.CruiseShipRepository;
 import com.example.cruiseonspring.repository.UserRepository;
 import com.example.cruiseonspring.repository.UserOrderRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,13 +41,11 @@ public class UserOrderService {
     }
 
 
-    public List<UserOrderDto> getAllUserOrders(UserDetails user, Pageable pageable) {
-        List<UserOrder> allByUserEmail = userorderRepository
+    public Page<UserOrderDto> getAllUserOrders(UserDetails user, Pageable pageable) {
+        Page<UserOrder> allByUserEmail = userorderRepository
                 .findAllByUserEmail(user.getUsername(), PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
-        List<UserOrderDto> collect = allByUserEmail
-                .stream().map(userOrderMapper::userOrderToDto)
-                .collect(Collectors.toList());
-        return collect;
+        Page<UserOrderDto> mappedToDtoPage = allByUserEmail.map(userOrderMapper::userOrderToDto);
+        return mappedToDtoPage;
     }
 
 
@@ -63,6 +62,7 @@ public class UserOrderService {
         userOrder.setUser(userRepository.findByEmail(userDetails.getUsername())
                 .orElseThrow(() -> new NotFoundException("User not found")));
         userOrder.setCruiseShip(cruiseShip);
+        userOrder.setStatus("Not approved");
         UserOrder save = userorderRepository.save(userOrder);
         this.updateCruiseShipOrderedSeatsPlusOne(id);
         return userorderMapper.userOrderToDto(save);

@@ -1,15 +1,26 @@
 package com.example.cruiseshipexecuterservice.entity.jms;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.Getter;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     String id;
+    @Column(unique = true)
     String email;
-    String phoneNumber;
+    @Column(unique = true)
+    String telegramNickname;
+    String telegramChatId;
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<CruiseShip> cruiseShips;
 }

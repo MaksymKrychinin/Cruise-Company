@@ -79,9 +79,7 @@ export default {
       }
     },
     async submitLogin() {
-      for (let i = 0; i < this.errors.api.length; i++) {
-        this.errors.api.pop();
-      }
+      this.errors.api = [];
       if (this.errors.email.length > 0 || this.errors.password.length > 0) {
         return;
       }
@@ -137,7 +135,6 @@ form {
 
 form * {
   font-family: 'Poppins', sans-serif;
-  color: #ffffff;
   letter-spacing: 0.5px;
   outline: none;
   border: none;
@@ -188,8 +185,5 @@ form.login {
   width: 50%;
 }
 
-small.error {
-  color: #b700ff;
-  font-size: 20px;
-}
+
 </style>

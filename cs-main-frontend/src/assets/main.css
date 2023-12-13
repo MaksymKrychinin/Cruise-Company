@@ -5,5 +5,7 @@ body {
     background-color: #f0f0f0;
 }
 
-
-
+small.error {
+    color: #b700ff;
+    font-size: 20px;
+}

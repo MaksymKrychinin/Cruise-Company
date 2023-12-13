@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 public class CruiseShipDto {
+    private Integer id;
     @NotNull
     @Positive(message = "Capacity can't be less 0")
     private Integer capacity;

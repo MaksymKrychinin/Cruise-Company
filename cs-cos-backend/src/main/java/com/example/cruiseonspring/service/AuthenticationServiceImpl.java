@@ -26,8 +26,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public AuthenticationResponse register(RegisterRequest request) {
         validationUtils.validate(request);
         User user = userMapper.registerRequestToUser(request);
-        userRepository.save(user);
-        String jwtToken = jwtService.generateToken(user);
+        User save = userRepository.save(user);
+        String jwtToken = jwtService.generateToken(save);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();

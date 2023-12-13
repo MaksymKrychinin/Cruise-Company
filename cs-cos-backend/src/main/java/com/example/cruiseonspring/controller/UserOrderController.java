@@ -4,6 +4,7 @@ import com.example.cruiseonspring.dto.UserOrderDto;
 import com.example.cruiseonspring.entity.UserOrder;
 import com.example.cruiseonspring.service.UserOrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -14,17 +15,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/userOrder")
+@RequestMapping("/api/v1/user-orders")
 @RequiredArgsConstructor
 @CrossOrigin
 public class UserOrderController {
     private final UserOrderService userOrderService;
 
     @GetMapping("")
-    ResponseEntity<List<UserOrderDto>> getAllUserOrder(
+    ResponseEntity<Page<UserOrderDto>> getAllUserOrder(
             @AuthenticationPrincipal UserDetails userDetails,
             @PageableDefault Pageable pageable) {
-        List<UserOrderDto> allUserOrders = userOrderService.getAllUserOrders(userDetails, pageable);
+        Page<UserOrderDto> allUserOrders = userOrderService.getAllUserOrders(userDetails, pageable);
         return ResponseEntity.ok().body(allUserOrders);
     }
 
@@ -34,7 +35,7 @@ public class UserOrderController {
         return ResponseEntity.ok(userOrderService.getUserOrderById(id, userDetails));
     }
 
-    @PostMapping("")
+    @PostMapping("/")
     ResponseEntity<UserOrderDto> saveUserOrder(
             @AuthenticationPrincipal UserDetails userDetails,
             @RequestBody UserOrder userOrder
@@ -42,7 +43,7 @@ public class UserOrderController {
         return ResponseEntity.ok(userOrderService.saveUserOrder(userOrder, userDetails));
     }
 
-    @PutMapping("")
+    @PutMapping("/")
     ResponseEntity<UserOrderDto> updateUserOrder(
             @AuthenticationPrincipal UserDetails userDetails,
             @RequestBody UserOrder userOrder
