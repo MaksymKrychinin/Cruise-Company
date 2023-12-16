@@ -32,6 +32,7 @@ public class FieldCheck {
                 if (field.get(o1) != null && field.get(o2) != null) {
                     if (field.get(o1).equals(field.get(o2))) {
                         hasAnyMatch = true;
+                        return hasAnyMatch;
                     }
                 }
             } catch (IllegalAccessException e) {

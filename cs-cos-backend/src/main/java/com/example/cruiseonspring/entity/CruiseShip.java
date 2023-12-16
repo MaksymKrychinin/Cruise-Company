@@ -1,6 +1,7 @@
 package com.example.cruiseonspring.entity;
 
 
+import com.example.cruiseonspring.annotation.FilterFieldClass;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@FilterFieldClass(idIgnore = true)
 public class CruiseShip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
