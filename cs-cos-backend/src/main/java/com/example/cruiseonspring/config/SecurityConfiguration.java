@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @Configuration
 @EnableWebSecurity
@@ -23,7 +24,6 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         http
                 .csrf()
                 .disable()
@@ -34,6 +34,14 @@ public class SecurityConfiguration {
                 .permitAll()
                 .anyRequest()
                 .authenticated()
+                .requestMatchers(HttpMethod.POST, "/api/v1/cruise-ships/**")
+                .hasAnyRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/cruise-ships/**")
+                .hasAnyRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/v1/cruise-ships/**")
+                .hasAnyRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/user-orders/**")
+                .hasAnyRole("ADMIN")
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -42,4 +50,12 @@ public class SecurityConfiguration {
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
+
+    @Bean
+    public CorsRegistry corsRegistry() {
+        CorsRegistry corsRegistry = new CorsRegistry();
+        corsRegistry.addMapping("/**");
+        return corsRegistry;
+    }
+
 }

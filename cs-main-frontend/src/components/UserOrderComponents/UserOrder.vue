@@ -69,11 +69,11 @@ export default {
     statusColor() {
       if (this.userOrder.status.toUpperCase() === "APPROVED") {
         return "approved-border";
-      } else if (this.userOrder.status.toUpperCase() === "CANCELED") {
+      } else if (this.userOrder.status.toUpperCase() === "REJECTED") {
         return "canceled-border";
-      } else if (this.userOrder.status.toUpperCase() === "NOT APPROVED") {
+      } else if (this.userOrder.status.toUpperCase() === "PENDING") {
         return "not-approved-border";
-      } else if (this.userOrder.status.toUpperCase() === "RAINBOW") {
+      } else if (this.userOrder.status.toUpperCase() === "PRIZE") {
         return "rainbow";
       }
     },

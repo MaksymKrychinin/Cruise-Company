@@ -1,5 +1,6 @@
 package com.example.cruiseonspring.entity;
 
+import com.example.cruiseonspring.annotation.FilterFieldClass;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,6 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@FilterFieldClass(idIgnore = true)
 public class UserOrder {
     @Id
     @Column(name = "id_users_orders", nullable = false)
