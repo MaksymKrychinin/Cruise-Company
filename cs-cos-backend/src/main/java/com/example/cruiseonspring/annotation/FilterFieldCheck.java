@@ -1,5 +1,7 @@
 package com.example.cruiseonspring.annotation;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
 import lombok.extern.log4j.Log4j2;
 
 import java.lang.reflect.Field;

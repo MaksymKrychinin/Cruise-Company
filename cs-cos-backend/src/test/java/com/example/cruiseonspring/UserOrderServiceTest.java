@@ -17,6 +17,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import java.time.LocalDate;
@@ -124,9 +125,9 @@ public class UserOrderServiceTest {
         when(userOrderRepository.findAllByUserEmail(anyString(), any(PageRequest.class))).thenReturn(userOrders);
         when(userOrderMapper.userOrderToDto(userOrder)).thenReturn(new UserOrderDto());
 
-        List<UserOrderDto> result = userOrderService.getAllUserOrders(userDetails, PageRequest.of(0, 10));
+        Page<UserOrderDto> result = userOrderService.getAllUserOrders(userDetails, PageRequest.of(0, 10));
 
-        assertEquals(1, result.size());
+        assertEquals(1, result.getTotalElements());
     }
 
     @Test

@@ -17,17 +17,9 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 @Log4j2
-public class CruiseShipDataGenerator implements ApplicationListener<ApplicationReadyEvent> {
+public class CruiseShipDataGenerator {
     private final CruiseShipRepository cruiseShipRepository;
 
-    @Override
-    public void onApplicationEvent(ApplicationReadyEvent event) {
-        if (cruiseShipRepository.count() == 0) {
-            log.warn("Generating cruise ships...");
-            generate();
-            log.info("Cruise ships generated!");
-        }
-    }
 
     public static List<CruiseShip> generateSampleCruiseShips(int numberOfCruises) {
         List<CruiseShip> cruiseShips = new ArrayList<>();
@@ -51,8 +43,15 @@ public class CruiseShipDataGenerator implements ApplicationListener<ApplicationR
 
     @EventListener(ApplicationReadyEvent.class)
     public void generate() {
-        List<CruiseShip> generatedCruises = generateSampleCruiseShips(30);
-        cruiseShipRepository.saveAll(generatedCruises);
+        if (cruiseShipRepository.count() == 0) {
+            log.warn("Generating cruise ships...");
+            List<CruiseShip> generatedCruises = generateSampleCruiseShips(30);
+            cruiseShipRepository.saveAll(generatedCruises);
+            log.info("Cruise ships generated!");
+        }
+        else {
+            log.info("Cruise ships already exist!");
+        }
     }
 
 }

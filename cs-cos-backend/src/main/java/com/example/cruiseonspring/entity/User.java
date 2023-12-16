@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 
@@ -20,14 +21,16 @@ import java.util.Set;
 @ToString
 public class User implements UserDetails {
     @Id
-    @Column(name = "id_user", nullable = false)
+    @Column(name = "id_users", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_has_role",
+            joinColumns = @JoinColumn(name = "id_users"),
+            inverseJoinColumns = @JoinColumn(name = "id_role"))
     private Set<Role> userRoles;
-
 
     @Column(name = "password", nullable = false)
     private String password;

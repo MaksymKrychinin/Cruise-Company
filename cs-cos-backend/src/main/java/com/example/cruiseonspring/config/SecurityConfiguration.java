@@ -32,8 +32,6 @@ public class SecurityConfiguration {
                 .permitAll()
                 .requestMatchers("/api/v1/auth/**", "/swagger-ui/**", "/v3/api-docs/**")
                 .permitAll()
-                .anyRequest()
-                .authenticated()
                 .requestMatchers(HttpMethod.POST, "/api/v1/cruise-ships/**")
                 .hasAnyRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/api/v1/cruise-ships/**")
@@ -42,6 +40,8 @@ public class SecurityConfiguration {
                 .hasAnyRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/api/v1/user-orders/**")
                 .hasAnyRole("ADMIN")
+                .anyRequest()
+                .authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -49,13 +49,6 @@ public class SecurityConfiguration {
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
-    }
-
-    @Bean
-    public CorsRegistry corsRegistry() {
-        CorsRegistry corsRegistry = new CorsRegistry();
-        corsRegistry.addMapping("/**");
-        return corsRegistry;
     }
 
 }
