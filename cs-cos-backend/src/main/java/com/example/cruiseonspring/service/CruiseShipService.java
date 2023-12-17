@@ -8,7 +8,6 @@ import com.example.cruiseonspring.exception.NotFoundException;
 import com.example.cruiseonspring.exception.ValidationException;
 import com.example.cruiseonspring.mapper.CruiseShipMapper;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
-import com.example.cruiseonspring.repository.specification.BaseFilterSpecification;
 import com.example.cruiseonspring.repository.specification.BaseSpecificationFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,6 +17,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -64,7 +64,7 @@ public class CruiseShipService {
         cruiseshipRepository.deleteById(id);
     }
 
-    public Page<CruiseShipDto> getAllCruiseShipsFiltered(Pageable pageable, SpecificationTransferDto[] specificationTransferDto) {
+    public Page<CruiseShipDto> getAllCruiseShipsFiltered(Pageable pageable, List<SpecificationTransferDto> specificationTransferDto) {
         Specification<CruiseShip> cruiseShipBaseFilterSpecification =
                 cruiseShipBaseSpecificationFactory.specificationColumnFilter(specificationTransferDto);
         return cruiseshipRepository

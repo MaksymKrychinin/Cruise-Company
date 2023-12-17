@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class SpecificationTransferDto {
-    private String filterColumn;
+    private String fieldName;
     private String filterData;
 }

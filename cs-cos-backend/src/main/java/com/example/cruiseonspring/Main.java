@@ -33,7 +33,6 @@ public class Main implements CommandLineRunner {
                                 PageRequest.of(0, 100),
                                 List.of(new SpecificationTransferDto("cruiseShip.routeFrom", "Tambraburgh"),
                                                 new SpecificationTransferDto("cruiseShip.routeTo", "Trompton"))
-                                        .toArray(SpecificationTransferDto[]::new)
                         );
         userOrder.forEach(System.out::println);
     }

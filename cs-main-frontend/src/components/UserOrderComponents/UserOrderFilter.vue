@@ -5,7 +5,8 @@
 
       <div v-for="filter in filters" :key="filter.fieldName">
         <div class="filter-item">
-          <label>{{ TranslationPipe(filter.fieldName) || filter.fieldName }}</label>
+
+          <label>{{ translate(filter.fieldName)   }}</label>
           <input v-if="filter.fieldType === 'Integer' || filter.fieldType ==='int'"
                  type="number"
                  v-model="filter.value"/>
@@ -25,11 +26,11 @@
 
 <script>
 import axios from "axios";
-import {TranslationPipe} from "../../TranslationPipe";
+import {translate} from "@/TranslationPipe";
 
 export default {
   name: "UserOrdersFilter",
-  methods: {TranslationPipe},
+  methods: {translate},
   props: {
     userOrderList: Array
   },

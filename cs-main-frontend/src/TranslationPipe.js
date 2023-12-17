@@ -9,9 +9,11 @@ map.set('en', {
     orderedSeats: 'Ordered seats',
     cruiseShip_routeTo: 'Cruise Ship Route to',
     cruiseShip_routeFrom: 'Cruise Ship Route from',
+    status: 'Status',
 });
 
-export function TranslationPipe(key) {
+
+export function translate(key) {
     let keyWithoutDot = key.replaceAll('.', '_');
-    return map.get('en')[keyWithoutDot];
+    return map.get('en')[keyWithoutDot] || key;
 }

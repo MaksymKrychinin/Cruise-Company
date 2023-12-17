@@ -9,6 +9,7 @@ import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.service.CruiseShipService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -38,11 +40,11 @@ public class CruiseShipController {
         return FilterFieldCheck.listOfObjectFilters(CruiseShip.class);
     }
 
-    @GetMapping("/filtered/")
+    @PostMapping("/filter/")
     ResponseEntity<Page<CruiseShipDto>> getAllCruiseShipsFiltered(
-            @PageableDefault Pageable pageable,
-            SpecificationTransferDto[] specificationTransferDto) {
-        Page<CruiseShipDto> allCruiseShips = cruiseshipService.getAllCruiseShipsFiltered(pageable, specificationTransferDto);
+            @RequestBody SpecificationTransferDto[] filters,
+            @PageableDefault Pageable pageable) {
+        Page<CruiseShipDto> allCruiseShips = cruiseshipService.getAllCruiseShipsFiltered(pageable, List.of(filters));
         return ResponseEntity.ok().body(allCruiseShips);
     }
 

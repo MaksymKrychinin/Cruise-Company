@@ -15,7 +15,8 @@
 </template>
 <script>
 
-import {role} from "@/main";
+
+import {role} from "@/JwtService";
 
 export default {
   name: "HeaderComponent",

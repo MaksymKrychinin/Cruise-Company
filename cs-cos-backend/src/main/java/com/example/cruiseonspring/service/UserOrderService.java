@@ -20,6 +20,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class UserOrderService {
@@ -93,7 +95,7 @@ public class UserOrderService {
         userorderRepository.deleteById(id);
     }
 
-    public Page<UserOrderDto> getAllUserOrdersFiltered(UserDetails userDetails, Pageable pageable, SpecificationTransferDto[] specificationTransferDto) {
+    public Page<UserOrderDto> getAllUserOrdersFiltered(UserDetails userDetails, Pageable pageable, List<SpecificationTransferDto> specificationTransferDto) {
         Specification<UserOrder> userOrderBaseFilterSpecification =
                 userOrderBaseSpecificationFactory.specificationColumnFilter(specificationTransferDto);
         BaseFilterSpecification<UserOrder> userDetailsBaseSpecification =
