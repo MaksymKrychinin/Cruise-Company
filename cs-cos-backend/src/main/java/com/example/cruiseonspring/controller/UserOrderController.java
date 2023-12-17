@@ -1,5 +1,7 @@
 package com.example.cruiseonspring.controller;
 
+import com.example.cruiseonspring.annotation.FilterFieldCheck;
+import com.example.cruiseonspring.dto.SpecificationTransferDto;
 import com.example.cruiseonspring.dto.UserOrderDto;
 import com.example.cruiseonspring.entity.UserOrder;
 import com.example.cruiseonspring.service.UserOrderService;
@@ -13,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/user-orders")
@@ -26,6 +29,20 @@ public class UserOrderController {
             @AuthenticationPrincipal UserDetails userDetails,
             @PageableDefault Pageable pageable) {
         Page<UserOrderDto> allUserOrders = userOrderService.getAllUserOrders(userDetails, pageable);
+        return ResponseEntity.ok().body(allUserOrders);
+    }
+
+    @GetMapping("/filters")
+    public Map<String, String> objectFiltersUserOrder() {
+        return FilterFieldCheck.mapOfObjectFilters(UserOrder.class);
+    }
+
+    @GetMapping("/filtered/")
+    ResponseEntity<Page<UserOrderDto>> getAllUserOrdersFiltered(
+            @AuthenticationPrincipal UserDetails userDetails,
+            @PageableDefault Pageable pageable,
+            SpecificationTransferDto specificationTransferDto) {
+        Page<UserOrderDto> allUserOrders = userOrderService.getAllUserOrdersFiltered(userDetails, pageable, specificationTransferDto);
         return ResponseEntity.ok().body(allUserOrders);
     }
 

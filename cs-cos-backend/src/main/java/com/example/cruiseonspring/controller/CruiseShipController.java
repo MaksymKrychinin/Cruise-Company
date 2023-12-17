@@ -1,5 +1,6 @@
 package com.example.cruiseonspring.controller;
 
+import com.example.cruiseonspring.annotation.FilterFieldCheck;
 import com.example.cruiseonspring.dto.CruiseShipDto;
 import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.service.CruiseShipService;
@@ -10,6 +11,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/cruise-ships")
@@ -22,6 +25,11 @@ public class CruiseShipController {
     public ResponseEntity<Page<CruiseShip>> getAllCruiseShips(
             @PageableDefault Pageable pageable) {
         return ResponseEntity.ok().body(cruiseshipService.getAllCruiseShips(pageable));
+    }
+
+    @GetMapping("/filters")
+    public Map<String, String> objectFiltersCruiseShip() {
+        return FilterFieldCheck.mapOfObjectFilters(CruiseShip.class);
     }
 
     @GetMapping("/{id}")

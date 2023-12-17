@@ -1,14 +1,15 @@
 package com.example.cruiseonspring.service;
 
+import com.example.cruiseonspring.dto.SpecificationTransferDto;
 import com.example.cruiseonspring.dto.UserOrderDto;
 import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.entity.UserOrder;
 import com.example.cruiseonspring.exception.FailedToAccessException;
 import com.example.cruiseonspring.exception.NotFoundException;
 import com.example.cruiseonspring.mapper.UserOrderMapper;
-import com.example.cruiseonspring.repository.CruiseShipRepository;
-import com.example.cruiseonspring.repository.UserRepository;
-import com.example.cruiseonspring.repository.UserOrderRepository;
+import com.example.cruiseonspring.repository.*;
+import com.example.cruiseonspring.repository.specification.BaseFilterSpecification;
+import com.example.cruiseonspring.repository.specification.BaseSpecificationFactory;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,9 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 @AllArgsConstructor
 public class UserOrderService {
@@ -29,6 +27,7 @@ public class UserOrderService {
     private final UserRepository userRepository;
     private final CruiseShipRepository cruiseShipRepository;
     private final UserOrderMapper userOrderMapper;
+    private final BaseSpecificationFactory<UserOrder> userOrderBaseSpecificationFactory;
 
 
     public UserOrderDto getUserOrderById(Integer orderId, UserDetails userDetails) {
@@ -91,5 +90,16 @@ public class UserOrderService {
         userorderRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("User order not found"));
         userorderRepository.deleteById(id);
+    }
+
+    public Page<UserOrderDto> getAllUserOrdersFiltered(UserDetails userDetails, Pageable pageable, SpecificationTransferDto specificationTransferDto) {
+        BaseFilterSpecification<UserOrder> userOrderBaseFilterSpecification =
+                userOrderBaseSpecificationFactory.specificationColumnFilter(specificationTransferDto);
+        BaseFilterSpecification<UserOrder> userDetailsBaseSpecification =
+                userOrderBaseSpecificationFactory.specificationUserDetailsColumnFilter(userDetails.getUsername());
+        return userorderRepository
+                .findAll(userOrderBaseFilterSpecification.and(userDetailsBaseSpecification),
+                        PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()))
+                .map(userOrderMapper::userOrderToDto);
     }
 }
