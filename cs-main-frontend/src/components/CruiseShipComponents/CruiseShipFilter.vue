@@ -2,63 +2,49 @@
   <div class="filter-left">
     <div class="filter">
       <h3>Filter</h3>
-      <div class="filter-item">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Name">
+
+      <div v-for="filter in filters" :key="filter.fieldName">
+        <div class="filter-item">
+          <label>{{ TranslationPipe(filter.fieldName) || filter.fieldName }}</label>
+          <input v-if="filter.fieldType === 'Integer' || filter.fieldType ==='int'" type="number" v-model="filter.value"/>
+          <input v-if="filter.fieldType === 'String'" type="text" v-model="filter.value"/>
+          <input v-if="filter.fieldType === 'LocalDate'" type="date" v-model="filter.value"/>
+        </div>
       </div>
-      <div class="filter-item">
-        <label for="name">Destination</label>
-        <input type="text" id="destination" name="destination" placeholder="Destination">
-      </div>
-      <div class="filter-item">
-        <label for="name">Departure</label>
-        <input type="text" id="departure" name="departure" placeholder="Departure">
-      </div>
-      <div class="filter-item">
-        <label for="name">Arrival</label>
-        <input type="text" id="arrival" name="arrival" placeholder="Arrival">
-      </div>
-      <div class="filter-item">
-        <label for="name">Price</label>
-        <input type="text" id="price" name="price" placeholder="Price">
-      </div>
-      <div class="filter-item">
-        <label for="name">Duration</label>
-        <input type="text" id="duration" name="duration" placeholder="Duration">
-      </div>
-      <div class="filter-item">
-        <label for="name">Capacity</label>
-        <input type="text" id="capacity" name="capacity" placeholder="Capacity">
-      </div>
-      <div class="filter-item">
-        <label for="name">Rating</label>
-        <input type="text" id="rating" name="rating" placeholder="Rating">
-      </div>
-      <div class="filter-item">
-        <label for="name">Cruise Line</label>
-        <input type="text" id="cruiseLine" name="cruiseLine" placeholder="Cruise Line">
-      </div>
-      <div class="filter-item">
-        <label for="name">Ship Type</label>
-        <input type="text" id="shipType"
-               name="shipType" placeholder="Ship Type">
-      </div>
-      <div class="filter-item">
-        <label for="name">Ship Size</label>
-        <input type="text" id="shipSize" name="shipSize" placeholder="Ship Size">
-      </div>
-      <div class="filter-item">
-        <label for="name">Ship Age</label>
-        <input type="text" id="shipAge" name="shipAge" placeholder="Ship Age">
-      </div>
-      <button>Filter</button>
+
+      <button @click="$emit('filterCruiseShips', filters)">Filter</button>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import {TranslationPipe} from "../../TranslationPipe";
+
 export default {
-  name: "CruiseShipFilter"
+  name: "CruiseShipFilter",
+  methods: {TranslationPipe},
+  props: {
+    cruiseShipList: Array
+  },
+  data() {
+    return {
+      filters: [{
+        fieldName: '',
+        fieldType: '',
+        value: '',
+      }],
+    }
+  },
+  async beforeCreate() {
+    const axiosResponse = await axios.get("api/v1/cruise-ships/filters", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      },
+    });
+    console.log(axiosResponse.data)
+    this.filters = axiosResponse.data;
+  },
 }
 </script>
 
@@ -73,27 +59,30 @@ export default {
   float: left;
 }
 
-.filter>div{
+.filter > div {
   display: flex;
   flex-direction: column;
 }
 
-.filter-item{
+.filter-item {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin: 10px;
 }
 
-.filter-item>label{
-  margin-right: 10px;
+.filter-item > label {
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
-.filter-item>input{
-  width: 100%;
+.filter-item > input {
+  width: 90%;
+  margin-left: 2.5%;
 }
 
-.filter>button{
+.filter > button {
   margin: 10px;
   width: 90%;
   height: 40px;
@@ -105,7 +94,7 @@ export default {
   cursor: pointer;
 }
 
-.filter>button:hover{
+.filter > button:hover {
   background-color: #e7ab26;
   border: 1px solid #e0c280;
   border-radius: 5px;
@@ -114,7 +103,7 @@ export default {
   cursor: pointer;
 }
 
-.filter>button:active{
+.filter > button:active {
   background-color: #ffa900;
   border: 1px solid #e0c280;
   border-radius: 5px;
@@ -123,7 +112,7 @@ export default {
   cursor: pointer;
 }
 
-.filter>h3{
+.filter > h3 {
   margin: 10px;
   font-size: 30px;
   font-weight: bold;

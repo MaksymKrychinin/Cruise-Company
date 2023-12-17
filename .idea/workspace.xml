@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fb8ff62-be9b-4a2e-b8db-9d6b4c93640c" name="Changes" comment="package-rename">
-      <change beforePath="$PROJECT_DIR$/cs-cos-backend/src/test/java/com/example/cruiseonspring/AuthenticationServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cs-cos-backend/src/test/java/com/example/cruiseonspring/AuthenticationServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs-cos-backend/src/test/java/com/example/cruiseonspring/UserOrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cs-cos-backend/src/test/java/com/example/cruiseonspring/UserOrderServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +72,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/cruise-ship-executer-service&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -202,6 +201,8 @@
       <workItem from="1702646290163" duration="44000" />
       <workItem from="1702763407868" duration="31000" />
       <workItem from="1702811272420" duration="625000" />
+      <workItem from="1702814856143" duration="4000" />
+      <workItem from="1702817790397" duration="5000" />
     </task>
     <task id="LOCAL-00001" summary="add docker to current package&#10;edit all package docker">
       <option name="closed" value="true" />

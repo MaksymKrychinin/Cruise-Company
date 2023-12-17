@@ -1,6 +1,7 @@
 package com.example.cruiseonspring.entity;
 
 import com.example.cruiseonspring.annotation.FilterFieldClass;
+import com.example.cruiseonspring.annotation.FilterFieldParam;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,9 +28,11 @@ public class UserOrder {
     @JoinColumn(name = "id_users", nullable = false)
     private User user;
 
+    @FilterFieldParam(ignore = true)
     @Column(name = "front_passport", nullable = false)
     private String frontPassport;
 
+    @FilterFieldParam(ignore = true)
     @Column(name = "back_passport", nullable = false)
     private String backPassport;
 

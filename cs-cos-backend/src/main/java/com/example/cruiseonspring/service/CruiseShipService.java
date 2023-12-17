@@ -3,9 +3,7 @@ package com.example.cruiseonspring.service;
 import com.example.cruiseonspring.Utils.ValidationUtils;
 import com.example.cruiseonspring.dto.CruiseShipDto;
 import com.example.cruiseonspring.dto.SpecificationTransferDto;
-import com.example.cruiseonspring.dto.UserOrderDto;
 import com.example.cruiseonspring.entity.CruiseShip;
-import com.example.cruiseonspring.entity.UserOrder;
 import com.example.cruiseonspring.exception.NotFoundException;
 import com.example.cruiseonspring.exception.ValidationException;
 import com.example.cruiseonspring.mapper.CruiseShipMapper;
@@ -16,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -65,8 +64,8 @@ public class CruiseShipService {
         cruiseshipRepository.deleteById(id);
     }
 
-    public Page<CruiseShipDto> getAllCruiseShipsFiltered(Pageable pageable, SpecificationTransferDto specificationTransferDto) {
-        BaseFilterSpecification<CruiseShip> cruiseShipBaseFilterSpecification =
+    public Page<CruiseShipDto> getAllCruiseShipsFiltered(Pageable pageable, SpecificationTransferDto[] specificationTransferDto) {
+        Specification<CruiseShip> cruiseShipBaseFilterSpecification =
                 cruiseShipBaseSpecificationFactory.specificationColumnFilter(specificationTransferDto);
         return cruiseshipRepository
                 .findAll(cruiseShipBaseFilterSpecification,

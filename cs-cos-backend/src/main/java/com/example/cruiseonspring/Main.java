@@ -14,6 +14,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Array;
+import java.util.List;
+
 
 @Component
 @AllArgsConstructor
@@ -28,7 +31,9 @@ public class Main implements CommandLineRunner {
                         .getAllUserOrdersFiltered(
                                 new User().builder().email("1qwe").build(),
                                 PageRequest.of(0, 100),
-                                new SpecificationTransferDto("cruiseShip.routeFrom", "Tambraburgh")
+                                List.of(new SpecificationTransferDto("cruiseShip.routeFrom", "Tambraburgh"),
+                                                new SpecificationTransferDto("cruiseShip.routeTo", "Trompton"))
+                                        .toArray(SpecificationTransferDto[]::new)
                         );
         userOrder.forEach(System.out::println);
     }

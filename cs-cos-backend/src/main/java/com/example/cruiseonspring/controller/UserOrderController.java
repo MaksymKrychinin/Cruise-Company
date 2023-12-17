@@ -1,6 +1,7 @@
 package com.example.cruiseonspring.controller;
 
 import com.example.cruiseonspring.annotation.FilterFieldCheck;
+import com.example.cruiseonspring.dto.FilterFieldsDto;
 import com.example.cruiseonspring.dto.SpecificationTransferDto;
 import com.example.cruiseonspring.dto.UserOrderDto;
 import com.example.cruiseonspring.entity.UserOrder;
@@ -33,15 +34,15 @@ public class UserOrderController {
     }
 
     @GetMapping("/filters")
-    public Map<String, String> objectFiltersUserOrder() {
-        return FilterFieldCheck.mapOfObjectFilters(UserOrder.class);
+    public List<FilterFieldsDto> objectFiltersUserOrder() {
+        return FilterFieldCheck.listOfObjectFilters(UserOrder.class);
     }
 
     @GetMapping("/filtered/")
     ResponseEntity<Page<UserOrderDto>> getAllUserOrdersFiltered(
             @AuthenticationPrincipal UserDetails userDetails,
             @PageableDefault Pageable pageable,
-            SpecificationTransferDto specificationTransferDto) {
+            SpecificationTransferDto[] specificationTransferDto) {
         Page<UserOrderDto> allUserOrders = userOrderService.getAllUserOrdersFiltered(userDetails, pageable, specificationTransferDto);
         return ResponseEntity.ok().body(allUserOrders);
     }

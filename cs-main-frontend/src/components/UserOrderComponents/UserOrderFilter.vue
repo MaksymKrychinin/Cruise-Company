@@ -2,18 +2,55 @@
   <div class="filter-left">
     <div class="filter">
       <h3>Filter</h3>
-      <div class="filter-item">
-        <label for="name">Status</label>
-        <input type="text" id="orderStatus" name="orderStatus" placeholder="Order Status">
+
+      <div v-for="filter in filters" :key="filter.fieldName">
+        <div class="filter-item">
+          <label>{{ TranslationPipe(filter.fieldName) || filter.fieldName }}</label>
+          <input v-if="filter.fieldType === 'Integer' || filter.fieldType ==='int'"
+                 type="number"
+                 v-model="filter.value"/>
+          <input v-if="filter.fieldType === 'String'"
+                 type="text"
+                 v-model="filter.value"/>
+          <input v-if="filter.fieldType === 'LocalDate'"
+                 type="date"
+                 v-model="filter.value"/>
+        </div>
       </div>
-      <button>Filter</button>
+
+      <button @click="$emit('filterUserOrders', filters)">Filter</button>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import {TranslationPipe} from "../../TranslationPipe";
+
 export default {
-  name: "UserOrderFilter"
+  name: "UserOrdersFilter",
+  methods: {TranslationPipe},
+  props: {
+    userOrderList: Array
+  },
+  data() {
+    return {
+      filters: [{
+        fieldName: '',
+        fieldType: '',
+        value: '',
+      }],
+    }
+  },
+  async beforeCreate() {
+    const axiosResponse = await axios.get("api/v1/user-orders/filters", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      },
+    });
+    console.log(axiosResponse.data)
+    this.filters = axiosResponse.data;
+  },
 }
 </script>
 
@@ -28,31 +65,34 @@ export default {
   float: left;
 }
 
-.filter>div{
+.filter > div {
   display: flex;
   flex-direction: column;
 }
 
-.filter-item{
+.filter-item {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin: 10px;
 }
 
-.filter-item>label{
-  margin-right: 10px;
+.filter-item > label {
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
-.filter-item>input{
-  width: 100%;
+.filter-item > input {
+  width: 90%;
+  margin-left: 2.5%;
 }
 
-.filter>button{
+.filter > button {
   margin: 10px;
   width: 90%;
   height: 40px;
-  background-color: #9b8751;
+  background-color: #ab965b;
   border: 1px solid #e0c280;
   border-radius: 5px;
   font-size: 20px;
@@ -60,7 +100,7 @@ export default {
   cursor: pointer;
 }
 
-.filter>button:hover{
+.filter > button:hover {
   background-color: #e7ab26;
   border: 1px solid #e0c280;
   border-radius: 5px;
@@ -69,7 +109,7 @@ export default {
   cursor: pointer;
 }
 
-.filter>button:active{
+.filter > button:active {
   background-color: #ffa900;
   border: 1px solid #e0c280;
   border-radius: 5px;
@@ -78,7 +118,7 @@ export default {
   cursor: pointer;
 }
 
-.filter>h3{
+.filter > h3 {
   margin: 10px;
   font-size: 30px;
   font-weight: bold;

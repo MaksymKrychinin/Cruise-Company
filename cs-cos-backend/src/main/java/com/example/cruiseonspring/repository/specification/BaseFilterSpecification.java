@@ -38,4 +38,5 @@ public class BaseFilterSpecification<T> implements Specification<T> {
         }
         return null;
     }
+
 }

@@ -2,6 +2,7 @@ package com.example.cruiseonspring.controller;
 
 import com.example.cruiseonspring.annotation.FilterFieldCheck;
 import com.example.cruiseonspring.dto.CruiseShipDto;
+import com.example.cruiseonspring.dto.FilterFieldsDto;
 import com.example.cruiseonspring.dto.SpecificationTransferDto;
 import com.example.cruiseonspring.dto.UserOrderDto;
 import com.example.cruiseonspring.entity.CruiseShip;
@@ -16,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -32,14 +34,14 @@ public class CruiseShipController {
     }
 
     @GetMapping("/filters")
-    public Map<String, String> objectFiltersCruiseShip() {
-        return FilterFieldCheck.mapOfObjectFilters(CruiseShip.class);
+    public List<FilterFieldsDto> objectFiltersCruiseShip() {
+        return FilterFieldCheck.listOfObjectFilters(CruiseShip.class);
     }
 
     @GetMapping("/filtered/")
     ResponseEntity<Page<CruiseShipDto>> getAllCruiseShipsFiltered(
             @PageableDefault Pageable pageable,
-            SpecificationTransferDto specificationTransferDto) {
+            SpecificationTransferDto[] specificationTransferDto) {
         Page<CruiseShipDto> allCruiseShips = cruiseshipService.getAllCruiseShipsFiltered(pageable, specificationTransferDto);
         return ResponseEntity.ok().body(allCruiseShips);
     }

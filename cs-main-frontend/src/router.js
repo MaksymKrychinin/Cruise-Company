@@ -6,11 +6,12 @@ import CruiseShipsPage from "@/pages/CruiseShipsPage.vue";
 import MyOrdersPage from "@/pages/MyOrdersPage.vue";
 import CruiseShipDetailPage from "@/components/CruiseShipComponents/CruiseShipDetailPage.vue";
 import UserOrderRentCruiseShipComponent from "@/components/UserOrderComponents/UserOrderRentCruiseShipComponent.vue";
+import NewsPage from "@/components/auth/NewsPage.vue";
 
 const routes = [
     {
         path: '/',
-        component: CruiseShipsPage,
+        component: NewsPage,
     },
     {
         path: '/login',

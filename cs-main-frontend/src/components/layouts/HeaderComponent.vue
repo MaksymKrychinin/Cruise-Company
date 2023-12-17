@@ -9,7 +9,6 @@
   </header>
   <header v-else>
     <img src="@/assets/images/logo.png" width="50" height="50">
-    <router-link to="/"><p>Home</p></router-link>
     <router-link to="/login"><p>Login</p></router-link>
     <router-link to="/register"><p>Register</p></router-link>
   </header>

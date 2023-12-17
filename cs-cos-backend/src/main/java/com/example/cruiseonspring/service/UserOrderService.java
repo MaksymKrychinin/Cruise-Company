@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -92,8 +93,8 @@ public class UserOrderService {
         userorderRepository.deleteById(id);
     }
 
-    public Page<UserOrderDto> getAllUserOrdersFiltered(UserDetails userDetails, Pageable pageable, SpecificationTransferDto specificationTransferDto) {
-        BaseFilterSpecification<UserOrder> userOrderBaseFilterSpecification =
+    public Page<UserOrderDto> getAllUserOrdersFiltered(UserDetails userDetails, Pageable pageable, SpecificationTransferDto[] specificationTransferDto) {
+        Specification<UserOrder> userOrderBaseFilterSpecification =
                 userOrderBaseSpecificationFactory.specificationColumnFilter(specificationTransferDto);
         BaseFilterSpecification<UserOrder> userDetailsBaseSpecification =
                 userOrderBaseSpecificationFactory.specificationUserDetailsColumnFilter(userDetails.getUsername());

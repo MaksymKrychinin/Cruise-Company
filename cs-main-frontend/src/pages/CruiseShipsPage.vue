@@ -3,7 +3,7 @@
   <CruiseShipFilter/>
 
   <div class="cruise-ships">
-    <CruiseShipList :cruise-ship-list="shipsList"/>
+    <CruiseShipList :cruise-ship-list="shipsList" />
     <PaginationComponent
         @pagination_page_changed="(page, resultPerPage)=>getAllCruiseShips(page, resultPerPage)"
         :current-page="currentPage"
@@ -14,7 +14,6 @@
 
 <script>
 import CruiseShipList from "@/components/CruiseShipComponents/CruiseShipList";
-import {jwtDecode} from "jwt-decode";
 import PaginationComponent from "@/components/layouts/Pagination";
 import axios from "axios";
 import CruiseShipFilter from "@/components/CruiseShipComponents/CruiseShipFilter";
@@ -36,11 +35,6 @@ export default {
     if (!this.token) {
       this.$router.push('/login');
       localStorage.setItem('error', 'You need to log in first');
-    } else {
-      const jwtPayload = jwtDecode(this.token);
-      new Date().getTime() / 1000 < jwtPayload.exp
-          ? console.log("Token is valid")
-          : this.$router.push('/login') && localStorage.setItem('error', 'You need to log in first');
     }
   },
   beforeMount() {
