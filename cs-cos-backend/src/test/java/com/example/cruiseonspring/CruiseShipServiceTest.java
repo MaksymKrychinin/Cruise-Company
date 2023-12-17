@@ -104,7 +104,7 @@ public class CruiseShipServiceTest {
                 .endDate(LocalDate.now().plusYears(30))
                 .numberOfVisitedPorts(10).orderedSeats(0)
                 .routeFrom("Ukr").routeTo("Eng").build();
-        when(cruiseShipMapper.cruiseShipToDto(cruiseShipDto)).thenReturn(cruiseShip);
+        when(cruiseShipMapper.dtoToCruiseShip(cruiseShipDto)).thenReturn(cruiseShip);
         when(cruiseShipRepository.save(cruiseShip)).thenReturn(cruiseShip);
 
         CruiseShip result = cruiseShipService.saveCruiseShip(cruiseShipDto);
