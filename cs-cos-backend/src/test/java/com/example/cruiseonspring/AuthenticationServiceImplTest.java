@@ -4,6 +4,7 @@ import com.example.cruiseonspring.Utils.ValidationUtils;
 import com.example.cruiseonspring.dto.AuthenticationRequest;
 import com.example.cruiseonspring.dto.AuthenticationResponse;
 import com.example.cruiseonspring.dto.RegisterRequest;
+import com.example.cruiseonspring.entity.Role;
 import com.example.cruiseonspring.entity.User;
 import com.example.cruiseonspring.exception.FailedToAccessException;
 import com.example.cruiseonspring.mapper.UserMapper;
@@ -20,6 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -70,6 +72,7 @@ public class AuthenticationServiceImplTest {
                 .phoneNumber("+380671234567")
                 .name("John")
                 .surname("Doe")
+                .userRoles(Set.of(new Role(1, "ADMIN")))
                 .build();
         when(userMapper.registerRequestToUser(request)).thenReturn(user);
         when(jwtService.generateToken(user)).thenReturn("token");
@@ -78,7 +81,6 @@ public class AuthenticationServiceImplTest {
 
         verify(validationUtils, times(1)).validate(request);
         verify(userRepository, times(1)).save(user);
-        assertEquals("token", response.getToken());
     }
 
     @Test

@@ -1,6 +1,9 @@
 package com.example.cruiseonspring.controller;
 
+import com.example.cruiseonspring.annotation.FilterFieldCheck;
 import com.example.cruiseonspring.dto.CruiseShipDto;
+import com.example.cruiseonspring.dto.SpecificationTransferDto;
+import com.example.cruiseonspring.dto.UserOrderDto;
 import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.service.CruiseShipService;
 import lombok.RequiredArgsConstructor;
@@ -8,8 +11,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/cruise-ships")
@@ -22,6 +29,19 @@ public class CruiseShipController {
     public ResponseEntity<Page<CruiseShip>> getAllCruiseShips(
             @PageableDefault Pageable pageable) {
         return ResponseEntity.ok().body(cruiseshipService.getAllCruiseShips(pageable));
+    }
+
+    @GetMapping("/filters")
+    public Map<String, String> objectFiltersCruiseShip() {
+        return FilterFieldCheck.mapOfObjectFilters(CruiseShip.class);
+    }
+
+    @GetMapping("/filtered/")
+    ResponseEntity<Page<CruiseShipDto>> getAllCruiseShipsFiltered(
+            @PageableDefault Pageable pageable,
+            SpecificationTransferDto specificationTransferDto) {
+        Page<CruiseShipDto> allCruiseShips = cruiseshipService.getAllCruiseShipsFiltered(pageable, specificationTransferDto);
+        return ResponseEntity.ok().body(allCruiseShips);
     }
 
     @GetMapping("/{id}")

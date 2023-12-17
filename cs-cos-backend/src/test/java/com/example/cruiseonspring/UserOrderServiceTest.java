@@ -6,6 +6,9 @@ import com.example.cruiseonspring.entity.User;
 import com.example.cruiseonspring.entity.UserOrder;
 import com.example.cruiseonspring.exception.FailedToAccessException;
 import com.example.cruiseonspring.exception.NotFoundException;
+import com.example.cruiseonspring.mapper.CruiseShipMapper;
+import com.example.cruiseonspring.mapper.UserMapper;
+import com.example.cruiseonspring.mapper.UserMapperImpl;
 import com.example.cruiseonspring.mapper.UserOrderMapper;
 import com.example.cruiseonspring.repository.CruiseShipRepository;
 import com.example.cruiseonspring.repository.UserOrderRepository;
@@ -18,6 +21,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import java.time.LocalDate;
@@ -45,6 +49,10 @@ public class UserOrderServiceTest {
 
     @Mock
     private UserOrderMapper userOrderMapper;
+    @Mock
+    private CruiseShipMapper cruiseShipMapper;
+    @Mock
+    private UserMapper userMapper;
 
     @Mock
     private User userDetails;
@@ -122,7 +130,8 @@ public class UserOrderServiceTest {
     public void getAllUserOrdersReturnsCorrectOrders() {
         List<UserOrder> userOrders = new ArrayList<>();
         userOrders.add(userOrder);
-        when(userOrderRepository.findAllByUserEmail(anyString(), any(PageRequest.class))).thenReturn(userOrders);
+        Page<UserOrder> userOrderPage = new PageImpl<>(userOrders);
+        when(userOrderRepository.findAllByUserEmail(anyString(), any(PageRequest.class))).thenReturn(userOrderPage);
         when(userOrderMapper.userOrderToDto(userOrder)).thenReturn(new UserOrderDto());
 
         Page<UserOrderDto> result = userOrderService.getAllUserOrders(userDetails, PageRequest.of(0, 10));
@@ -135,18 +144,13 @@ public class UserOrderServiceTest {
         when(cruiseShipRepository.findById(1)).thenReturn(Optional.of(cruiseShip));
         when(userRepository.findByEmail(userDetails.getEmail())).thenReturn(Optional.of(userDetails));
         when(userOrderRepository.save(userOrder)).thenReturn(userOrder);
-        when(userOrderMapper.userOrderToDto(userOrder)).thenReturn(UserOrderDto.builder().id(1).user(userDetails)
-                .cruiseShip(cruiseShip)
-                .status("NotAproved")
+        when(userOrderMapper.userOrderToDto(userOrder)).thenReturn(UserOrderDto.builder().id(1)
+                .status("NotApproved")
                 .build());
         UserOrderDto result = userOrderService.saveUserOrder(userOrder, userDetails);
         assertNotNull(result);
-        assertNotNull(result.getUser());
         assertNotNull(result.getId());
-        assertNotNull(result.getCruiseShip());
         assertNotNull(result.getStatus());
-        assertEquals(result.getUser(), userDetails);
-        assertEquals(result.getCruiseShip(), cruiseShip);
         assertEquals(result.getId(), 1);
     }
 

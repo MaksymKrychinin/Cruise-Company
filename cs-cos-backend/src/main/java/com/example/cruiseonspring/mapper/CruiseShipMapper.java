@@ -8,8 +8,8 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface CruiseShipMapper {
 
-    CruiseShip cruiseShipToDto(CruiseShipDto source);
+    CruiseShip dtoToCruiseShip(CruiseShipDto source);
 
-    CruiseShipDto dtoToCruiseShip(CruiseShip source);
+    CruiseShipDto cruiseShipToDto(CruiseShip source);
 }
 
