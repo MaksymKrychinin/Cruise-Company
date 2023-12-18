@@ -41,12 +41,11 @@ public class UserOrderController {
 
     @GetMapping("/filtered/")
     ResponseEntity<Page<UserOrderDto>> getAllUserOrdersFiltered(
-            @RequestBody Object specificationTransferDto,
+            @RequestBody List<SpecificationTransferDto> specificationTransferDto,
             @AuthenticationPrincipal UserDetails userDetails,
             @PageableDefault Pageable pageable
             ) {
-        System.out.println((specificationTransferDto));
-        Page<UserOrderDto> allUserOrders = userOrderService.getAllUserOrdersFiltered(userDetails, pageable, (List<SpecificationTransferDto>) specificationTransferDto);
+        Page<UserOrderDto> allUserOrders = userOrderService.getAllUserOrdersFiltered(userDetails, pageable, specificationTransferDto);
         return ResponseEntity.ok().body(allUserOrders);
     }
 
