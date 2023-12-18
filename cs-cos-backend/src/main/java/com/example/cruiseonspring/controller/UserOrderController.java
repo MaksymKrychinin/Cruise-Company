@@ -15,6 +15,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -40,11 +41,12 @@ public class UserOrderController {
 
     @GetMapping("/filtered/")
     ResponseEntity<Page<UserOrderDto>> getAllUserOrdersFiltered(
-            @RequestBody SpecificationTransferDto[] specificationTransferDto,
+            @RequestBody Object specificationTransferDto,
             @AuthenticationPrincipal UserDetails userDetails,
             @PageableDefault Pageable pageable
             ) {
-        Page<UserOrderDto> allUserOrders = userOrderService.getAllUserOrdersFiltered(userDetails, pageable, List.of(specificationTransferDto));
+        System.out.println((specificationTransferDto));
+        Page<UserOrderDto> allUserOrders = userOrderService.getAllUserOrdersFiltered(userDetails, pageable, (List<SpecificationTransferDto>) specificationTransferDto);
         return ResponseEntity.ok().body(allUserOrders);
     }
 

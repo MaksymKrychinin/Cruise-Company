@@ -10,22 +10,22 @@ import java.util.List;
 @Component
 public class BaseSpecificationFactory<T> {
     public BaseFilterSpecification<T> specificationColumnFilter(SpecificationTransferDto specificationTransferDto) {
-        return new BaseFilterSpecification<>(specificationTransferDto.getFilterColumn(), specificationTransferDto.getFilterData());
+        return new BaseFilterSpecification<>(specificationTransferDto.getFieldName(), specificationTransferDto.getFieldData());
     }
 
     public Specification<T> specificationColumnFilter(SpecificationTransferDto... specificationTransferDto) {
-        Specification<T> first = new BaseFilterSpecification<>(specificationTransferDto[0].getFilterColumn(), specificationTransferDto[0].getFilterData());
+        Specification<T> first = new BaseFilterSpecification<>(specificationTransferDto[0].getFieldName(), specificationTransferDto[0].getFieldData());
         for (var spec : specificationTransferDto) {
-            first = first.and(new BaseFilterSpecification<>(spec.getFilterColumn(), spec.getFilterData()));
+            first = first.and(new BaseFilterSpecification<>(spec.getFieldName(), spec.getFieldData()));
         }
         return first;
     }
 
     public Specification<T> specificationColumnFilter(List<SpecificationTransferDto> specificationTransferDto) {
-        Specification<T> first = new BaseFilterSpecification<>(specificationTransferDto.get(0).getFilterColumn(),
-                specificationTransferDto.get(0).getFilterData());
+        Specification<T> first = new BaseFilterSpecification<>(specificationTransferDto.get(0).getFieldName(),
+                specificationTransferDto.get(0).getFieldData());
         for (var spec : specificationTransferDto) {
-            first = first.and(new BaseFilterSpecification<>(spec.getFilterColumn(), spec.getFilterData()));
+            first = first.and(new BaseFilterSpecification<>(spec.getFieldName(), spec.getFieldData()));
         }
         return first;
     }

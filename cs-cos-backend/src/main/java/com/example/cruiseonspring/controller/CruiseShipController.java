@@ -19,6 +19,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,11 +41,10 @@ public class CruiseShipController {
         return FilterFieldCheck.listOfObjectFilters(CruiseShip.class);
     }
 
-    @PostMapping("/filter/")
+    @PostMapping("/filtered/")
     ResponseEntity<Page<CruiseShipDto>> getAllCruiseShipsFiltered(
-            @RequestBody SpecificationTransferDto[] filters,
-            @PageableDefault Pageable pageable) {
-        Page<CruiseShipDto> allCruiseShips = cruiseshipService.getAllCruiseShipsFiltered(pageable, List.of(filters));
+            @RequestBody SpecificationTransferDto[] filters) {
+       Page<CruiseShipDto> allCruiseShips = cruiseshipService.getAllCruiseShipsFiltered(PageRequest.of(0, 10), List.of(filters));
         return ResponseEntity.ok().body(allCruiseShips);
     }
 

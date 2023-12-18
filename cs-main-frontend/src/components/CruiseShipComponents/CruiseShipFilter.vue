@@ -6,13 +6,15 @@
       <div v-for="filter in filters" :key="filter.fieldName">
         <div class="filter-item">
           <label>{{ translate(filter.fieldName) || filter.fieldName }}</label>
-          <input v-if="filter.fieldType === 'Integer' || filter.fieldType ==='int'" type="number" v-model="filter.value"/>
-          <input v-if="filter.fieldType === 'String'" type="text" v-model="filter.value"/>
-          <input v-if="filter.fieldType === 'LocalDate'" type="date" v-model="filter.value"/>
+          <input v-if="filter.fieldType === 'Integer' || filter.fieldType ==='int'" type="number"
+                 v-model="filter.fieldData"/>
+          <input v-if="filter.fieldType === 'String'" type="text" v-model="filter.fieldData"/>
+          <input v-if="filter.fieldType === 'LocalDate'" type="date" v-model="filter.fieldData"/>
         </div>
       </div>
 
-      <button @click="$emit('filterCruiseShips', filters)">Filter</button>
+      <button @click="filterCruiseShips(this.filters)">Filter</button>
+      <button @click="$emit('clearCruiseShipFilters')">Clear</button>
     </div>
   </div>
 </template>
@@ -23,16 +25,25 @@ import {translate} from "@/TranslationPipe";
 
 export default {
   name: "CruiseShipFilter",
-  methods: {translate},
-  props: {
-    cruiseShipList: Array
+  methods: {
+    translate,
+    filterCruiseShips(filters) {
+      this.$emit('filterCruiseShips',
+          filters.filter(filter => filter.fieldData?.trim().length > 0 && filter.fieldData !== undefined)
+              .map(filter => {
+                return {
+                  fieldName: filter.fieldName,
+                  fieldData: filter.fieldData,
+                }
+              }));
+    },
   },
   data() {
     return {
       filters: [{
         fieldName: '',
         fieldType: '',
-        value: '',
+        fieldData: '',
       }],
     }
   },
@@ -42,7 +53,6 @@ export default {
         Authorization: `Bearer ${localStorage.getItem("token")}`
       },
     });
-    console.log(axiosResponse.data)
     this.filters = axiosResponse.data;
   },
 }
@@ -84,7 +94,7 @@ export default {
 
 .filter > button {
   margin: 10px;
-  width: 90%;
+  width: 45%;
   height: 40px;
   background-color: #ab965b;
   border: 1px solid #e0c280;

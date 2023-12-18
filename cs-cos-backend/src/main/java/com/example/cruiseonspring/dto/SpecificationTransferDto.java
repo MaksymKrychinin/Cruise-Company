@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class SpecificationTransferDto {
     private String fieldName;
-    private String filterData;
+    private String fieldData;
 }
