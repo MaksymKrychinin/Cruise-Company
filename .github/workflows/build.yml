@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-        java-version: [11]
+        java-version: [17]
 
     steps:
       - name: Checkout code
