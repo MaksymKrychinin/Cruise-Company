@@ -1,0 +1,101 @@
+name: Build and Test
+
+on:
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        java-version: [11]
+
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'adopt'
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Build Vue app
+        run: |
+          cd cs-main-frontend
+          npm ci
+          npm run build
+
+      - name: Build Angular app
+        run: |
+          cd tc-main-frontend
+          npm ci
+          npm run build
+
+      - name: Test Java application
+        run: mvn test
+
+      - name: Test Vue app
+        run: |
+          cd cs-main-frontend
+          npm test
+
+      - name: Test Angular app
+        run: |
+          cd tc-main-frontend
+          npm test
+
+      - name: Install Docker Compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+
+      - name: Start services
+        run: |
+          cd docker
+          docker-compose -f docker-compose-simple.yml up -d
+
+      - name: Test cs-cos-backend
+        run: |
+          # Add commands to test cs-cos-backend here
+
+      - name: Test cs-qes-backend
+        run: |
+          # Add commands to test cs-qes-backend here
+
+      - name: Stop services
+        run: |
+          cd docker
+          docker-compose -f docker-compose-simple.yml down
+
+#      - name: Login to DockerHub
+#        uses: docker/login-action@v1
+#        with:
+#          username: ${{ secrets.DOCKERHUB_USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_TOKEN }}
+#
+#      - name: Build and push Docker images
+#        run: |
+#          docker build -t your-dockerhub-username/java-app:latest ./path-to-java-app
+#          docker push your-dockerhub-username/java-app:latest
+#
+#          cd cs-main-frontend
+#          docker build -t your-dockerhub-username/vue-app:latest .
+#          docker push your-dockerhub-username/vue-app:latest
+#
+#          cd ../tc-main-frontend
+#          docker build -t your-dockerhub-username/angular-app:latest .
+#          docker push your-dockerhub-username/angular-app:latest
