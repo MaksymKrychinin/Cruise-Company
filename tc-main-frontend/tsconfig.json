@@ -20,9 +20,7 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "paths": {
-      "tc-design-system": [
-        "dist/tc-design-system"
-      ]
+      "@tc-design-system": ["projects/tc-design-system/src/lib/tc-design-system.component"]
     },
     "lib": [
       "ES2022",
