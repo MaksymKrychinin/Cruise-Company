@@ -25,10 +25,10 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven (cs-cos-backend)
-        run: mvn -B package --file cs-cos-backend/pom.xml
+        run: mvn -B -e package --file cs-cos-backend/pom.xml
 
       - name: Build with Maven (cs-qes-backend)
-        run: mvn -B package --file cs-qes-backend/pom.xml
+        run: mvn -B -e package --file cs-qes-backend/pom.xml
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
