@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fb8ff62-be9b-4a2e-b8db-9d6b4c93640c" name="Changes" comment="package-rename">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/build.yml" afterDir="false" />
+    <list default="true" id="5fb8ff62-be9b-4a2e-b8db-9d6b4c93640c" name="Changes" comment="feat/ts/add-workflows">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +203,7 @@
       <workItem from="1702811272420" duration="625000" />
       <workItem from="1702814856143" duration="4000" />
       <workItem from="1702817790397" duration="5000" />
-      <workItem from="1718991396033" duration="546000" />
+      <workItem from="1718991396033" duration="910000" />
     </task>
     <task id="LOCAL-00001" summary="add docker to current package&#10;edit all package docker">
       <option name="closed" value="true" />
@@ -253,7 +253,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700867620640</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat/ts/add-workflows">
+      <option name="closed" value="true" />
+      <created>1718992028580</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718992028580</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,6 +284,7 @@
     <MESSAGE value="add auth validation" />
     <MESSAGE value="kafka-changes" />
     <MESSAGE value="package-rename" />
-    <option name="LAST_COMMIT_MESSAGE" value="package-rename" />
+    <MESSAGE value="feat/ts/add-workflows" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat/ts/add-workflows" />
   </component>
 </project>
