@@ -16,9 +16,26 @@ on:
         required: true
 
 jobs:
+  changes_filter:
+    runs-on: ubuntu-latest
+    outputs:
+      cos: ${{ steps.filter.outputs.cos }}
+      ses: ${{ steps.filter.outputs.ses }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            cos:
+              - 'cs-cos-backend/**'
+            ses:
+              - 'cs-ses-backend/**'
+
   build_cos_backend:
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.title, 'cos-backend')
+    needs: changes_filter
+    if: needs.changes_filter.outputs.cos == 'true'
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -34,7 +51,8 @@ jobs:
 
   build_ses_backend:
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.title, 'ses-backend')
+    needs: changes_filter
+    if: needs.changes_filter.outputs.ses == 'true'
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
