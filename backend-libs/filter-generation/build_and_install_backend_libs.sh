@@ -6,7 +6,7 @@ ARTIFACT_ID="filter-generation"
 VERSION="1.0.0"
 
 # Navigate to the project directory
-cd .
+cd ./backend-libs/filter-generation
 
 # Build the JAR file
 mvn clean package
