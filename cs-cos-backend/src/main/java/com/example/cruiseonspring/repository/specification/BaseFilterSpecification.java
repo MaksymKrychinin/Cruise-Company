@@ -4,8 +4,8 @@ import jakarta.persistence.criteria.*;
 import org.springframework.data.jpa.domain.Specification;
 
 public class BaseFilterSpecification<T> implements Specification<T> {
-    private String filterColumn;
-    private String filterData;
+    private final String filterColumn;
+    private final String filterData;
     private String[] joinTable;
     public BaseFilterSpecification(String filterColumn, String filterData) {
         this.filterColumn = filterColumn;

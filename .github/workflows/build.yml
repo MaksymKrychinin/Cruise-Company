@@ -28,7 +28,7 @@ jobs:
         run: mvn -B -e package --file cs-cos-backend/pom.xml
 
       - name: Build with Maven (cs-qes-backend)
-        run: mvn -B -e package --file cs-qes-backend/pom.xml
+        run: mvn -B -e package --file cs-ses-beckend/pom.xml
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
@@ -86,24 +86,24 @@ jobs:
           cd docker
           docker-compose -f docker-compose-simple.yml down
 
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build and push Docker images
-        run: |
-          docker build -t your-dockerhub-username/cs-cos-backend:latest ./cs-cos-backend
-          docker push your-dockerhub-username/cs-cos-backend:latest
-
-          docker build -t your-dockerhub-username/cs-qes-backend:latest ./cs-qes-backend
-          docker push your-dockerhub-username/cs-qes-backend:latest
-
-          cd cs-main-frontend
-          docker build -t your-dockerhub-username/vue-app:latest .
-          docker push your-dockerhub-username/vue-app:latest
-
-          cd ../tc-main-frontend
-          docker build -t your-dockerhub-username/angular-app:latest .
-          docker push your-dockerhub-username/angular-app:latest
+#      - name: Login to DockerHub
+#        uses: docker/login-action@v1
+#        with:
+#          username: ${{ secrets.DOCKERHUB_USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_TOKEN }}
+#
+#      - name: Build and push Docker images
+#        run: |
+#          docker build -t your-dockerhub-username/cs-cos-backend:latest ./cs-cos-backend
+#          docker push your-dockerhub-username/cs-cos-backend:latest
+#
+#          docker build -t your-dockerhub-username/cs-qes-backend:latest ./cs-qes-backend
+#          docker push your-dockerhub-username/cs-qes-backend:latest
+#
+#          cd cs-main-frontend
+#          docker build -t your-dockerhub-username/vue-app:latest .
+#          docker push your-dockerhub-username/vue-app:latest
+#
+#          cd ../tc-main-frontend
+#          docker build -t your-dockerhub-username/angular-app:latest .
+#          docker push your-dockerhub-username/angular-app:latest
