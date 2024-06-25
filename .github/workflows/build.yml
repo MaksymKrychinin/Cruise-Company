@@ -114,3 +114,25 @@ jobs:
 #          cd ../tc-main-frontend
 #          docker build -t your-dockerhub-username/angular-app:latest .
 #          docker push your-dockerhub-username/angular-app:latest
+
+#  deploy_stage:
+#    runs-on: ubuntu-latest
+#    needs: build  # assuming 'build' is the job that needs to complete before deployment
+#    if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'stage'
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#
+#      - name: Deploy to Stage
+#        run: ./deploy.sh stage  # assuming 'deploy.sh' is your deployment script
+#
+#  deploy_prod:
+#    runs-on: ubuntu-latest
+#    needs: build  # assuming 'build' is the job that needs to complete before deployment
+#    if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'prod'
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#
+#      - name: Deploy to Prod
+#        run: ./deploy.sh prod  # assuming 'deploy.sh' is your deployment script
