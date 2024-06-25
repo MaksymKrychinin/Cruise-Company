@@ -1,4 +1,4 @@
-package com.example.cruiseshipexecuterservice.annotation;
+package com.tccompany.statisticexecutorservice.annotation;
 
 import lombok.extern.log4j.Log4j2;
 
