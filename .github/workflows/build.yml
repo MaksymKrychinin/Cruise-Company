@@ -24,6 +24,9 @@ jobs:
           java-version: ${{ matrix.java-version }}
           distribution: 'adopt'
 
+      - name: Install backend libraries
+        run: ./backend-libs/filter-generation/build_and_install_backend_libs.sh
+
       - name: Build with Maven (cs-cos-backend)
         run: mvn -B -e package --file cs-cos-backend/pom.xml
 
