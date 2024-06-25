@@ -4,43 +4,61 @@ on:
   pull_request:
     branches:
       - '**'
+    paths:
+      - 'cs-cos-backend/**'
+      - 'cs-ses-backend/**'
+      - 'cs-main-frontend/**'
+      - 'tc-main-frontend/**'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to (stage/prod)'
+        required: true
 
 jobs:
-  build:
+  build_cos_backend:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-        java-version: [17]
-
+    if: contains(github.event.pull_request.title, 'cos-backend')
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up JDK ${{ matrix.java-version }}
+      - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
-          java-version: ${{ matrix.java-version }}
+          java-version: 17
           distribution: 'adopt'
-
-      - name: Set script permissions
-        run: chmod +x ./backend-libs/filter-generation/build_and_install_backend_libs.sh
-
-
-      - name: Install backend libraries
-        run: ./backend-libs/filter-generation/build_and_install_backend_libs.sh
 
       - name: Build with Maven (cs-cos-backend)
         run: mvn -B -e package --file cs-cos-backend/pom.xml
 
+  build_ses_backend:
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.title, 'ses-backend')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: 'adopt'
+
       - name: Build with Maven (cs-ses-backend)
         run: mvn -B -e package --file cs-ses-backend/pom.xml
 
-      - name: Use Node.js ${{ matrix.node-version }}
+  build_vue_app:
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.title, 'vue-app')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 14.x
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 14.x
 
       - name: Build Vue app
         run: |
@@ -48,91 +66,42 @@ jobs:
           npm ci
           npm run build
 
+  build_angular_app:
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.title, 'angular-app')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+
       - name: Build Angular app
         run: |
           cd tc-main-frontend
           npm ci
           npm run build
 
-      - name: Test Java application (cs-cos-backend)
-        run: mvn test --file cs-cos-backend/pom.xml
+  deploy_stage:
+    runs-on: ubuntu-latest
+    needs: [build_cos_backend, build_ses_backend, build_vue_app, build_angular_app]
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'stage'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Test Java application (cs-qes-backend)
-        run: mvn test --file cs-qes-backend/pom.xml
+      - name: Deploy to Stage
+        run: ./deploy.sh stage  # assuming 'deploy.sh' is your deployment script
 
-      - name: Test Vue app
-        run: |
-          cd cs-main-frontend
-          npm test
+  deploy_prod:
+    runs-on: ubuntu-latest
+    needs: [build_cos_backend, build_ses_backend, build_vue_app, build_angular_app]
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'prod'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Test Angular app
-        run: |
-          cd tc-main-frontend
-          npm test
-
-      - name: Install Docker Compose
-        run: |
-          sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-          sudo chmod +x /usr/local/bin/docker-compose
-
-      - name: Start services
-        run: |
-          cd docker
-          docker-compose -f docker-compose-simple.yml up -d
-
-      - name: Test cs-cos-backend
-        run: |
-          # Add commands to test cs-cos-backend here
-
-      - name: Test cs-qes-backend
-        run: |
-          # Add commands to test cs-qes-backend here
-
-      - name: Stop services
-        run: |
-          cd docker
-          docker-compose -f docker-compose-simple.yml down
-
-#      - name: Login to DockerHub
-#        uses: docker/login-action@v1
-#        with:
-#          username: ${{ secrets.DOCKERHUB_USERNAME }}
-#          password: ${{ secrets.DOCKERHUB_TOKEN }}
-#
-#      - name: Build and push Docker images
-#        run: |
-#          docker build -t your-dockerhub-username/cs-cos-backend:latest ./cs-cos-backend
-#          docker push your-dockerhub-username/cs-cos-backend:latest
-#
-#          docker build -t your-dockerhub-username/cs-qes-backend:latest ./cs-qes-backend
-#          docker push your-dockerhub-username/cs-qes-backend:latest
-#
-#          cd cs-main-frontend
-#          docker build -t your-dockerhub-username/vue-app:latest .
-#          docker push your-dockerhub-username/vue-app:latest
-#
-#          cd ../tc-main-frontend
-#          docker build -t your-dockerhub-username/angular-app:latest .
-#          docker push your-dockerhub-username/angular-app:latest
-
-#  deploy_stage:
-#    runs-on: ubuntu-latest
-#    needs: build  # assuming 'build' is the job that needs to complete before deployment
-#    if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'stage'
-#    steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v2
-#
-#      - name: Deploy to Stage
-#        run: ./deploy.sh stage  # assuming 'deploy.sh' is your deployment script
-#
-#  deploy_prod:
-#    runs-on: ubuntu-latest
-#    needs: build  # assuming 'build' is the job that needs to complete before deployment
-#    if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'prod'
-#    steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v2
-#
-#      - name: Deploy to Prod
-#        run: ./deploy.sh prod  # assuming 'deploy.sh' is your deployment script
+      - name: Deploy to Prod
+        run: ./deploy.sh prod  # assuming 'deploy.sh' is your deployment script
