@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fb8ff62-be9b-4a2e-b8db-9d6b4c93640c" name="Changes" comment="feat/ts/fix-workflows">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tc-main-frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/tc-main-frontend/src/app/app.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,6 +210,7 @@
       <workItem from="1719325809898" duration="2059000" />
       <workItem from="1719328553473" duration="920000" />
       <workItem from="1719329490042" duration="545000" />
+      <workItem from="1719380274271" duration="1049000" />
     </task>
     <task id="LOCAL-00001" summary="add docker to current package&#10;edit all package docker">
       <option name="closed" value="true" />
@@ -342,7 +340,39 @@
       <option name="project" value="LOCAL" />
       <updated>1719327796036</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1719380317651</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1719380317651</updated>
+    </task>
+    <task id="LOCAL-00018" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1719380685103</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1719380685103</updated>
+    </task>
+    <task id="LOCAL-00019" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1719380881852</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1719380881852</updated>
+    </task>
+    <task id="LOCAL-00020" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1719381245338</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1719381245338</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
