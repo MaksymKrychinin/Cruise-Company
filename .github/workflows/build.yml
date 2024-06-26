@@ -47,6 +47,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set script permissions
+        run: chmod +x ./backend-libs/filter-generation/build_and_install_backend_libs.sh
+
       - name: Install backend libraries
         run: ./backend-libs/filter-generation/build_and_install_backend_libs.sh
 
