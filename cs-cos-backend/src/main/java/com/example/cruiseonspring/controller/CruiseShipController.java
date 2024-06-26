@@ -1,24 +1,20 @@
 package com.example.cruiseonspring.controller;
 
-import com.example.cruiseonspring.annotation.FilterFieldCheck;
 import com.example.cruiseonspring.dto.CruiseShipDto;
-import com.example.cruiseonspring.dto.FilterFieldsDto;
 import com.example.cruiseonspring.dto.SpecificationTransferDto;
-import com.example.cruiseonspring.dto.UserOrderDto;
 import com.example.cruiseonspring.entity.CruiseShip;
 import com.example.cruiseonspring.service.CruiseShipService;
+import dtos.FilterFieldsDto;
+import functions.FilterFieldCheck;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/cruise-ships")

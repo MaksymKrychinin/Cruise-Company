@@ -1,7 +1,7 @@
 package com.example.cruiseonspring.entity;
 
 
-import com.example.cruiseonspring.annotation.FilterFieldClass;
+import annotations.FilterFieldClass;
 import jakarta.persistence.*;
 import lombok.*;
 

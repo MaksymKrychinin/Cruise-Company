@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fb8ff62-be9b-4a2e-b8db-9d6b4c93640c" name="Changes" comment="package-rename">
+    <list default="true" id="5fb8ff62-be9b-4a2e-b8db-9d6b4c93640c" name="Changes" comment="feat/ts/fix-workflows">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,11 +72,11 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/backends/optimization-and-libs&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/user/IdeaProjects/Cruise-Company&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/SpringProjects/Cruise-Company&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -203,6 +203,14 @@
       <workItem from="1702811272420" duration="625000" />
       <workItem from="1702814856143" duration="4000" />
       <workItem from="1702817790397" duration="5000" />
+      <workItem from="1718991396033" duration="1587000" />
+      <workItem from="1719317931286" duration="622000" />
+      <workItem from="1719318752728" duration="61000" />
+      <workItem from="1719324219577" duration="55000" />
+      <workItem from="1719325809898" duration="2059000" />
+      <workItem from="1719328553473" duration="920000" />
+      <workItem from="1719329490042" duration="545000" />
+      <workItem from="1719380274271" duration="1049000" />
     </task>
     <task id="LOCAL-00001" summary="add docker to current package&#10;edit all package docker">
       <option name="closed" value="true" />
@@ -252,7 +260,119 @@
       <option name="project" value="LOCAL" />
       <updated>1700867620640</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat/ts/add-workflows">
+      <option name="closed" value="true" />
+      <created>1718992028580</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718992028580</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1718992313405</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1718992313405</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1718992423157</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1718992423157</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1718992651300</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1718992651300</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1719326318221</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1719326318221</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1719326484703</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1719326484703</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1719326568021</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1719326568021</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1719326684015</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1719326684015</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1719327618191</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1719327618191</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1719327796036</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1719327796036</updated>
+    </task>
+    <task id="LOCAL-00017" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1719380317651</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1719380317651</updated>
+    </task>
+    <task id="LOCAL-00018" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1719380685103</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1719380685103</updated>
+    </task>
+    <task id="LOCAL-00019" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1719380881852</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1719380881852</updated>
+    </task>
+    <task id="LOCAL-00020" summary="feat/ts/fix-workflows">
+      <option name="closed" value="true" />
+      <created>1719381245338</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1719381245338</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,6 +395,8 @@
     <MESSAGE value="add auth validation" />
     <MESSAGE value="kafka-changes" />
     <MESSAGE value="package-rename" />
-    <option name="LAST_COMMIT_MESSAGE" value="package-rename" />
+    <MESSAGE value="feat/ts/add-workflows" />
+    <MESSAGE value="feat/ts/fix-workflows" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat/ts/fix-workflows" />
   </component>
 </project>
