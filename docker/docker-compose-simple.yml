@@ -6,8 +6,6 @@ x-healthcheck: &healthcheck
   timeout: 5s
   retries: 5
   start_period: 10s
-  x-mysql: &healthcheck-mysql
-    test: [ "CMD-SHELL", "mysqladmin ping -h localhost" ]
 
 services:
   cs-cos-backend-my-sql:
@@ -19,7 +17,9 @@ services:
     ports:
       - "3307:3306"
     healthcheck:
-      <<: [ *healthcheck, *healthcheck-mysql ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      <<: *healthcheck
+
   cs-qes-backend-postgres:
     image: postgres:latest
     environment:
@@ -28,6 +28,10 @@ services:
       POSTGRES_DB: cruise_company_subscribers
     ports:
       - "3308:5432"
+    healthcheck:
+        test: [ "CMD", "pg_isready", "-U", "postgres" ]
+        <<: *healthcheck
+
   activemq:
     image: symptoma/activemq:latest
     ports:
@@ -35,9 +39,16 @@ services:
     environment:
       ACTIVEMQ_ADMIN_LOGIN: admin
       ACTIVEMQ_ADMIN_PASSWORD: admin
+    healthcheck:
+        test: [ "CMD", "curl", "-f", "http://localhost:8161" ]
+        <<: *healthcheck
+
   cs-qes-backend-mongo-db:
     image: mongo:latest
     environment:
       MONGO_INITDB_DATABASE: statistics
     ports:
       - '27017:27017'
+    healthcheck:
+        test: [ "CMD", "mongo", "--eval", "db.stats()" ]
+        <<: *healthcheck

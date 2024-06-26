@@ -117,6 +117,19 @@ jobs:
           npm ci
           npm run build
 
+  deploy_dev:
+    runs-on: ubuntu-latest
+    needs: [build_cos_backend, build_ses_backend, build_vue_app, build_angular_app]
+    if: github.event.pull_request.merged == true && success()
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Dev
+        run: |
+          chmod +x ./deploy.sh
+          ./deploy.sh dev  # assuming 'deploy.sh' is your deployment script
+
   deploy_stage:
     runs-on: ubuntu-latest
     needs: [build_cos_backend, build_ses_backend, build_vue_app, build_angular_app]
