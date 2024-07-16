@@ -10,36 +10,23 @@ import java.util.List;
 public class FieldCheck {
 
     public static boolean anyMatch(Object o1, Object o2) {
-        boolean hasAnyMatch = false;
-        List<Field> annotatedfieldsList;
+        List<Field> fieldsList = Arrays.stream(o1.getClass().getDeclaredFields())
+                .filter(field -> field.isAnnotationPresent(SubscribeParam.class) &&
+                        !field.getAnnotation(SubscribeParam.class).ignore())
+                .toList();
 
-        if (o1.getClass().isAnnotationPresent(SubscribeClass.class)) {
-            annotatedfieldsList = Arrays.stream(o1.getClass().getDeclaredFields())
-                    .filter(field ->
-                            !field.isAnnotationPresent(SubscribeParam.class)
-                                    || !field.getAnnotation(SubscribeParam.class).ignore()
-                    ).toList();
-        } else {
-            annotatedfieldsList = Arrays.stream(o1.getClass().getDeclaredFields())
-                    .filter(field ->
-                            field.isAnnotationPresent(SubscribeParam.class) &&
-                                    !field.getAnnotation(SubscribeParam.class).ignore())
-                    .toList();
-        }
-        for (Field field : annotatedfieldsList) {
+        for (Field field : fieldsList) {
             try {
                 field.setAccessible(true);
-                if (field.get(o1) != null && field.get(o2) != null) {
-                    if (field.get(o1).equals(field.get(o2))) {
-                        hasAnyMatch = true;
-                        return hasAnyMatch;
-                    }
+                Object value1 = field.get(o1);
+                Object value2 = field.get(o2);
+                if (value1 != null && value2 != null && value1.equals(value2)) {
+                    return true;
                 }
             } catch (IllegalAccessException e) {
                 log.throwing(e);
             }
         }
-        return hasAnyMatch;
+        return false;
     }
-
 }

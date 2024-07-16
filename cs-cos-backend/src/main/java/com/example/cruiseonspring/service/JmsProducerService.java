@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class JmsProducerService {
 
-    @Value("${spring.activemq.queue}")
+    @Value("${spring.activemq.queues.cruise-ship}")
     private String queue;
 
     private final JmsTemplate jmsTemplate;
