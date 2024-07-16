@@ -34,7 +34,7 @@ public class CruiseShipController {
         return FilterFieldCheck.listOfObjectFilters(CruiseShip.class);
     }
 
-    @GetMapping("/filtered/")
+    @GetMapping("/filtered")
     ResponseEntity<Page<CruiseShipDto>> getAllCruiseShipsFiltered(
             @PageableDefault Pageable pageable,
             SpecificationTransferDto[] specificationTransferDto) {

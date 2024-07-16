@@ -107,7 +107,19 @@
             <artifactId>filter-generation</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.tccompany</groupId>
+            <artifactId>tc-validation</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>local-backend-libs-storage</id>
+            <url>file://${user.home}/.m2/repository</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>

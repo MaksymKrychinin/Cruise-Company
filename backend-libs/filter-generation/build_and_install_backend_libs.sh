@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-GROUP_ID="org.tccompany"
+GROUP_ID="com.tccompany"
 ARTIFACT_ID="filter-generation"
 VERSION="1.0.0"
 
