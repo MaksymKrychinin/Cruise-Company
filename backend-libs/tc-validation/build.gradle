@@ -1,0 +1,83 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.1'
+    id 'io.spring.dependency-management' version '1.1.5'
+    id 'maven-publish'
+}
+
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+task renamePlainJar {
+    doLast {
+        fileTree(dir: 'build/libs', include: '*-plain.jar').each { File plainJar ->
+            String newName = plainJar.name.replace('-plain', '')
+            File renamedJar = new File(plainJar.parent, newName)
+            if (renamedJar.exists()) {
+                renamedJar.delete()
+            }
+            plainJar.renameTo(renamedJar)
+        }
+    }
+}
+
+// Make sure to run this task after the jar task
+tasks.named('jar').configure {
+    finalizedBy renamePlainJar
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.tccompany'
+            artifactId = 'tc-validation'
+            version = project.version
+            // Dynamically determine the artifact file
+            artifact(file("build/libs/${project.name}-${project.version}.jar")) {
+                builtBy renamePlainJar
+            }
+
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'tc-validation'
+                description = 'Validation library for TCCOMPANY'
+                url = 'https://github.com/MaksymKrychinin/Cruise-Company/tree/master/backend-libs/tc-validation'
+            }
+        }
+    }
+}
